@@ -1,4 +1,7 @@
-file = open('test.txt', 'r')
+from prettytable import PrettyTable
+x = PrettyTable()
+
+file = open('test.ged', 'r')
 
 acceptable_tags_0 = ['INDI', 'FAM', 'HEAD', 'TRLR', 'NOTE']
 acceptable_tags_1 = ['NAME', 'SEX', 'BIRT', 'DEAT', 'FAMC', 'FAMS', 'MARR', 'HUSB', 'WIFE', 'CHIL', 'DIV']
@@ -8,6 +11,9 @@ for line in file:
     print("--> ", line.rstrip("\n"))
   
     words = line.split()
+
+    if(len(words) == 0):
+        continue
 
     if (words[0] == '0'):
         if (words[1] in acceptable_tags_0):
