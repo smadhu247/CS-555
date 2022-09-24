@@ -10,7 +10,6 @@
 1 FAMS F03
 1 FAMS F08
 0 NOTE biological grandfather
-
 0 I02 INDI
 1 NAME Lucien /Dauphinais/
 1 SEX M
@@ -35,14 +34,12 @@
 1 FAMC F03
 1 FAMS F06
 0 NOTE Family created by Nancy and Lucien to make my dad
-
 0 F03 FAM
 1 MARR
 2 DATE 15 JUN 1963
 1 HUSB I02
 1 WIFE I01
 1 CHIL I03
-
 0 NOTE Dad
 0 I03 INDI
 0 NOTE Family created by Nancy and Phil
