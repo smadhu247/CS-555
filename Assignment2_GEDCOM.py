@@ -175,10 +175,15 @@ for line in file:
 
 print(modified_file)
 
+indi_list = []
 
-
-
+for list in modified_file:
+    if (list[3] == True):
+        print(list)
+        print('hello')
         
+
+
 
 '''
 for line in file:
