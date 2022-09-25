@@ -1,0 +1,270 @@
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE Brianna Garland Tree
+1 DATE 5 SEP 2022
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME Bgarland@stevens.edu
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Brianna /Garland/
+2 GIVN Brianna
+2 SURN Garland
+2 _MARNM Garland
+1 SEX F
+1 BIRT
+2 DATE 15 AUG 2000
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Thomas Jr /Garland/
+2 GIVN Thomas Jr
+2 SURN Garland
+2 _MARNM Garland
+1 SEX M
+1 BIRT
+2 DATE 24 NOV 1968
+1 DEAT Y
+2 DATE 9 SEP 2000
+1 FAMS @F1@
+1 FAMC @F2@
+0 @I3@ INDI
+1 NAME Barbara /Sabatino/
+2 GIVN Barbara
+2 SURN Sabatino
+2 _MARNM Garland
+1 SEX F
+1 BIRT
+2 DATE 3 JAN 1959
+1 FAMS @F1@
+1 FAMS @F3@
+1 FAMC @F4@
+0 @I4@ INDI
+1 NAME Edmond /Sabatino/
+2 GIVN Edmond
+2 SURN Sabatino
+2 _MARNM Sabatino
+1 SEX M
+1 BIRT
+2 DATE 24 NOV 1925
+1 FAMS @F4@
+0 @I5@ INDI
+1 NAME Edwina /Sabatino/
+2 GIVN Edwina
+2 SURN Sabatino
+2 _MARNM Sabatino
+1 SEX F
+1 BIRT
+2 DATE 24 NOV 1929
+1 FAMS @F4@
+0 @I6@ INDI
+1 NAME Donald /Leeper Sr/
+2 GIVN Donald
+2 SURN Leeper Sr
+2 _MARNM Leeper Sr
+1 SEX M
+1 FAMS @F3@
+0 @I7@ INDI
+1 NAME Christina /Leeper/
+2 GIVN Christina
+2 SURN Leeper
+2 _MARNM Williams
+1 SEX F
+1 BIRT
+2 DATE 10 JAN 1982
+1 FAMS @F5@
+1 FAMS @F6@
+1 FAMS @F7@
+1 FAMC @F3@
+0 @I8@ INDI
+1 NAME Donald /Leeper Jr/
+2 GIVN Donald
+2 SURN Leeper Jr
+2 _MARNM Leeper Jr
+1 SEX M
+1 BIRT
+2 DATE 27 JUL 1979
+1 FAMS @F8@
+1 FAMS @F9@
+1 FAMC @F3@
+0 @I9@ INDI
+1 NAME Shannon /Vaness/
+2 GIVN Shannon
+2 SURN Vaness
+2 _MARNM Vaness
+1 SEX F
+1 FAMS @F9@
+0 @I10@ INDI
+1 NAME Dylan /Vaness-Leeper/
+2 GIVN Dylan
+2 SURN Vaness-Leeper
+2 _MARNM Vaness-Leeper
+1 SEX M
+1 BIRT
+2 DATE 24 APR 2001
+1 FAMC @F9@
+0 @I11@ INDI
+1 NAME Jessica /Leeper/
+2 GIVN Jessica
+2 SURN Leeper
+2 _MARNM Leeper
+1 SEX F
+1 FAMS @F8@
+0 @I12@ INDI
+1 NAME Alivia /Leeper/
+2 GIVN Alivia
+2 SURN Leeper
+2 _MARNM Leeper
+1 SEX F
+1 BIRT
+2 DATE 12 MAR 2010
+1 FAMC @F8@
+0 @I13@ INDI
+1 NAME Kara /Leeper/
+2 GIVN Kara
+2 SURN Leeper
+2 _MARNM Leeper
+1 SEX F
+1 BIRT
+2 DATE 28 NOV 2008
+1 FAMC @F8@
+0 @I14@ INDI
+1 NAME Clearance /Williams/
+2 GIVN Clearance
+2 SURN Williams
+2 _MARNM Williams
+1 SEX M
+1 BIRT
+2 DATE 19 JUN 1980
+1 FAMS @F5@
+0 @I15@ INDI
+1 NAME Addison /Williams/
+2 GIVN Addison
+2 SURN Williams
+2 _MARNM Williams
+1 SEX F
+1 BIRT
+2 DATE 8 OCT 2010
+1 FAMC @F5@
+0 @I16@ INDI
+1 NAME Richard /Davis/
+2 GIVN Richard
+2 SURN Davis
+2 _MARNM Davis
+1 SEX M
+1 FAMS @F6@
+0 @I17@ INDI
+1 NAME Haleigh /Davis/
+2 GIVN Haleigh
+2 SURN Davis
+2 _MARNM Davis
+1 SEX F
+1 BIRT
+2 DATE 31 JAN 2004
+1 FAMC @F6@
+0 @I18@ INDI
+1 NAME
+1 SEX M
+1 FAMS @F7@
+0 @I19@ INDI
+1 NAME Collin /Leeper-George/
+2 GIVN Collin
+2 SURN Leeper-George
+2 _MARNM Leeper-George
+1 SEX M
+1 BIRT
+2 DATE 12 JUL 2006
+1 FAMC @F7@
+0 @I20@ INDI
+1 NAME Thomas Sr /Garland/
+2 GIVN Thomas Sr
+2 SURN Garland
+2 _MARNM Garland
+1 SEX M
+1 BIRT
+2 DATE 31 AUG 1945
+1 DEAT Y
+2 DATE 4 APR 2021
+1 FAMS @F2@
+0 @I21@ INDI
+1 NAME Teresa /Fernandez/
+2 GIVN Teresa
+2 SURN Fernandez
+2 _MARNM Garland
+1 SEX F
+1 BIRT
+2 DATE 31 AUG 1946
+1 DEAT Y
+2 DATE 4 MAR 2021
+1 FAMS @F2@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F3@ FAM
+1 HUSB @I6@
+1 WIFE @I3@
+1 CHIL @I7@
+1 CHIL @I8@
+1 MARR
+1 DIV
+1 _CURRENT N
+1 _PRIMARY N
+0 @F2@ FAM
+1 HUSB @I20@
+1 WIFE @I21@
+1 CHIL @I2@
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F4@ FAM
+1 HUSB @I4@
+1 WIFE @I5@
+1 CHIL @I3@
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F5@ FAM
+1 HUSB @I14@
+1 WIFE @I7@
+1 CHIL @I15@
+1 MARR
+2 PLAC Pizza Place
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F6@ FAM
+1 HUSB @I16@
+1 WIFE @I7@
+1 CHIL @I17@
+1 MARR
+2 PLAC Aunts Back Yard 
+1 DIV
+1 _CURRENT N
+1 _PRIMARY N
+0 @F7@ FAM
+1 HUSB @I18@
+1 WIFE @I7@
+1 CHIL @I19@
+1 _CURRENT N
+1 _PRIMARY N
+0 @F8@ FAM
+1 HUSB @I8@
+1 WIFE @I11@
+1 CHIL @I12@
+1 CHIL @I13@
+1 MARR
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F9@ FAM
+1 HUSB @I8@
+1 WIFE @I9@
+1 CHIL @I10@
+1 MARR
+1 _SEPR
+1 _CURRENT N
+1 _PRIMARY N
+0 TRLR
