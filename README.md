@@ -59,8 +59,9 @@ GitHub Repository:	https://github.com/smadhu247/CS-555
 
 ## Sprint 1
 
-Story ID	Story Name	Owner	Status	Est Size	Est Time	Act Size	Act Time	Completed
-US01	Dates before current date	Lasya	coding	10	30 minutes			
+| Story ID | Story Name	| Owner	|Status	|Est Size | Est Time	| Act Size | Act Time	| Completed|
+| -------- | ---------- | ----- | ----- | ------- | ----------- | -------- | ---------- |--------- |
+| US01|	Dates before current date|	Lasya|	coding|	10	|30 minutes|			
 US02	Birth before marriage	Lasya	coding	50	45 minutes			
 US03	Birth before death	Danielle	coding	10	30 minutes			
 US04	Marriage before divorce	Danielle	coding	20	40 minutes			
@@ -82,7 +83,7 @@ US08	Birth before marriage of parents	Bri	coding	20	20 minutes
 	
 ## Sprint 2
 
-Story ID	Story Name	Owner	Status	Est Size	Est Time	Act Size	Act Time	Completed
+|Story ID|	Story Name|	Owner|	Status|	Est Size|	Est Time|	Act Size|	Act Time|	Completed|
 US09	Birth before death of parents	Lasya	coding	5	20 minutes			
 US10	Marriage after 14	Lasya	coding	20	45 minutes			
 US11	No bigamy	Danielle	coding	20	45 minutes			
