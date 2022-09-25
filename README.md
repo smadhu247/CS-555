@@ -62,24 +62,21 @@ GitHub Repository:	https://github.com/smadhu247/CS-555
 | Story ID | Story Name	| Owner	|Status	|Est Size | Est Time	| Act Size | Act Time	| Completed|
 | -------- | ---------- | ----- | ----- | ------- | ----------- | -------- | ---------- |--------- |
 | US01|	Dates before current date|	Lasya|	coding|	10	|30 minutes|			
-US02	Birth before marriage	Lasya	coding	50	45 minutes			
-US03	Birth before death	Danielle	coding	10	30 minutes			
-US04	Marriage before divorce	Danielle	coding	20	40 minutes			
-US05	Marriage before death	Sanjana	coding	30	20 minutes			
-US06	Divorce before death	Sanjana	coding	15	40 minutes			
-US07	Less then 150 years old	Bri	coding	15	30 minutes			
-US08	Birth before marriage of parents	Bri	coding	20	20 minutes			
-								
-								
-								
-								
-	Review Results							
-								
-	Keep doing:							
-								
-								
-								
-	Avoid:							
+|US02|	Birth before marriage|	Lasya|	coding|	50|	45 minutes|			
+|US03|	Birth before death|	Danielle|	coding	|10|	30 minutes|			
+|US04|	Marriage before divorce|	Danielle|	coding|	20|	40 minutes	|		
+|US05|	Marriage before death|	Sanjana|	coding|	30|	20 minutes|			
+|US06|	Divorce before death|	Sanjana	|coding|	15|	40 minutes|			
+|US07|	Less then 150 years old|	Bri|	coding|	15|	30 minutes|			
+|US08|	Birth before marriage of parents|	Bri|	coding|	20|	20 minutes|			
+									
+															
+Review Results							
+
+Keep doing:							
+
+Avoid:	
+
 	
 ## Sprint 2
 
