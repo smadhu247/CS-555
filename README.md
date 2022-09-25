@@ -16,10 +16,11 @@ GitHub Repository:	https://github.com/smadhu247/CS-555
 
 ## Backlog 
 
-Sprint	Story ID	Story Name	Owner	Status
-1	US01	Dates before current date	Lasya	
-1	US02	Birth before marriage	Lasya	
-1	US03	Birth before death	Danielle	
+| Sprint | Story ID | Story Name | Owner | Status |
+| ------ | -------- | ---------- | ----- | ------ |
+| 1 | US01 | Dates before current date	 | Lasya |	
+| 1 |	US02	 | Birth before marriage | Lasya |	
+| 1 | US03 |	Birth before death | 	Danielle |	
 1	US04	Marriage before divorce	Danielle	
 1	US05	Marriage before death	Sanjana	
 1	US06	Divorce before death	Sanjana	
