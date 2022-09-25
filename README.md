@@ -21,40 +21,41 @@ GitHub Repository:	https://github.com/smadhu247/CS-555
 | 1 | US01 | Dates before current date	 | Lasya |	
 | 1 |	US02	 | Birth before marriage | Lasya |	
 | 1 | US03 |	Birth before death | 	Danielle |	
-1	US04	Marriage before divorce	Danielle	
-1	US05	Marriage before death	Sanjana	
-1	US06	Divorce before death	Sanjana	
-1	US07	Less then 150 years old	Bri	
-1	US08	Birth before marriage of parents	Bri	
-2	US09	Birth before death of parents	Lasya	
-2	US10	Marriage after 14	Lasya	
-2	US11	No bigamy	Danielle	
-2	US12	Parents not too old	Danielle	
-2	US13	Siblings spacing	Sanjana	
-2	US14	Multiple births <= 5	Sanjana	
-2	US15	Fewer than 15 siblings	Bri	
-2	US16	Male last names	Bri	
-3	US17	No marriages to descendants	Lasya	
-3	US18	Siblings should not marry	Lasya	
-3	US19	First cousins should not marry	Danielle	
-3	US20	Aunts and uncles	Danielle	
-3	US21	Correct gender for role	Sanjana	
-3	US22	Unique IDs	Sanjana	
-3	US23	Unique name and birth date	Bri	
-3	US24	Unique families by spouses	Bri	
-4	US25	Unique first names in families	Lasya	
-4	US26	Corresponding entries	Lasya	
-4	US27	Include individual ages	Danielle	
-4	US28	Order siblings by age	Danielle	
-4	US29	List deceased	Sanjana	
-4	US30	List living married	Sanjana	
-4	US31	List living single	Bri	
-4	US32	List multiple births	Bri	
+| 1 |	US04 |	Marriage before divorce |	Danielle |	
+| 1 |	US05 |	Marriage before death |	Sanjana |	
+| 1 |	US06 |	Divorce before death |	Sanjana |	
+| 1 |	US07 |	Less then 150 years old | Bri |	
+| 1 |	US08 |	Birth before marriage of parents |	Bri |	
+| 2 |	US09 |	Birth before death of parents |	Lasya |	
+| 2 |	US10 |	Marriage after 14 | 	Lasya |	
+| 2 |	US11 |	No bigamy |	Danielle |	
+| 2 |	US12 | 	Parents not too old |	Danielle |	
+| 2 |	US13 |	Siblings spacing |	Sanjana	|
+| 2 |	US14 |	Multiple births <= 5 |	Sanjana |	
+| 2 |	US15 |	Fewer than 15 siblings |	Bri |	
+| 2 |	US16 |	Male last names	Bri |	
+| 3 | US17 |	No marriages to descendants |	Lasya |	
+| 3 |	US18 |	Siblings should not marry |	Lasya |
+| 3 | 	US19 |	First cousins should not marry |	Danielle |	
+| 3 |	US20 |	Aunts and uncles |	Danielle |	
+| 3 |	US21 |	Correct gender for role | 	Sanjana	|
+| 3 |	US22 |	Unique IDs |	Sanjana	|
+| 3 |	US23 |	Unique name and birth date |	Bri |	
+| 3 |	US24 |	Unique families by spouses |	Bri |	
+| 4 | 	US25 |	Unique first names in families |	Lasya	|
+| 4 |	US26 |	Corresponding entries |	Lasya |	
+| 4 |	US27 |	Include individual ages |	Danielle |	
+| 4 |	US28 |	Order siblings by age |	Danielle |	
+| 4 |	US29 |	List deceased |	Sanjana |	
+| 4 |	US30 |	List living married |	Sanjana |	
+| 4 |	US31 |	List living single |	Bri |	
+| 4 |	US32 |	List multiple births |	Bri |	
 
 ## Burndown 
 
-Sprint	Date	Remaining Stories	Story Velocity	LOC	Min	Code Velocity
-Start	9/20/2022	32		0
+| Sprint | Date |	Remaining Stories | Story Velocity | LOC Min | Code Velocity |
+| ------ | --- | ----------------- | -------------- | ------- | ------------- |
+| Start |	9/20/2022 |	32 |	~~~~ |	0 | ~~~~ |
 
 ## Sprint 1
 
