@@ -371,6 +371,6 @@ for i in range(len(clusters_list)):
     # if (clusters_list[i][0][1] == "INDI"):
 
 
-#print(families)
+print(families)
     
             
