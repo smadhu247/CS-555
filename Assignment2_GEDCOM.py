@@ -1,4 +1,5 @@
 from prettytable import PrettyTable
+from datetime import datetime, date
 
 file = open('test.ged', 'r')
 
@@ -230,9 +231,10 @@ i = 0
 famc = 0
 fams = 0
 
+months_short = [' ','jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+months_long = [' ','january', 'february', 'march', 'april', 'may', 'jun', 'july', 'august', 'september', 'october', 'november', 'december']
 
 for i in range(len(modified_file)):
-    indi_list.append(indi)
     if (modified_file[i][3] == True):
         if (modified_file[i][1] == 'INDI'):
             indi = ['N/A', 'N/A', 'N/A', 'N/A', 'N/A', True, 'N/A', 'N/A', 'N/A']
@@ -250,12 +252,18 @@ for i in range(len(modified_file)):
         if (modified_file[i][1] == 'BIRT'):
             if (modified_file[i+1][1] == 'DATE'):
                 indi[3] = modified_file[i+1][2]
-                indi[4] = 'age'
+                today = date.today()
+                birthday = datetime.strptime(modified_file[i+1][2], '%d %b %Y').date()
+                age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
+                indi[4] = age
 
         if (modified_file[i][1] == 'DEAT'):
             indi[5] = False
             if (modified_file[i+1][1] == 'DATE'):
                 indi[6] = modified_file[i+1][2]
+                death = datetime.strptime(modified_file[i+1][2], '%d %b %Y').date()
+                death_age = death.year - birthday.year - ((death.month, death.day) < (birthday.month, birthday.day))
+                indi[4] = death_age
 
         if (modified_file[i][1] == 'FAMC'):
             famc_list = []
@@ -289,11 +297,21 @@ for i in range(len(modified_file)):
             else:
                 continue
                 
-            indi[8] = fams_list             
+            indi[8] = fams_list     
+    indi_list.append(indi)        
 
+final_indi = []
+for i in range(len(indi_list)):
+    if (indi_list[i] in final_indi):
+        continue
+    else:
+        final_indi.append(indi_list[i])
+ 
+individuals.add_rows(
+    final_indi
+)
 
-# print (indi_list)
-
+print(individuals)
 
 j = 1
 for i in range(len(modified_file)):  
@@ -353,6 +371,6 @@ for i in range(len(clusters_list)):
     # if (clusters_list[i][0][1] == "INDI"):
 
 
-print(families)
+#print(families)
     
             
