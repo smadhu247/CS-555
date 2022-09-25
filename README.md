@@ -79,40 +79,42 @@ Avoid:
 
 	
 ## Sprint 2
-
-|Story ID|	Story Name|	Owner|	Status|	Est Size|	Est Time|	Act Size|	Act Time|	Completed|
-US09	Birth before death of parents	Lasya	coding	5	20 minutes			
-US10	Marriage after 14	Lasya	coding	20	45 minutes			
-US11	No bigamy	Danielle	coding	20	45 minutes			
-US12	Parents not too old	Danielle	coding	20	40 minutes			
-US13	Siblings spacing	Sanjana	coding	20	40 minutes			
-US14	Multiple births <= 5	Sanjana	coding	5	15 minutes			
-US15	Fewer than 15 siblings	Bri	coding	15	15 minutes			
-US16	Male last names	Bri	coding	20	25 minutes			
+| Story ID | Story Name	| Owner	|Status	|Est Size | Est Time	| Act Size | Act Time	| Completed|
+| -------- | ---------- | ----- | ----- | ------- | ----------- | -------- | ---------- |--------- |
+|US09	|Birth before death of parents	|Lasya|	coding|	5	|20 minutes	|		
+|US10	|Marriage after 14|	Lasya|	coding|	20|	45 minutes |			
+|US11	|No bigamy|	Danielle|	coding	|20|	45 minutes|			
+|US12|	Parents not too old|	Danielle|	coding|	20|	40 minutes|			
+|US13	|Siblings spacing|	Sanjana	|coding	|20|	40 minutes|			
+|US14	|Multiple births <= 5|	Sanjana	|coding	|5	|15 minutes|			
+|US15|	Fewer than 15 siblings|	Bri|	coding|	15|	15 minutes|			
+|US16	|Male last names|	Bri	|coding	|20|	25 minutes|			
 
 ## Sprint 3
 
-Story ID	Story Name	Owner	Status	Est Size	Est Time	Act Size	Act Time	Completed
-US17	No marriages to descendants	Lasya	coding	20	45 minutes			
-US18	Siblings should not marry	Lasya	coding	10	20 minutes			
-US19	First cousins should not marry	Danielle	coding	15	30 minutes			
-US20	Aunts and uncles	Danielle	coding	25	45 minutes			
-US21	Correct gender for role	Sanjana	coding	5	15 minutes			
-US22	Unique IDs	Sanjana	coding	15	40 minutes			
-US23	Unique name and birth date	Bri	coding	15	45 minutes			
-US24	Unique families by spouses	Bri	coding	20	30 minutes			
+| Story ID | Story Name	| Owner	|Status	|Est Size | Est Time	| Act Size | Act Time	| Completed|
+| -------- | ---------- | ----- | ----- | ------- | ----------- | -------- | ---------- |--------- |
+|US17|	No marriages to descendants|	Lasya|	coding	|20	|45 minutes|			
+|US18|	Siblings should not marry|	Lasya|	coding	|10|	20 minutes|			
+|US19	|First cousins should not marry	|Danielle|	coding|	15|	30 minutes|			
+|US20	|Aunts and uncles	|Danielle|	coding	|25	|45 minutes|			
+|US21	|Correct gender for role|	Sanjana|	coding	|5|	15 minutes|			
+|US22|	Unique IDs|	Sanjana	coding|	15|	40 minutes|			
+|US23|	Unique name and birth date|	Bri|	coding|	15	|45 minutes|			
+|US24|	Unique families by spouses|	Bri|	coding|	20|	30 minutes|			
 
 # Spring 4 
 
-Story ID	Story Name	Owner	Status	Est Size	Est Time	Act Size	Act Time	Completed
-US25	Unique first names in families	Lasya	coding	10	30 minutes			
-US26	Corresponding entries	Lasya	coding	50	45 minutes			
-US27	Include individual ages	Danielle	coding	10	30 minutes			
-US28	Order siblings by age	Danielle	coding	20	40 minutes			
-US29	List deceased	Sanjana	coding	30	20 minutes			
-US30	List living married	Sanjana	coding	15	40 minutes			
-US31	List living single	Bri	coding	15	30 minutes			
-US32	List multiple births	Bri	coding	20	20 minutes			
+| Story ID | Story Name	| Owner	|Status	|Est Size | Est Time	| Act Size | Act Time	| Completed|
+| -------- | ---------- | ----- | ----- | ------- | ----------- | -------- | ---------- |--------- |
+|US25|	Unique first names in families	|Lasya|	coding|	10|	30 minutes|			
+|US26|	Corresponding entries|	Lasya|	coding	|50|	45 minutes|			
+|US27|	Include individual ages	|Danielle |	coding|	10|	30 minutes|			
+|US28|	Order siblings by age|	Danielle|	coding|	20|	40 minutes|			
+|US29|	List deceased|	Sanjana|	coding|	30|	20 minutes|			
+|US30|	List living married|	Sanjana|	coding|	15|	40 minutes|			
+|US31|	List living single|	Bri|	coding|	15|	30 minutes|			
+|US32|	List multiple births|	Bri|	coding	20|	20 minutes|			
 								
 # Stories 
 
