@@ -1,0 +1,110 @@
+0 NOTE https://github.com/smadhu247/CS-555
+0 NOTE I pledge my honor that I have abided by the Stevens Honor System.
+0 NOTE grandma on dad’s side
+0 I01 INDI
+1 NAME Nancy /Below/
+1 SEX F
+1 BIRT
+2 DATE 30 NOV 1943
+1 FAMC F01
+1 FAMS F03
+1 FAMS F08
+0 NOTE biological grandfather
+0 I02 INDI
+1 NAME Lucien /Dauphinais/
+1 SEX M
+1 BIRT
+2 DATE 25 DEC 1935
+1 DEAT
+2 DATE 10 APR 1935
+1 FAMC F02
+1 FAMS F03
+0 NOTE known grandfather to me
+0 I09 INDI
+1 NAME Phil /Dauphinais/
+1 SEX M
+1 BIRT
+2 DATE 20 DEC 1937
+1 FAMC F02
+1 FAMS F08
+0 I03 INDI
+1 NAME David /Dauphinais/
+1 SEX M
+1 BIRT
+2 DATE 10 AUG 1967
+1 FAMC F03
+1 FAMS F06
+0 NOTE Family created by Nancy and Lucien to make my dad
+0 F03 FAM
+1 MARR
+2 DATE 15 JUN 1963
+1 HUSB I02
+1 WIFE I01
+1 CHIL I03
+0 NOTE Dad
+0 NOTE Family created by Nancy and Phil
+0 F08 FAM
+1 MARR
+2 DATE 21 APR 2000
+1 HUSB I09
+1 WIFE I01
+0 NOTE MOM
+0 I04 INDI
+1 NAME Mary /Schliessmann/
+1 SEX F
+1 BIRT
+2 DATE 23 APR 1963
+1 FAMC F04
+1 FAMS F05
+1 FAMS F06
+0 NOTE mom’s first husband
+0 I05 INDI
+1 NAME Don /Smith/
+1 SEX M
+1 BIRT
+2 DATE 18 DEC 1960
+1 FAMC F09
+1 FAMS F05
+0 NOTE Son of Don and Mary my ½ brother
+0 IO6 INDI
+1 NAME Peter /Smith/
+1 BIRT
+1 SEX M
+2 DATE 30 JUN 1984
+1 FAMC F05
+0 NOTE Family created by Don and Mary how I got a ½ brother
+0 F05 FAM
+1 MARR
+2 DATE 12 JAN 1984
+1 HUSB I05
+1 WIFE I04
+1 CHIL I06
+1 DIV
+2 DATE 19 FEB 1988
+0 NOTE Daughter 1 of Dave and Mary, my sister
+0 IO7 INDI
+1 NAME Jessica /Dauphinais/
+1 SEX F
+1 BIRT
+2 DATE 8 APR 2000
+1 FAMC F06
+0 NOTE Daughter 2 of Dave and Mary, me!
+0 IO8 INDI
+1 NAME Danielle /Dauphinais/
+1 SEX F
+1 BIRT
+2 DATE 4 JUL 2002
+1 FAMC F06
+0 NOTE Family created by David and Mary my parents
+0 F06 FAM
+1 MARR
+2 DATE 10 JUN 1991
+1 HUSB I03
+1 WIFE I04
+1 CHIL I07
+1 CHIL I08
+0 NOTE dates after now
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com (Links to an external site.)
+0 bi00 INDI
+1 NAME Jimmy /Conners/
