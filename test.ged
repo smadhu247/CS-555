@@ -27,6 +27,7 @@
 2 DATE 20 DEC 1937
 1 FAMC F02
 1 FAMS F08
+0 I03 INDI
 1 NAME David /Dauphinais/
 1 SEX M
 1 BIRT
@@ -41,7 +42,6 @@
 1 WIFE I01
 1 CHIL I03
 0 NOTE Dad
-0 I03 INDI
 0 NOTE Family created by Nancy and Phil
 0 F08 FAM
 1 MARR
@@ -75,7 +75,7 @@
 0 NOTE Family created by Don and Mary how I got a ½ brother
 0 F05 FAM
 1 MARR
-2 DATE 12 JAN 1984
+2 DATE 12 JAN 1989
 1 HUSB I05
 1 WIFE I04
 1 CHIL I06

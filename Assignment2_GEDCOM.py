@@ -2,7 +2,6 @@ from prettytable import PrettyTable
 from datetime import datetime, date
 
 file = open('test.ged', 'r')
-
 individuals = PrettyTable()
 individuals.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
 
@@ -368,9 +367,46 @@ for i in range(len(clusters_list)):
         families.add_row([id, married, divorced, husband_id, husband_name, wife_id, wife_name, children])
         
 
-    # if (clusters_list[i][0][1] == "INDI"):
 
+'''
+US03 - Sprint 1
+Story Name: Birth before death
+Description: Birth should occur before death of an individual
+'''
+def birthBeforeDeath():
+    for i in range(len(final_indi)):
+        if (final_indi[i][4] != "N/A"):
+            if (final_indi[i][4] <= 0):
+                print("Error USO3: Birth data of " + final_indi[i][1]+ "(" + final_indi[i][2] +")" "occurs after his death date.")
+
+'''
+US04 - Sprint 1
+Story Name: Marriage before divorce
+Description: Marriage should occur before divorce of spouses, and divorce can only occur after marriage
+'''
+def marrigeBeforeDivorce():
+    for i in range(len(clusters_list)):
+        if (clusters_list[i][0][1] == "FAM"):
+            id = clusters_list[i][0][2]
+            MARR = 0
+            DIV = 0
+            for j in range(len(clusters_list[i])):
+                if (clusters_list[i][j][1] == "MARR"):
+                    MARR = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
+                if (clusters_list[i][j][1] == "DIV"):
+                    # print(id)
+                    DIV = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
+                if (type(MARR) ==  type(DIV)):
+                    if(MARR != 0):
+                        if (DIV < MARR):
+                            print("Error US04: In family " + id + " Divorce occurs before marrage.")
+                            break
+                elif (MARR == 0 and DIV != 0):
+                    print("Error US04: In family " + id + " divorce but no marrage.")
+            
 
 print(families)
+
+
     
             
