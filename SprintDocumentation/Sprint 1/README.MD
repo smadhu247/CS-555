@@ -14,9 +14,9 @@ Make sure that you commit the completed version of your source code to your GitH
 Execute your system on the acceptance test file.
 Capture the output in a separate Test Results file. This is the demonstration for the customer.
 ### Personal Tester File Results 
-## US07: <img width="1297" alt="Screen Shot 2022-10-01 at 2 21 53 AM" src="https://user-images.githubusercontent.com/56358388/193395939-6c046681-74a8-4249-ab4f-739560d4f5a8.png">
+#### US07: <img width="1297" alt="Screen Shot 2022-10-01 at 2 21 53 AM" src="https://user-images.githubusercontent.com/56358388/193395939-6c046681-74a8-4249-ab4f-739560d4f5a8.png">
 
-## US08: <img width="1305" alt="Screen Shot 2022-10-01 at 2 21 30 AM" src="https://user-images.githubusercontent.com/56358388/193395941-74e2806d-999d-42b2-bc28-d6ec17e06f31.png">
+#### US08: <img width="1305" alt="Screen Shot 2022-10-01 at 2 21 30 AM" src="https://user-images.githubusercontent.com/56358388/193395941-74e2806d-999d-42b2-bc28-d6ec17e06f31.png">
 
 ## Part 3. Reviewing Sprint 1:
 
