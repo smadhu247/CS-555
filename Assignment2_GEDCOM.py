@@ -367,6 +367,18 @@ for i in range(len(clusters_list)):
         families.add_row([id, married, divorced, husband_id, husband_name, wife_id, wife_name, children])
         
 
+'''
+US01 - Sprint 1
+Story Name: Dates before current date
+Description: Dates (birth, marriage, divorce, death) should not be after the current date 
+'''
+
+'''
+US02 - Sprint 1
+Story Name: Birth before marriage
+Description: Birth should occur before marriage of an individual
+'''
+
 
 '''
 US03 - Sprint 1
@@ -404,9 +416,85 @@ def marrigeBeforeDivorce():
                 elif (MARR == 0 and DIV != 0):
                     print("Error US04: In family " + id + " divorce but no marrage.")
             
+'''
+US05 - Sprint 1
+Story Name: Marriage before death
+Description: Marriage should occur before death of either spouse
+'''
 
-print(families)
+'''
+US06 - Sprint 1
+Story Name: Divorce before death
+Description: Divorce can only occur before death of both spouses
+'''
 
-
-    
+'''
+US07 - Sprint 1
+Story Name: Less then 150 years old
+Description: Death should be less than 150 years after birth for dead people, and current date should be less than 150 years after birth for all living people 
+'''
+def deathLessThan150():
+     for i in range(len(final_indi)):
+        if (final_indi[i][4] != "N/A"):
+            if (final_indi[i][4])>= 150:
+                if (final_indi[i][6] != "N/A"):
+                    print ("Error US07: With Individual:  "+ str(final_indi[i][0])+", "+ str(final_indi[i][1])+", Individual is listed as over 150 years old & Death must be within 150 years of birth ")
+                else: 
+                    print ("Error US07: With Individual:  "+ str(final_indi[i][0])+", "+ str(final_indi[i][1])+", Death is at least 150 years after birth")
+'''
+US08 - Sprint 1
+Story Name: Birth before marriage of parents
+Description: Children should be born after marriage of parents (and not more than 9 months after their divorce)
+'''
+def childDuringMarriage():
+    #go through family chart,
+        # take marrige & divorce date
+        # for each child, grab their birthdate, 
+                #if birthdate is not between the range of marriage and divorce +9 months 
+                    #Error
             
+    parAndKids=[]
+    count = 0
+    for i in range(len(clusters_list)):
+        if (clusters_list[i][0][1] == "FAM"):
+            parAndKids.append([clusters_list[i][0][2]])
+            count= count+1
+            marrDate = 0
+            divDate = 0
+            
+            for j in range(len(clusters_list[i])):
+                if (clusters_list[i][j][1] == "MARR"):
+                    marrDate = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
+                    parAndKids[count-1].append(marrDate)
+                if (clusters_list[i][j][1] == "DIV"):
+                    # print(id)
+                    divDate = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
+                    parAndKids[count-1].insert(2,("DIV"))
+                    parAndKids[count-1].insert(3,(divDate))
+                if (clusters_list[i][j][1] == "CHIL"):
+                    parAndKids[count-1].append(clusters_list[i][j][2])
+     
+    for k in range(len(final_indi)):
+        for l in range(len(parAndKids)):
+            divDate=0
+            marrDate=0
+            flag=False 
+            for m in range (len(parAndKids[l])):
+            
+
+                marrDate=parAndKids[l][1]
+
+                if "DIV" in parAndKids[l]:
+                    divDate = parAndKids[l][parAndKids[l].index("DIV")+1] 
+        
+                if str(final_indi[k][0]) == str(parAndKids[l][m]) :
+
+                    birthDate = datetime.strptime(final_indi[k][3], '%d %b %Y').date()
+                    parAndKids[l].insert(parAndKids[l].index(final_indi[k][0])+1,birthDate)
+
+
+                    if (birthDate < marrDate or ( divDate!=0 and birthDate > divDate))and flag==False:
+                        flag=True 
+                        print("Error US08: Child born out of side of parents marriage Timeline for "+ str(final_indi[k][0])+", "+ str(final_indi[k][1]))
+        
+print(families)
