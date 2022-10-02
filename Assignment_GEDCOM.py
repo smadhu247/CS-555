@@ -642,14 +642,14 @@ def childDuringMarriage():
 
 
 if __name__ == '__main__':
-    
+
     fam_ids = ["F03", "F08", "F05", "F06"]
     indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08", "bi00"]
-    
+
+    childDuringMarriage()
     datesBeforeCurrent()
 
     for i in range(len(fam_ids)):
-        childDuringMarriage(fam_ids[i])
         divorceBeforeDeath(fam_ids[i])
         marrigeBeforeDeath(fam_ids[i])
         marrigeBeforeDivorce(fam_ids[i])
