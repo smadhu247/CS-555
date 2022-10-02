@@ -70,7 +70,7 @@
 1 FAMC F09
 1 FAMS F05
 0 NOTE Son of Don and Mary my ½ brother
-0 IO6 INDI
+0 I06 INDI
 1 NAME Peter /Smith/
 1 BIRT
 1 SEX M
@@ -86,14 +86,14 @@
 1 DIV
 2 DATE 19 FEB 1988
 0 NOTE Daughter 1 of Dave and Mary, my sister
-0 IO7 INDI
+0 I07 INDI
 1 NAME Jessica /Dauphinais/
 1 SEX F
 1 BIRT
 2 DATE 8 APR 2000
 1 FAMC F06
 0 NOTE Daughter 2 of Dave and Mary, me!
-0 IO8 INDI
+0 I08 INDI
 1 NAME Danielle /Dauphinais/
 1 SEX F
 1 BIRT
