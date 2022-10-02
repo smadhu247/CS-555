@@ -1,7 +1,6 @@
 from typing import final
 from prettytable import PrettyTable
 from datetime import datetime, date
-import difflib
 
 file = open('test.ged', 'r')
 individuals = PrettyTable()
@@ -291,15 +290,18 @@ for i in range(len(modified_file)):
                 fams_list.append(modified_file[i][2])
                 modified_file[i][4] = 'fams seen'
                 
-                while(modified_file[fams][1] == 'FAMS' and modified_file[fams+1][1] == 'FAMS'):
-                    fams_list.append(modified_file[fams+1][2])
-                    modified_file[fams+1][4] = 'fams seen'
-                    fams = fams+1
+                # while(modified_file[fams][1] == 'FAMS' and modified_file[fams+1][1] == 'FAMS'):
+                #     fams_list.append(modified_file[fams+1][2])
+                #     modified_file[fams+1][4] = 'fams seen'
+                #     fams = fams+1
             else:
                 continue
                 
             indi[8] = fams_list     
     indi_list.append(indi)        
+
+for i in range(len(modified_file)):
+    print(modified_file[i])
 
 final_indi = []
 for i in range(len(indi_list)):
@@ -449,15 +451,13 @@ def birthBeforeMarr():
                                     if (birthday > marriage):
                                         print("Error USO2: Marriage date of " + id + " (" + clusters_list[k][l+1][2] +") occurs before the birth date of " + marriedPeople[i][1] + " (" + marriedPeople[i][2] + ").")
                                       
-                    
-
 '''
 US03 - Sprint 1
 Story Name: Birth before death
 Description: Birth should occur before death of an individual
 '''
 def birthBeforeDeath():
-    for i in range(len(final_indi)):
+    for i in range(len(final_indi)):   
         if (final_indi[i][4] != "N/A"):
             if (final_indi[i][4] <= 0):
                 print("Error USO3: Birth data of " + final_indi[i][1]+ "(" + final_indi[i][2] +")" "occurs after his death date.")
@@ -574,6 +574,7 @@ US07 - Sprint 1
 Story Name: Less then 150 years old
 Description: Death should be less than 150 years after birth for dead people, and current date should be less than 150 years after birth for all living people 
 '''
+
 def deathLessThan150():
      for i in range(len(final_indi)):
         if (final_indi[i][4] != "N/A"):
@@ -587,6 +588,7 @@ US08 - Sprint 1
 Story Name: Birth before marriage of parents
 Description: Children should be born after marriage of parents (and not more than 9 months after their divorce)
 '''
+
 def childDuringMarriage():
     #go through family chart,
         # take marrige & divorce date
@@ -637,3 +639,22 @@ def childDuringMarriage():
                     if (birthDate < marrDate or ( divDate!=0 and birthDate > divDate))and flag==False:
                         flag=True 
                         print("Error US08: Child born out of side of parents marriage Timeline for "+ str(final_indi[k][0])+", "+ str(final_indi[k][1]))
+
+
+if __name__ == '__main__':
+    
+    fam_ids = ["F03", "F08", "F05", "F06"]
+    indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08", "bi00"]
+    
+    datesBeforeCurrent()
+
+    for i in range(len(fam_ids)):
+        childDuringMarriage(fam_ids[i])
+        divorceBeforeDeath(fam_ids[i])
+        marrigeBeforeDeath(fam_ids[i])
+        marrigeBeforeDivorce(fam_ids[i])
+
+    for i in range(len(indi_ids)):
+        deathLessThan150(indi_ids[i])
+        birthBeforeDeath(indi_ids[i])
+        birthBeforeMarr(indi_ids[i])
