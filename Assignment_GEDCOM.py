@@ -300,9 +300,6 @@ for i in range(len(modified_file)):
             indi[8] = fams_list     
     indi_list.append(indi)        
 
-for i in range(len(modified_file)):
-    print(modified_file[i])
-
 final_indi = []
 for i in range(len(indi_list)):
     if (indi_list[i] in final_indi):
@@ -526,7 +523,7 @@ def marrigeBeforeDeath(FAM_ID):
             if (wife_date != "N/A" and wife_date < marr_date):
                 return "Error US05: In family " + id + " Wife death occurs before marriage."
             else:
-                return "No errors in US05"
+                return "No errors in US05 for family " + id
 
 '''
 US06 - Sprint 1
@@ -567,7 +564,7 @@ def divorceBeforeDeath(FAM_ID):
                 if (wife_date != "N/A" and div_date != 0 and wife_date < div_date):
                     return "Error US06: In family " + id + " Wife death occurs before divorce."
                 else:
-                    return "No errors in US06"
+                    return "No errors in US06 for family " + id
 
 '''
 US07 - Sprint 1
@@ -650,11 +647,11 @@ if __name__ == '__main__':
     datesBeforeCurrent()
 
     for i in range(len(fam_ids)):
-        divorceBeforeDeath(fam_ids[i])
-        marrigeBeforeDeath(fam_ids[i])
-        marrigeBeforeDivorce(fam_ids[i])
+        print(divorceBeforeDeath(fam_ids[i]))
+        print(marrigeBeforeDeath(fam_ids[i]))
+        # marrigeBeforeDivorce(fam_ids[i])
 
-    for i in range(len(indi_ids)):
-        deathLessThan150(indi_ids[i])
-        birthBeforeDeath(indi_ids[i])
-        birthBeforeMarr(indi_ids[i])
+    # for i in range(len(indi_ids)):
+        # deathLessThan150(indi_ids[i])
+        # birthBeforeDeath(indi_ids[i])
+        # birthBeforeMarr(indi_ids[i])
