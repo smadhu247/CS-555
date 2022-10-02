@@ -72,9 +72,9 @@
 0 NOTE Son of Don and Mary my ½ brother
 0 I06 INDI
 1 NAME Peter /Smith/
-1 SEX M
 1 BIRT
-2 DATE 30 JUN 2000
+1 SEX M
+2 DATE 30 JUN 1984
 1 FAMC F05
 0 NOTE Family created by Don and Mary how I got a ½ brother
 0 F05 FAM
@@ -114,3 +114,97 @@
 2 WWW http://www.familyecho.com (Links to an external site.)
 0 bi00 INDI
 1 NAME Jimmy /Conners/
+0 NOTE Birth before death
+0 I81 INDI
+1 NAME Kennith /Joy/
+1 SEX M
+1 BIRT
+2 DATE 25 DEC 1935
+1 DEAT
+2 DATE 10 APR 1985
+1 FAMC F02
+1 FAMS F03
+0 NOTE death before before
+0 I82 INDI
+1 NAME Alan /Turning/
+1 SEX M
+1 BIRT
+2 DATE 25 DEC 1985
+1 DEAT
+2 DATE 10 APR 1925
+1 FAMC F02
+1 FAMS F03
+0 NOTE death and birth on the same day
+0 I83 INDI
+1 NAME Alex /Wazi/
+1 SEX M
+1 BIRT
+2 DATE 25 DEC 1935
+1 DEAT
+2 DATE 25 DEC 1935
+1 FAMC F02
+1 FAMS F03
+0 NOTE death after birth but less than a month after
+0 I84 INDI
+1 NAME Harry /Dauphinais/
+1 SEX M
+1 BIRT
+2 DATE 25 JAN 1935
+1 DEAT
+2 DATE 28 FEB 1935
+1 FAMC F02
+1 FAMS F03
+0 NOTE birth before death by a month
+0 I85 INDI
+1 NAME Jerry /Stin/
+1 SEX M
+1 BIRT
+2 DATE 20 FEB 1935
+1 DEAT
+2 DATE 25 JAN 1935
+1 FAMC F02
+1 FAMS F03
+0 I25 INDI
+1 NAME Evan /Cars/
+1 SEX M
+1 BIRT
+2 DATE 20 DEC 1937
+1 FAMC F02
+1 FAMS F111
+0 I26 INDI
+1 NAME Carla /Racin/
+1 SEX F
+1 BIRT
+2 DATE 30 NOV 1943
+1 FAMC F09
+1 FAMS F111
+0 NOTE 2.This family has a marriage after divorce 
+0 F111 FAM
+1 MARR
+2 DATE 15 JUN 1990
+1 HUSB I25
+1 WIFE I26
+1 CHIL I10
+1 DIV
+2 DATE 19 FEB 1988
+0 I29 INDI
+1 NAME Bob /Dauphinais/
+1 SEX M
+1 BIRT
+2 DATE 20 DEC 1937
+1 FAMC F00
+1 FAMS F25
+0 I6 INDI
+1 NAME Ann /Below/
+1 SEX F
+1 BIRT
+2 DATE 30 NOV 1943
+1 FAMC F09
+1 FAMS F25
+0 NOTE 3.this family has not marriage but has a divorce
+0 F25 FAM
+1 HUSB I29
+1 WIFE I6
+1 CHIL I11
+1 DIV
+2 DATE 19 FEB 1988

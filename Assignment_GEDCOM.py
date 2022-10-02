@@ -453,36 +453,41 @@ US03 - Sprint 1
 Story Name: Birth before death
 Description: Birth should occur before death of an individual
 '''
-def birthBeforeDeath():
-    for i in range(len(final_indi)):   
-        if (final_indi[i][4] != "N/A"):
-            if (final_indi[i][4] <= 0):
-                print("Error USO3: Birth data of " + final_indi[i][1]+ "(" + final_indi[i][2] +")" "occurs after his death date.")
+def birthBeforeDeath(INDI_ID):
+    for i in range(len(final_indi)):
+        if(INDI_ID == final_indi[i][0]):
+            if (final_indi[i][4] != "N/A"):
+                if (final_indi[i][4] < 0):
+                    return "Error USO3: Birth data of " + final_indi[i][1]+ "(" + final_indi[i][0] +")" " occurs after his death date."
+                else:
+                    return "No errors in US03 for INDI "+INDI_ID+ "."
 
 '''
 US04 - Sprint 1
 Story Name: Marriage before divorce
 Description: Marriage should occur before divorce of spouses, and divorce can only occur after marriage
 '''
-def marrigeBeforeDivorce():
+def marrigeBeforeDivorce(FAM_ID):
     for i in range(len(clusters_list)):
         if (clusters_list[i][0][1] == "FAM"):
             id = clusters_list[i][0][2]
-            MARR = 0
-            DIV = 0
-            for j in range(len(clusters_list[i])):
-                if (clusters_list[i][j][1] == "MARR"):
-                    MARR = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
-                if (clusters_list[i][j][1] == "DIV"):
-                    # print(id)
-                    DIV = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
-                if (type(MARR) ==  type(DIV)):
-                    if(MARR != 0):
-                        if (DIV < MARR):
-                            print("Error US04: In family " + id + " Divorce occurs before marrage.")
-                            break
-                elif (MARR == 0 and DIV != 0):
-                    print("Error US04: In family " + id + " divorce but no marrage.")
+            if(FAM_ID == id):
+                MARR = 0
+                DIV = 0
+                for j in range(len(clusters_list[i])):
+                    if (clusters_list[i][j][1] == "MARR"):
+                        MARR = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
+                    if (clusters_list[i][j][1] == "DIV"):
+                        # print(id)
+                        DIV = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
+                    if (type(MARR) ==  type(DIV)):
+                        if(MARR != 0):
+                            if (DIV < MARR):
+                                return "Error US04: In family " + id + " Divorce occurs before marrage."
+                    elif (MARR == 0 and DIV != 0):
+                        return "Error US04: In family " + id + " divorce but no marrage."
+                    else:
+                        return "No errors in US04 for FAM "+FAM_ID+ "."
 
 '''
 US05 - Sprint 1
