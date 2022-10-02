@@ -576,22 +576,23 @@ US07 - Sprint 1
 Story Name: Less then 150 years old
 Description: Death should be less than 150 years after birth for dead people, and current date should be less than 150 years after birth for all living people 
 '''
-
-def deathLessThan150():
-     for i in range(len(final_indi)):
-        if (final_indi[i][4] != "N/A"):
-            if (final_indi[i][4])>= 150:
-                if (final_indi[i][6] != "N/A"):
-                    print ("Error US07: With Individual:  "+ str(final_indi[i][0])+", "+ str(final_indi[i][1])+", Individual is listed as over 150 years old & Death must be within 150 years of birth ")
-                else: 
-                    print ("Error US07: With Individual:  "+ str(final_indi[i][0])+", "+ str(final_indi[i][1])+", Death is at least 150 years after birth")
+def deathLessThan150(indID):
+    for i in range(len(final_indi)):
+        if (indID==final_indi[i][0]):
+            if (final_indi[i][4] != "N/A"):
+                if (final_indi[i][4])>= 150:
+                    if (final_indi[i][6] != "N/A"):
+                        return ("Error US07: With Individual:  "+ str(final_indi[i][0])+", "+ str(final_indi[i][1])+", Individual is listed as over 150 years old & Death must be within 150 years of birth ")
+                    else: 
+                        return ("Error US07: With Individual:  "+ str(final_indi[i][0])+", "+ str(final_indi[i][1])+", Death is at least 150 years after birth")
+                else:
+                    print ("No Errors with US07")
 '''
 US08 - Sprint 1
 Story Name: Birth before marriage of parents
 Description: Children should be born after marriage of parents (and not more than 9 months after their divorce)
 '''
-
-def childDuringMarriage():
+def childDuringMarriage(famID):
     #go through family chart,
         # take marrige & divorce date
         # for each child, grab their birthdate, 
@@ -601,7 +602,7 @@ def childDuringMarriage():
     parAndKids=[]
     count = 0
     for i in range(len(clusters_list)):
-        if (clusters_list[i][0][1] == "FAM"):
+        if (clusters_list[i][0][2] == famID.strip() and clusters_list[i][0][1] == "FAM"):
             parAndKids.append([clusters_list[i][0][2]])
             count= count+1
             marrDate = 0
@@ -626,7 +627,6 @@ def childDuringMarriage():
             flag=False 
             for m in range (len(parAndKids[l])):
             
-
                 marrDate=parAndKids[l][1]
 
                 if "DIV" in parAndKids[l]:
@@ -640,8 +640,7 @@ def childDuringMarriage():
 
                     if (birthDate < marrDate or ( divDate!=0 and birthDate > divDate))and flag==False:
                         flag=True 
-                        print("Error US08: Child born out of side of parents marriage Timeline for "+ str(final_indi[k][0])+", "+ str(final_indi[k][1]))
-
+                        return("Error US08: Child born out of side of parents marriage Timeline for "+ str(final_indi[k][0])+", "+ str(final_indi[k][1]))
 
 if __name__ == '__main__':
 
