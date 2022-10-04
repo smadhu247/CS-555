@@ -375,42 +375,86 @@ US01 - Sprint 1
 Story Name: Dates before current date
 Description: Dates (birth, marriage, divorce, death) should not be after the current date 
 '''
-def datesBeforeCurrent():
-    today = date.today()
-    for i in range(len(final_indi)):
-        #birthday
-        if (final_indi[i][3] != 'N/A'):
-            birthday = datetime.strptime(final_indi[i][3], '%d %b %Y').date()
-            if (today < birthday):
-                print("Error USO1: Birth date of " + final_indi[i][1]+ " (" + final_indi[i][3] +") occurs after the current date.")
-        #death
-        if (final_indi[i][6] != 'N/A'):
-            death = datetime.strptime(final_indi[i][6], '%d %b %Y').date()
-            if (today < death):
-                print("Error USO1: Death date of " + final_indi[i][1]+ " (" + final_indi[i][6] +") occurs after the current date.")
 
-    for i in range(len(clusters_list)):
-        if (clusters_list[i][0][1] == "FAM"):
-            id = clusters_list[i][0][2]
-            marriage = 0
-            divorce = 0
-            for j in range(len(clusters_list[i])):
-                #marriage
-                if (clusters_list[i][j][1] == "MARR"):
-                    marriage = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
-                    if (today < marriage):
-                        print("Error USO1: Marriage date of " + id + " (" + clusters_list[i][j+1][2] +") occurs after the current date.")
-                #divorce
-                if (clusters_list[i][j][1] == "DIV"):
-                    divorce = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
-                    if (today < divorce):
-                        print("Error USO1: Divorce date of " + id + " (" + clusters_list[i][j+1][2] +") occurs after the current date.")
+def datesBeforeCurrent(ID):
+     splitLetters = list(ID)
+     if (splitLetters[0] == 'I'):
+         for i in range(len(final_indi)):
+             if (ID == final_indi[i][0]):
+                 #birthday
+                 if (final_indi[i][3] != 'N/A'):
+                     birthday = datetime.strptime(final_indi[i][3], '%d %b %Y').date()
+                     if (today < birthday):
+                         return "Error USO1: Birth date of " + final_indi[i][1]+ " (" + final_indi[i][3] +") occurs after the current date."
+                 #death
+                 if (final_indi[i][6] != 'N/A'):
+                     death = datetime.strptime(final_indi[i][6], '%d %b %Y').date()
+                     if (today < death):
+                         return "Error USO1: Death date of " + final_indi[i][1]+ " (" + final_indi[i][6] +") occurs after the current date."
+     elif (splitLetters[0] == 'F'):
+         for i in range(len(clusters_list)):
+             if (clusters_list[i][0][1] == "FAM"):
+                 id = clusters_list[i][0][2]
+                 if (id == ID):
+                     marriage = 0
+                     divorce = 0
+                     for j in range(len(clusters_list[i])):
+                         #marriage
+                         if (clusters_list[i][j][1] == "MARR"):
+                             marriage = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
+                             if (today < marriage):
+                                 return "Error USO1: Marriage date of " + id + " (" + clusters_list[i][j+1][2] +") occurs after the current date."
+                         #divorce
+                         if (clusters_list[i][j][1] == "DIV"):
+                             divorce = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
+                             if (today < divorce):
+                                 return "Error USO1: Divorce date of " + id + " (" + clusters_list[i][j+1][2] +") occurs after the current date."
+     else:
+         return "No errors in US01"
 
 '''
 US02 - Sprint 1
 Story Name: Birth before marriage
 Description: Birth should occur before marriage of an individual
 '''
+
+def birthBeforeMarr(INDI_ID):
+    marriedPeople = []
+    for i in range (len(final_indi)):
+        person = []
+        if (INDI_ID == final_indi[i][0]):
+            if (final_indi[i][8] != 'N/A'):
+                person.append(final_indi[i][0])
+                person.append(final_indi[i][1])
+                person.append(final_indi[i][3])
+                person.append(final_indi[i][8])
+                marriedPeople.append(person)
+
+    for i in range(len(marriedPeople)):
+        birthday = datetime.strptime(marriedPeople[i][2], '%d %b %Y').date()
+        if (len(marriedPeople[i][3]) == 1):
+            for j in range(len(clusters_list)):
+                if (clusters_list[j][0][1] == 'FAM'):
+                    id = clusters_list[j][0][2]
+                    if (id == marriedPeople[i][3][0]):
+                        for k in range (len(clusters_list[j])):
+                             if (clusters_list[j][k][1] == 'MARR'):
+                                 marriage = datetime.strptime(clusters_list[j][k+1][2], '%d %b %Y').date()
+                                 if (birthday > marriage):
+                                    return "Error USO2: Marriage date of " + id + " (" + clusters_list[j][k+1][2] +") occurs before the birth date of " + marriedPeople[i][1] + " (" + marriedPeople[i][2] + ")."
+        if (len(marriedPeople[i][3]) > 1):
+             for j in range (len(marriedPeople[i][3])):
+                indiMarrId = marriedPeople[i][3][j]
+                for k in range(len(clusters_list)):
+                    if (clusters_list[k][0][1] == 'FAM'):
+                        id = clusters_list[k][0][2]
+                        if (id == indiMarrId):
+                            for l in range(len(clusters_list[k])):
+                                 if (clusters_list[k][l][1] == 'MARR'):
+                                     marriage = datetime.strptime(clusters_list[k][l+1][2], '%d %b %Y').date()
+                                     if (birthday > marriage):
+                                        return "Error USO2: Marriage date of " + id + " (" + clusters_list[k][l+1][2] +") occurs before the birth date of " + marriedPeople[i][1] + " (" + marriedPeople[i][2] + ")."
+
 def birthBeforeMarr():
     marriedPeople = []
     for i in range (len(final_indi)):
@@ -651,7 +695,7 @@ if __name__ == '__main__':
     indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08", "bi00"]
 
    
-    datesBeforeCurrent()
+    print(datesBeforeCurrent("I01"))
 
     for i in range(len(fam_ids)):
         print(childDuringMarriage(fam_ids[i]))
