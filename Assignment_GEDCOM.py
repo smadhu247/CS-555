@@ -22,7 +22,7 @@ acceptable_tags_2 = ['DATE']
 modified_file = []
 for line in file:
     words = line.split()
-
+    
     if (words[0] == '0'):
 
         sawZero = 0
@@ -697,7 +697,7 @@ if __name__ == '__main__':
    
     print(datesBeforeCurrent("I01"))
 
-    for i in range(len(fam_ids)):
+    '''for i in range(len(fam_ids)):
         print(childDuringMarriage(fam_ids[i]))
        # print(divorceBeforeDeath(fam_ids[i]))
         #print(marrigeBeforeDeath(fam_ids[i]))
@@ -707,3 +707,4 @@ if __name__ == '__main__':
         deathLessThan150(indi_ids[i])
         # birthBeforeDeath(indi_ids[i])
         # birthBeforeMarr(indi_ids[i])
+'''
