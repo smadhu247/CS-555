@@ -522,16 +522,14 @@ def marrigeBeforeDivorce(FAM_ID):
                     if (clusters_list[i][j][1] == "MARR"):
                         MARR = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
                     if (clusters_list[i][j][1] == "DIV"):
-                        # print(id)
                         DIV = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
-                    if (type(MARR) ==  type(DIV)):
-                        if(MARR != 0):
-                            if (DIV < MARR):
-                                return "Error US04: In family " + id + " Divorce occurs before marrage."
-                    elif (MARR == 0 and DIV != 0):
-                        return "Error US04: In family " + id + " divorce but no marrage."
-                    else:
-                        return "No errors in US04 for FAM "+FAM_ID+ "."
+                    if (DIV != 'N/A' and DIV != 0):
+                        if (DIV < MARR):
+                            return "Error US04: In family " + id + " Divorce occurs before marrage."
+                        else:
+                            return "No errors in US04 for FAM "+FAM_ID+ "."
+                return "No errors in US04 for FAM "+FAM_ID+ "."
+    return FAM_ID +" is not found"
 
 '''
 US05 - Sprint 1
