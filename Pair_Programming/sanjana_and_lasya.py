@@ -414,7 +414,14 @@ def recentBirths():
             
     return recentBirth
 
-# Pair Programming User Story: 
+# Pair Programming User Story: List deaths from last 30 days
+def recentDeaths():
+    last30 = []
+    recentDeath = []
+
+    start = datetime(today.year, today.month, today.day)                                                                                                                                                                      
+    for day in range(1, 31): 
+        last30.append(start-timedelta(days=day))
 
 # Results:
 #print(rejectBadDates())
