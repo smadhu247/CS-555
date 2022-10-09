@@ -253,16 +253,22 @@ for i in range(len(modified_file)):
             if (modified_file[i+1][1] == 'DATE'):
                 indi[3] = modified_file[i+1][2]
                 today = date.today()
-                birthday = datetime.strptime(modified_file[i+1][2], '%d %b %Y').date()
-                age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
+                try:
+                    birthday = datetime.strptime(modified_file[i+1][2], '%d %b %Y').date()
+                    age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
+                except ValueError:
+                    age = "N/A"
                 indi[4] = age
 
         if (modified_file[i][1] == 'DEAT'):
             indi[5] = False
             if (modified_file[i+1][1] == 'DATE'):
                 indi[6] = modified_file[i+1][2]
-                death = datetime.strptime(modified_file[i+1][2], '%d %b %Y').date()
-                death_age = death.year - birthday.year - ((death.month, death.day) < (birthday.month, birthday.day))
+                try:
+                    death = datetime.strptime(modified_file[i+1][2], '%d %b %Y').date()
+                    death_age = death.year - birthday.year - ((death.month, death.day) < (birthday.month, birthday.day))
+                except ValueError:
+                    death_age = "N/A"
                 indi[4] = death_age
 
         if (modified_file[i][1] == 'FAMC'):
@@ -373,18 +379,25 @@ for i in range(len(clusters_list)):
 print(families) 
 
 # Sanjana's User Story: Reject illegitimate dates
-
-# print(clusters_list)
-
 def rejectBadDates():
+    isInvalid = False
+    return_list = ""
     for i in range(len(clusters_list)):
         for j in range(len(clusters_list[i])):
             if clusters_list[i][j][1] == 'DATE':
-                date = datetime.strptime(clusters_list[i][j][2], '%d %b %Y').date()
-                print(date)
-
-
-rejectBadDates()
+                try:
+                    date = datetime.strptime(clusters_list[i][j][2], '%d %b %Y').date()
+                except (ValueError, TypeError):
+                    isInvalid = True
+                    return_list = return_list + "Error: " + clusters_list[i][j][2] + " is invalid.\n"
+    if (isInvalid is True):
+        return return_list
+    else:
+        return "All dates are valid"
+                
 # Lasya's User Story: 
 
 # Pair Programming User Story: 
+
+# Results:
+print(rejectBadDates())
