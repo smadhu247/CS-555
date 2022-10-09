@@ -1,8 +1,9 @@
 from typing import final
 from prettytable import PrettyTable
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
+import pandas as pd
 
-file = open('test.ged', 'r')
+file = open('Pair_Programming/test.ged', 'r')
 individuals = PrettyTable()
 individuals.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
 
@@ -395,9 +396,26 @@ def rejectBadDates():
     else:
         return "All dates are valid"
                 
-# Lasya's User Story: 
+# Lasya's User Story: List births from last 30 days
+def recentBirths():
+    last30 = []
+    recentBirth = []
+
+    start = datetime(today.year, today.month, today.day)                                                                                                                                                                      
+    for day in range(1, 31): 
+        last30.append(start-timedelta(days=day))
+        
+    for i in range(len(final_indi)):
+        if (final_indi[i][3]!='N/A'):
+            birthday_date = datetime.strptime(final_indi[i][3], '%d %b %Y').date()
+            birthday_datetime = datetime(birthday_date.year, birthday_date.month, birthday_date.day)
+            if (birthday_datetime in last30):
+                recentBirth.append(final_indi[i][0])
+            
+    return recentBirth
 
 # Pair Programming User Story: 
 
 # Results:
-print(rejectBadDates())
+#print(rejectBadDates())
+print(recentBirths())
