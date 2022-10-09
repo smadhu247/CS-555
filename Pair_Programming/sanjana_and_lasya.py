@@ -423,6 +423,16 @@ def recentDeaths():
     for day in range(1, 31): 
         last30.append(start-timedelta(days=day))
 
+    for i in range(len(final_indi)):
+        if (final_indi[i][6]!='N/A'):
+            death_date = datetime.strptime(final_indi[i][6], '%d %b %Y').date()
+            death_datetime = datetime(death_date.year, death_date.month, death_date.day)
+            if (death_datetime in last30):
+                recentDeath.append(final_indi[i][0])
+            
+    return recentDeath
+
 # Results:
 #print(rejectBadDates())
-print(recentBirths())
+#print(recentBirths())
+print(recentDeaths())
