@@ -433,6 +433,6 @@ def recentDeaths():
     return recentDeath
 
 # Results:
-#print(rejectBadDates())
-#print(recentBirths())
-print(recentDeaths())
+# print(rejectBadDates())
+# print(recentBirths())
+# print(recentDeaths())
