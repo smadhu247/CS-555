@@ -332,6 +332,7 @@ for i in range(len(modified_file)):
         cluster = []
         cluster.append(modified_file[i])
         j = j + 1
+clusters_list.append(cluster)
 
 for i in range(len(clusters_list)):
     if (clusters_list[i][0][1] == "FAM"):

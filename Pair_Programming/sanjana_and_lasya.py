@@ -317,9 +317,11 @@ j = 1
 for i in range(len(modified_file)):  
     if (modified_file[i][0] == '0' and modified_file[i][1] == "FAM"):
         j = j + 1     
-    if (modified_file[i][0] == '0' and modified_file[i][1] == "INDI"):
+    elif (modified_file[i][0] == '0' and modified_file[i][1] == "INDI"):
         j = j + 1 
     modified_file[i].append(j)
+
+# print(modified_file)
 
 j = 1
 clusters_list = []
@@ -332,6 +334,7 @@ for i in range(len(modified_file)):
         cluster = []
         cluster.append(modified_file[i])
         j = j + 1
+clusters_list.append(cluster)
 
 for i in range(len(clusters_list)):
     if (clusters_list[i][0][1] == "FAM"):
@@ -376,12 +379,12 @@ print(families)
 def rejectBadDates():
     for i in range(len(clusters_list)):
         for j in range(len(clusters_list[i])):
-            if clusters_list[i][j][0] == '2':
-                if clusters_list[i][j][1] == 'DATE':
-                    print("TODO")
+            if clusters_list[i][j][1] == 'DATE':
+                date = datetime.strptime(clusters_list[i][j][2], '%d %b %Y').date()
+                print(date)
 
 
-
+rejectBadDates()
 # Lasya's User Story: 
 
 # Pair Programming User Story: 
