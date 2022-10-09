@@ -3,7 +3,7 @@ from prettytable import PrettyTable
 from datetime import datetime, date, timedelta
 import pandas as pd
 
-file = open('Pair_Programming/test.ged', 'r')
+file = open('test.ged', 'r')
 individuals = PrettyTable()
 individuals.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
 
