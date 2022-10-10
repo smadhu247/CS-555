@@ -334,6 +334,8 @@ for i in range(len(modified_file)):
         j = j + 1
 clusters_list.append(cluster)
 
+siblings = {}
+
 for i in range(len(clusters_list)):
     if (clusters_list[i][0][1] == "FAM"):
         children = set()
@@ -367,6 +369,7 @@ for i in range(len(clusters_list)):
                 if (modified_file[i+1][1] == "NAME"):
                     wife_name = modified_file[i+1][2]
         families.add_row([id, married, divorced, husband_id, husband_name, wife_id, wife_name, children])
+        siblings[id] = children
 
 print(families)  
 
@@ -652,43 +655,81 @@ def childDuringMarriage(famID):
                     else:
                         return 'Error US08: Birthday = N/A for '+final_indi[k][0]+' '+final_indi[k][1]
 
-# '''
-# US13 - Sprint 2
-# Story Name: Siblings spacing
-# Description: Birth dates of siblings should be more than 8 months apart or less than 2 days apart 
-# (twins may be born one day apart, e.g. 11:59 PM and 12:02 AM the following calendar day)
-# '''
-
-# def siblingSpacing(famID):
-#     print("hello")
-
-# '''
-# US14 - Sprint 2
-# Story Name: Multiple births <= 5
-# Description: No more than five siblings should be born at the same time
-# '''
+'''
+US13 - Sprint 2
+Story Name: Siblings spacing
+Description: Birth dates of siblings should be more than 8 months apart or less than 2 days apart 
+(twins may be born one day apart, e.g. 11:59 PM and 12:02 AM the following calendar day)
+'''
 
 
-# def multipleBirths(famID):
-#     print("hello")
+def siblingSpacing(famID):
+    birthdays = []
+    issues = []
+    for key, value in siblings.items():
+        if (key == famID and len(value) > 1):
+            children = list(value)
+            for child in range(len(children)):
+                for i in range(len(clusters_list)):
+                    if (clusters_list[i][0][1] == "INDI" and clusters_list[i][0][2] == children[child]):
+                        for j in range(len(clusters_list[i])):
+                            if(clusters_list[i][j][1]) == "BIRT":
+                                birthdays.append(datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date())
+    if(len(birthdays) > 0):
+        for i in range(len(birthdays)):
+            for j in range(len(birthdays)):
+                if (abs((birthdays[i].year - birthdays[j].year) * 12 + birthdays[i].month - birthdays[j].month) < 8 and birthdays[i].day - birthdays[j].day < 2 and birthdays[i] != birthdays[j]):
+                    issues.append([birthdays[i], birthdays[j]])
+        if len(issues) > 0:
+            print(issues)
+            return "Error US13: Siblings are not properly spaced."
+        else:
+            return "US13: Siblings in Family " + famID + " are properly spaced."
+        
+    else:
+        return "US13: Family " + famID + " does not contain a family with siblings."   
 
+'''
+US14 - Sprint 2
+Story Name: Multiple births <= 5
+Description: No more than five siblings should be born at the same time
+'''
 
+def multipleBirths(famID):
+    birthdays = []
+    for key, value in siblings.items():
+        if (key == famID and len(value) > 1):
+            children = list(value)
+            for child in range(len(children)):
+                for i in range(len(clusters_list)):
+                    if (clusters_list[i][0][1] == "INDI" and clusters_list[i][0][2] == children[child]):
+                        for j in range(len(clusters_list[i])):
+                            if(clusters_list[i][j][1]) == "BIRT":
+                                birthdays.append(datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date())
+    if(len(birthdays) > 0):
+        if len(set(birthdays)) == len(birthdays) - 4:
+            return "Error US14: Family " + famID + " has five siblings born at the same time."       
+        else:
+            return "US14: There are the correct number of siblings in Family " + famID + "."       
+    else:
+        return "US14: Family " + famID + " does not contain a family with siblings."   
 
 if __name__ == '__main__':
 
     fam_ids = ["F03", "F08", "F05", "F06"]
     indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08", "bi00"]
 
-   
-    print(datesBeforeCurrent("I01"))
+    # print(datesBeforeCurrent("I01"))
 
     for i in range(len(fam_ids)):
-        print(childDuringMarriage(fam_ids[i]))
-        print(divorceBeforeDeath(fam_ids[i]))
-        print(marrigeBeforeDeath(fam_ids[i]))
-        marrigeBeforeDivorce(fam_ids[i])
+    #     print(childDuringMarriage(fam_ids[i]))
+    #     print(divorceBeforeDeath(fam_ids[i]))
+    #     print(marrigeBeforeDeath(fam_ids[i]))
+    #     marrigeBeforeDivorce(fam_ids[i])
+        print(siblingSpacing(fam_ids[i]))
+        print(multipleBirths(fam_ids[i]))
 
-    for i in range(len(indi_ids)):
-        deathLessThan150(indi_ids[i])
-        birthBeforeDeath(indi_ids[i])
-        birthBeforeMarr(indi_ids[i])
+    # for i in range(len(indi_ids)):
+    #     deathLessThan150(indi_ids[i])
+    #     birthBeforeDeath(indi_ids[i])
+    #     birthBeforeMarr(indi_ids[i])

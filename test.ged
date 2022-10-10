@@ -97,9 +97,39 @@
 1 NAME Danielle /Dauphinais/
 1 SEX F
 1 BIRT
-2 DATE 4 JUL 2002
+2 DATE 4 JUN 2002
 1 FAMC F06
 0 NOTE Family created by David and Mary my parents
+0 I101 INDI
+1 NAME Jessica /Dauphinais/
+1 SEX F
+1 BIRT
+2 DATE 10 APR 2003
+1 FAMC F06
+0 I102 INDI
+1 NAME Jessica /Dauphinais/
+1 SEX F
+1 BIRT
+2 DATE 10 APR 2003
+1 FAMC F06
+0 I103 INDI
+1 NAME Jessica /Dauphinais/
+1 SEX F
+1 BIRT
+2 DATE 10 APR 2003
+1 FAMC F06
+0 I104 INDI
+1 NAME Jessica /Dauphinais/
+1 SEX F
+1 BIRT
+2 DATE 10 APR 2003
+1 FAMC F06
+0 I105 INDI
+1 NAME Jessica /Dauphinais/
+1 SEX F
+1 BIRT
+2 DATE 10 APR 2003
+1 FAMC F06
 0 F06 FAM
 1 MARR
 2 DATE 10 JUN 1991
@@ -109,6 +139,11 @@
 1 WIFE I04
 1 CHIL I07
 1 CHIL I08
+1 CHIL I101
+1 CHIL I102
+1 CHIL I103
+1 CHIL I104
+1 CHIL I105
 0 NOTE dates after now
 1 SOUR Family Echo
 2 WWW http://www.familyecho.com (Links to an external site.)
