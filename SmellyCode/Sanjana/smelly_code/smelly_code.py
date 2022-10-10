@@ -222,9 +222,6 @@ for line in file:
                 temp.append('not seen')
                 modified_file.append(temp)
 
-#print (modified_file)
-
-
 indi_list = []
 indi = []
 i = 0
@@ -311,7 +308,6 @@ individuals.add_rows(
     final_indi
 )
 
-print(individuals)
 
 j = 1
 for i in range(len(modified_file)):  
@@ -368,132 +364,7 @@ for i in range(len(clusters_list)):
                     wife_name = modified_file[i+1][2]
         families.add_row([id, married, divorced, husband_id, husband_name, wife_id, wife_name, children])
 
-print(families)  
 
-
-'''
-US01 - Sprint 1
-Story Name: Dates before current date
-Description: Dates (birth, marriage, divorce, death) should not be after the current date 
-'''
-
-def datesBeforeCurrent(ID):
-     splitLetters = list(ID)
-     if (splitLetters[0] == 'I'):
-         for i in range(len(final_indi)):
-             if (ID == final_indi[i][0]):
-                 #birthday
-                 if (final_indi[i][3] != 'N/A'):
-                     birthday = datetime.strptime(final_indi[i][3], '%d %b %Y').date()
-                     if (today < birthday):
-                         return "Error USO1: Birth date of " + final_indi[i][1]+ " (" + final_indi[i][3] +") occurs after the current date."
-                 #death
-                 if (final_indi[i][6] != 'N/A'):
-                     death = datetime.strptime(final_indi[i][6], '%d %b %Y').date()
-                     if (today < death):
-                         return "Error USO1: Death date of " + final_indi[i][1]+ " (" + final_indi[i][6] +") occurs after the current date."
-     elif (splitLetters[0] == 'F'):
-         for i in range(len(clusters_list)):
-             if (clusters_list[i][0][1] == "FAM"):
-                 id = clusters_list[i][0][2]
-                 if (id == ID):
-                     marriage = 0
-                     divorce = 0
-                     for j in range(len(clusters_list[i])):
-                         #marriage
-                         if (clusters_list[i][j][1] == "MARR"):
-                             marriage = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
-                             if (today < marriage):
-                                 return "Error USO1: Marriage date of " + id + " (" + clusters_list[i][j+1][2] +") occurs after the current date."
-                         #divorce
-                         if (clusters_list[i][j][1] == "DIV"):
-                             divorce = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
-                             if (today < divorce):
-                                 return "Error USO1: Divorce date of " + id + " (" + clusters_list[i][j+1][2] +") occurs after the current date."
-     else:
-         return "No errors in US01"
-
-'''
-US02 - Sprint 1
-Story Name: Birth before marriage
-Description: Birth should occur before marriage of an individual
-'''
-
-def birthBeforeMarr(INDI_ID):
-    marriedPeople = []
-    for i in range (len(final_indi)):
-        person = []
-        if (INDI_ID == final_indi[i][0]):
-            if (final_indi[i][8] != 'N/A'):
-                person.append(final_indi[i][0])
-                person.append(final_indi[i][1])
-                person.append(final_indi[i][3])
-                person.append(final_indi[i][8])
-                marriedPeople.append(person)
-
-    for i in range(len(marriedPeople)):
-        birthday = datetime.strptime(marriedPeople[i][2], '%d %b %Y').date()
-        if (len(marriedPeople[i][3]) == 1):
-            for j in range(len(clusters_list)):
-                if (clusters_list[j][0][1] == 'FAM'):
-                    id = clusters_list[j][0][2]
-                    if (id == marriedPeople[i][3][0]):
-                        for k in range (len(clusters_list[j])):
-                             if (clusters_list[j][k][1] == 'MARR'):
-                                 marriage = datetime.strptime(clusters_list[j][k+1][2], '%d %b %Y').date()
-                                 if (birthday > marriage):
-                                    return "Error USO2: Marriage date of " + id + " (" + clusters_list[j][k+1][2] +") occurs before the birth date of " + marriedPeople[i][1] + " (" + marriedPeople[i][2] + ")."
-        if (len(marriedPeople[i][3]) > 1):
-             for j in range (len(marriedPeople[i][3])):
-                indiMarrId = marriedPeople[i][3][j]
-                for k in range(len(clusters_list)):
-                    if (clusters_list[k][0][1] == 'FAM'):
-                        id = clusters_list[k][0][2]
-                        if (id == indiMarrId):
-                            for l in range(len(clusters_list[k])):
-                                 if (clusters_list[k][l][1] == 'MARR'):
-                                     marriage = datetime.strptime(clusters_list[k][l+1][2], '%d %b %Y').date()
-                                     if (birthday > marriage):
-                                        return "Error USO2: Marriage date of " + id + " (" + clusters_list[k][l+1][2] +") occurs before the birth date of " + marriedPeople[i][1] + " (" + marriedPeople[i][2] + ")."
-                                      
-'''
-US03 - Sprint 1
-Story Name: Birth before death
-Description: Birth should occur before death of an individual
-'''
-def birthBeforeDeath(INDI_ID):
-    for i in range(len(final_indi)):
-        if(INDI_ID == final_indi[i][0]):
-            if (final_indi[i][4] != "N/A"):
-                if (final_indi[i][4] < 0):
-                    return "Error USO3: Birth data of " + final_indi[i][1]+ "(" + final_indi[i][0] +")" " occurs after his death date."
-                else:
-                    return "No errors in US03 for INDI "+INDI_ID+ "."
-
-'''
-US04 - Sprint 1
-Story Name: Marriage before divorce
-Description: Marriage should occur before divorce of spouses, and divorce can only occur after marriage
-'''
-def marrigeBeforeDivorce(FAM_ID):
-    for i in range(len(clusters_list)):
-        if (clusters_list[i][0][1] == "FAM"):
-            id = clusters_list[i][0][2]
-            if(FAM_ID == id):
-                MARR = 0
-                DIV = 0
-                for j in range(len(clusters_list[i])):
-                    if (clusters_list[i][j][1] == "MARR"):
-                        MARR = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
-                    if (clusters_list[i][j][1] == "DIV"):
-                        DIV = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
-                    if (DIV != 'N/A' and DIV != 0):
-                        if (DIV < MARR):
-                            return "Error US04: In family " + id + " Divorce occurs before marrage."
-                        else:
-                            return "No errors in US04 for FAM "+FAM_ID+ "."
-                return "No errors in US04 for FAM "+FAM_ID+ "."
-    return FAM_ID +" is not found"
 
 '''
 US05 - Sprint 1
@@ -502,36 +373,36 @@ Description: Marriage should occur before death of either spouse
 '''
 def marrigeBeforeDeath(FAM_ID):
     for i in range(len(clusters_list)):
-        marr_date = 0
-        husb_date = "N/A"
-        wife_date = "N/A"
+        marr = 0
+        husb = "N/A"
+        wife = "N/A"
         if (clusters_list[i][0][2].strip() == FAM_ID.strip() and clusters_list[i][0][1] == "FAM"):
             id = clusters_list[i][0][2]
-            husb_id = ""
-            wife_id = ""
+            id1 = ""
+            id2 = ""
             for j in range(len(clusters_list[i])):
                 if (clusters_list[i][j][1] == "MARR"):
-                    marr_date = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
+                    marr = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
 
                 if (clusters_list[i][j][1] == "HUSB"):
-                    husb_id = clusters_list[i][j][2]
+                    id1 = clusters_list[i][j][2]
                     for k in range(len(clusters_list)):
-                        if (clusters_list[k][0][1] == "INDI" and str(clusters_list[k][0][2]) == str(husb_id)):
+                        if (clusters_list[k][0][1] == "INDI" and str(clusters_list[k][0][2]) == str(id1)):
                             for m in range(len(clusters_list[k])):
                                 if (clusters_list[k][m][1] == "DEAT"):
-                                    husb_date = datetime.strptime(clusters_list[k][m+1][2], '%d %b %Y').date()
+                                    husb = datetime.strptime(clusters_list[k][m+1][2], '%d %b %Y').date()
 
                 if (clusters_list[i][j][1] == "WIFE"):
-                    wife_id = clusters_list[i][j][2]
+                    id2 = clusters_list[i][j][2]
                     for k in range(len(clusters_list)):
-                        if (clusters_list[k][0][1] == "INDI" and str(clusters_list[k][0][2]) == str(wife_id)):
+                        if (clusters_list[k][0][1] == "INDI" and str(clusters_list[k][0][2]) == str(id2)):
                             for m in range(len(clusters_list[k])):
                                 if (clusters_list[k][m][1] == "DEAT"):
-                                    wife_date = datetime.strptime(clusters_list[k][m+1][2], '%d %b %Y').date()
+                                    wife = datetime.strptime(clusters_list[k][m+1][2], '%d %b %Y').date()
 
-            if (husb_date != "N/A" and husb_date < marr_date):
+            if (husb != "N/A" and husb < marr):
                 return "Error US05: In family " + id + " Husband death occurs before marriage."
-            if (wife_date != "N/A" and wife_date < marr_date):
+            if (wife != "N/A" and wife < marr):
                 return "Error US05: In family " + id + " Wife death occurs before marriage."
             else:
                 return "No errors in US05 for family " + id
@@ -543,152 +414,45 @@ Description: Divorce can only occur before death of both spouses
 '''
 def divorceBeforeDeath(FAM_ID):
     for i in range(len(clusters_list)):
-            div_date = 0
-            husb_date = "N/A"
-            wife_date = "N/A"
+            div = 0
+            husb = "N/A"
+            wife = "N/A"
             if (clusters_list[i][0][2].strip() == FAM_ID.strip() and clusters_list[i][0][1] == "FAM"):
                 id = clusters_list[i][0][2]
-                husb_id = ""
-                wife_id = ""
+                id1 = ""
+                id2 = ""
                 for j in range(len(clusters_list[i])):
                     if (clusters_list[i][j][1] == "DIV"):
-                        div_date = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
+                        div = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
 
                     if (clusters_list[i][j][1] == "HUSB"):
-                        husb_id = clusters_list[i][j][2]
+                        id1 = clusters_list[i][j][2]
                         for k in range(len(clusters_list)):
-                            if (clusters_list[k][0][1] == "INDI" and str(clusters_list[k][0][2]) == str(husb_id)):
+                            if (clusters_list[k][0][1] == "INDI" and str(clusters_list[k][0][2]) == str(id1)):
                                 for m in range(len(clusters_list[k])):
                                     if (clusters_list[k][m][1] == "DEAT"):
-                                        husb_date = datetime.strptime(clusters_list[k][m+1][2], '%d %b %Y').date()
+                                        husb = datetime.strptime(clusters_list[k][m+1][2], '%d %b %Y').date()
 
                     if (clusters_list[i][j][1] == "WIFE"):
-                        wife_id = clusters_list[i][j][2]
+                        id2 = clusters_list[i][j][2]
                         for k in range(len(clusters_list)):
-                            if (clusters_list[k][0][1] == "INDI" and str(clusters_list[k][0][2]) == str(wife_id)):
+                            if (clusters_list[k][0][1] == "INDI" and str(clusters_list[k][0][2]) == str(id2)):
                                 for m in range(len(clusters_list[k])):
                                     if (clusters_list[k][m][1] == "DEAT"):
-                                        wife_date = datetime.strptime(clusters_list[k][m+1][2], '%d %b %Y').date()
+                                        wife = datetime.strptime(clusters_list[k][m+1][2], '%d %b %Y').date()
 
-                if (husb_date != "N/A" and div_date != 0 and husb_date < div_date):
+                if (husb != "N/A" and div != 0 and husb < div):
                     return "Error US06: In family " + id + " Husband death occurs before divorce."
-                if (wife_date != "N/A" and div_date != 0 and wife_date < div_date):
+                if (wife != "N/A" and div != 0 and wife < div):
                     return "Error US06: In family " + id + " Wife death occurs before divorce."
                 else:
                     return "No errors in US06 for family " + id
-
-'''
-US07 - Sprint 1
-Story Name: Less then 150 years old
-Description: Death should be less than 150 years after birth for dead people, and current date should be less than 150 years after birth for all living people 
-'''
-def deathLessThan150(indID):
-    for i in range(len(final_indi)):
-        if (indID==final_indi[i][0]):
-            if (final_indi[i][4] != "N/A"):
-                if (final_indi[i][4])>= 150:
-                    if (final_indi[i][6] != "N/A"):
-                        return "Error US07: With Individual:  "+ str(final_indi[i][0])+", "+ str(final_indi[i][1])+", Individual is listed as over 150 years old & Death must be within 150 years of birth"
-                    else: 
-                        return "Error US07: With Individual:  "+ str(final_indi[i][0])+", "+ str(final_indi[i][1])+", Death is at least 150 years after birth"
-                else:
-                    return "No Errors with US07"
-    return 'ID Never Found '        
-       
-'''
-US08 - Sprint 1
-Story Name: Birth before marriage of parents
-Description: Children should be born after marriage of parents (and not more than 9 months after their divorce)
-'''
-def childDuringMarriage(famID):
-    #go through family chart,
-        # take marrige & divorce date
-        # for each child, grab their birthdate, 
-                #if birthdate is not between the range of marriage and divorce +9 months 
-                    #Error
-            
-    parAndKids=[]
-    count = 0
-    for i in range(len(clusters_list)):
-        if (clusters_list[i][0][2] == famID and clusters_list[i][0][1] == "FAM"):
-            parAndKids.append([clusters_list[i][0][2]])
-            count= count+1
-            marrDate = 0
-            divDate = 0
-            
-            for j in range(len(clusters_list[i])):
-                if (clusters_list[i][j][1] == "MARR"):
-                    marrDate = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
-                    parAndKids[count-1].append(marrDate)
-                if (clusters_list[i][j][1] == "DIV"):
-                    # print(id)
-                    divDate = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
-                    parAndKids[count-1].insert(2,("DIV"))
-                    parAndKids[count-1].insert(3,(divDate))
-                if (clusters_list[i][j][1] == "CHIL"):
-                    parAndKids[count-1].append(clusters_list[i][j][2])
-     
-    for k in range(len(final_indi)):
-        for l in range(len(parAndKids)):
-            divDate=0
-            marrDate=0
-            flag=False 
-            for m in range (len(parAndKids[l])):
-            
-                marrDate=parAndKids[l][1]
-
-                if "DIV" in parAndKids[l]:
-                    divDate = parAndKids[l][parAndKids[l].index("DIV")+1] 
-        
-                if str(final_indi[k][0]) == str(parAndKids[l][m]) :
-                    if final_indi[k][3]!='N/A':
-                        birthDate = datetime.strptime(final_indi[k][3], '%d %b %Y').date()
-                        parAndKids[l].insert(parAndKids[l].index(final_indi[k][0])+1,birthDate)
-
-
-                        if (birthDate < marrDate or ( divDate!=0 and birthDate > divDate))and flag==False:
-                            flag=True 
-                            return("Error US08: Child born out of side of parents marriage Timeline for "+ str(final_indi[k][0])+", "+ str(final_indi[k][1]))
-                    else:
-                        return 'Error US08: Birthday = N/A for '+final_indi[k][0]+' '+final_indi[k][1]
-
-# '''
-# US13 - Sprint 2
-# Story Name: Siblings spacing
-# Description: Birth dates of siblings should be more than 8 months apart or less than 2 days apart 
-# (twins may be born one day apart, e.g. 11:59 PM and 12:02 AM the following calendar day)
-# '''
-
-# def siblingSpacing(famID):
-#     print("hello")
-
-# '''
-# US14 - Sprint 2
-# Story Name: Multiple births <= 5
-# Description: No more than five siblings should be born at the same time
-# '''
-
-
-# def multipleBirths(famID):
-#     print("hello")
-
-
 
 if __name__ == '__main__':
 
     fam_ids = ["F03", "F08", "F05", "F06"]
     indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08", "bi00"]
 
-   
-    print(datesBeforeCurrent("I01"))
-
     for i in range(len(fam_ids)):
-        print(childDuringMarriage(fam_ids[i]))
         print(divorceBeforeDeath(fam_ids[i]))
         print(marrigeBeforeDeath(fam_ids[i]))
-        marrigeBeforeDivorce(fam_ids[i])
-
-    for i in range(len(indi_ids)):
-        deathLessThan150(indi_ids[i])
-        birthBeforeDeath(indi_ids[i])
-        birthBeforeMarr(indi_ids[i])

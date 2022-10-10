@@ -1,0 +1,238 @@
+0 NOTE https://github.com/smadhu247/CS-555
+0 NOTE I pledge my honor that I have abided by the Stevens Honor System.
+0 NOTE grandma on dad’s side
+0 I01 INDI
+1 NAME Nancy /Below/
+1 SEX F
+1 BIRT
+2 DATE 30 NOV 1943
+1 DEAT
+2 DATE 15 NOV 2185
+1 FAMC F01
+1 FAMS F03
+1 FAMS F08
+0 NOTE biological grandfather
+0 I02 INDI
+1 NAME Lucien /Dauphinais/
+1 SEX M
+1 BIRT
+2 DATE 25 DEC 1935
+1 DEAT
+2 DATE 10 APR 1985
+1 FAMC F02
+1 FAMS F03
+0 NOTE known grandfather to me
+0 I09 INDI
+1 NAME Phil /Dauphinais/
+1 SEX M
+1 BIRT
+2 DATE 20 DEC 1937
+1 FAMC F02
+1 FAMS F08
+0 I03 INDI
+1 NAME David /Dauphinais/
+1 SEX M
+1 BIRT
+2 DATE 10 AUG 1962
+1 FAMC F03
+1 FAMS F06
+0 NOTE Family created by Nancy and Lucien to make my dad
+0 F03 FAM
+1 MARR
+2 DATE 15 JUN 1963
+1 HUSB I02
+1 WIFE I01
+1 CHIL I03
+0 NOTE Dad
+0 NOTE Family created by Nancy and Phil
+0 F08 FAM
+1 MARR
+2 DATE 21 APR 2000
+1 HUSB I09
+1 WIFE I01
+0 NOTE MOM
+0 I04 INDI
+1 NAME Mary /Schliessmann/
+1 SEX F
+1 BIRT
+2 DATE 23 APR 1963
+1 DEAT
+2 DATE 19 JAN 1988
+1 FAMC F04
+1 FAMS F05
+1 FAMS F06
+0 NOTE mom’s first husband
+0 I05 INDI
+1 NAME Don /Smith/
+1 SEX M
+1 BIRT
+2 DATE 18 DEC 1960
+1 FAMC F09
+1 FAMS F05
+0 NOTE Son of Don and Mary my ½ brother
+0 I06 INDI
+1 NAME Peter /Smith/
+1 BIRT
+1 SEX M
+2 DATE 30 JUN 1984
+1 FAMC F05
+0 NOTE Family created by Don and Mary how I got a ½ brother
+0 F05 FAM
+1 MARR
+2 DATE 12 JAN 1989
+1 HUSB I05
+1 WIFE I04
+1 CHIL I06
+1 DIV
+2 DATE 19 FEB 1988
+0 NOTE Daughter 1 of Dave and Mary, my sister
+0 I07 INDI
+1 NAME Jessica /Dauphinais/
+1 SEX F
+1 BIRT
+2 DATE 8 APR 2000
+1 FAMC F06
+0 NOTE Daughter 2 of Dave and Mary, me!
+0 I08 INDI
+1 NAME Danielle /Dauphinais/
+1 SEX F
+1 BIRT
+2 DATE 4 JUL 2002
+1 FAMC F06
+0 NOTE Family created by David and Mary my parents
+0 F06 FAM
+1 MARR
+2 DATE 10 JUN 1991
+1 DIV
+2 DATE 19 FEB 2001
+1 HUSB I03
+1 WIFE I04
+1 CHIL I07
+1 CHIL I08
+0 NOTE dates after now
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com (Links to an external site.)
+0 bi00 INDI
+1 NAME Jimmy /Conners/
+0 NOTE Birth before death
+0 I81 INDI
+1 NAME Kennith /Joy/
+1 SEX M
+1 BIRT
+2 DATE 25 DEC 1935
+1 DEAT
+2 DATE 10 APR 1985
+1 FAMC F02
+1 FAMS F03
+0 NOTE death before before
+0 I82 INDI
+1 NAME Alan /Turning/
+1 SEX M
+1 BIRT
+2 DATE 25 DEC 1985
+1 DEAT
+2 DATE 10 APR 1925
+1 FAMC F02
+1 FAMS F03
+0 NOTE death and birth on the same day
+0 I83 INDI
+1 NAME Alex /Wazi/
+1 SEX M
+1 BIRT
+2 DATE 25 DEC 1935
+1 DEAT
+2 DATE 25 DEC 1935
+1 FAMC F02
+1 FAMS F03
+0 NOTE death after birth but less than a month after
+0 I84 INDI
+1 NAME Harry /Dauphinais/
+1 SEX M
+1 BIRT
+2 DATE 25 JAN 1935
+1 DEAT
+2 DATE 28 FEB 1935
+1 FAMC F02
+1 FAMS F03
+0 NOTE birth before death by a month
+0 I85 INDI
+1 NAME Jerry /Stin/
+1 SEX M
+1 BIRT
+2 DATE 20 FEB 1935
+1 DEAT
+2 DATE 25 JAN 1935
+1 FAMC F02
+1 FAMS F03
+0 I25 INDI
+1 NAME Evan /Cars/
+1 SEX M
+1 BIRT
+2 DATE 20 DEC 1937
+1 FAMC F02
+1 FAMS F111
+0 I26 INDI
+1 NAME Carla /Racin/
+1 SEX F
+1 BIRT
+2 DATE 30 NOV 1943
+1 FAMC F09
+1 FAMS F111
+0 NOTE 2.This family has a marriage after divorce 
+0 F111 FAM
+1 MARR
+2 DATE 15 JUN 1990
+1 HUSB I25
+1 WIFE I26
+1 CHIL I10
+1 DIV
+2 DATE 19 FEB 1988
+0 I201 INDI
+1 NAME John /Below/
+1 BIRT
+2 DATE 30 DEC 2023
+1 FAMS F41
+0 I202 INDI
+1 NAME Jane /Below/
+1 BIRT
+2 DATE 11 DEC 2098
+1 FAMS F41
+0 F41 FAM
+1 MARR
+2 DATE 31 JAN 2028
+1 HUSB I201
+1 WIFE I202
+0 I203 INDI
+1 NAME Sam /Below/
+1 FAMS F42
+0 I204 INDI
+1 NAME Sara /Below/
+1 FAMS F42
+0 F42 FAM
+1 MARR
+2 DATE 12 SEP 1988
+1 HUSB I203
+1 WIFE I204
+1 DIV
+2 DATE 11 JAN 2089
+0 I29 INDI
+1 NAME Bob /Dauphinais/
+1 SEX M
+1 BIRT
+2 DATE 20 DEC 1937
+1 FAMC F00
+1 FAMS F25
+0 I6 INDI
+1 NAME Ann /Below/
+1 SEX F
+1 BIRT
+2 DATE 30 NOV 1943
+1 FAMC F09
+1 FAMS F25
+0 NOTE 3.this family has not marriage but has a divorce
+0 F25 FAM
+1 HUSB I29
+1 WIFE I6
+1 CHIL I11
+1 DIV
+2 DATE 19 FEB 1988

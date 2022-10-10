@@ -1,0 +1,4 @@
+The bad smells I fixed:
+
+(1) Repeated code in divorceBeforeDeath() and marrigeBeforeDeath() methods
+(2) Renaming variable names that don't make sense
