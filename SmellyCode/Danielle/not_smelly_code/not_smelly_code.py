@@ -298,18 +298,18 @@ for i in range(len(modified_file)):
                 continue
                 
             indi[8] = fams_list     
-    indi_list.append(indi)        
-
-final_indi = []
-for i in range(len(indi_list)):
-    if (indi_list[i] in final_indi):
+    # fixed smelly code here
+    if(indi in indi_list):
         continue
-    else:
-        final_indi.append(indi_list[i])
+    else:     
+        indi_list.append(indi)        
+
+final_indi = indi_list
 
 individuals.add_rows(
     final_indi
 )
+
 
 print(individuals)
 
@@ -335,7 +335,8 @@ for i in range(len(modified_file)):
 clusters_list.append(cluster)
 
 siblings = {}
-
+# created a family list to easily access information about each family with out having to go through cluster_list
+familyList = []
 for i in range(len(clusters_list)):
     if (clusters_list[i][0][1] == "FAM"):
         children = set()
@@ -369,7 +370,9 @@ for i in range(len(clusters_list)):
                 if (modified_file[i+1][1] == "NAME"):
                     wife_name = modified_file[i+1][2]
         families.add_row([id, married, divorced, husband_id, husband_name, wife_id, wife_name, children])
+        familyList.append([id, married, divorced, husband_id, husband_name, wife_id, wife_name, children])
         siblings[id] = children
+
 
 print(families)  
 

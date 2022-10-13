@@ -1,0 +1,4 @@
+The bad smells I fixed:
+
+(1) Having another loop to remove duplicate individuals from indi_list
+(2) created a family list to easily access information about each family with out having to go through cluster_list

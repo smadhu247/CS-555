@@ -1,5 +1,5 @@
 import unittest
-from Assignment_GEDCOM import *
+from smelly_code import *
 
 class Test(unittest.TestCase):
     # Sprint 1
