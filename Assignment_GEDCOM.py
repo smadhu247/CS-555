@@ -1,4 +1,5 @@
 from typing import final
+from unittest.result import failfast
 from prettytable import PrettyTable
 from datetime import datetime, date
 
@@ -273,10 +274,10 @@ for i in range(len(modified_file)):
                 famc_list.append(modified_file[i][2])
                 modified_file[i][4] = 'famc seen'
                 
-                while(modified_file[famc][1] == 'FAMC' and modified_file[famc+1][1] == 'FAMC'):
-                    famc_list.append(modified_file[famc+1][2])
-                    modified_file[famc+1][4] = 'famc seen'
-                    famc = famc+1
+                # while(modified_file[famc][1] == 'FAMC' and modified_file[famc+1][1] == 'FAMC'):
+                #     famc_list.append(modified_file[famc+1][2])
+                #     modified_file[famc+1][4] = 'famc seen'
+                #     famc = famc+1
             else:
                 continue
                 
@@ -298,18 +299,18 @@ for i in range(len(modified_file)):
                 continue
                 
             indi[8] = fams_list     
-    indi_list.append(indi)        
-
-final_indi = []
-for i in range(len(indi_list)):
-    if (indi_list[i] in final_indi):
+    # fixed smelly code here
+    if(indi in indi_list):
         continue
-    else:
-        final_indi.append(indi_list[i])
+    else:     
+        indi_list.append(indi)        
+
+final_indi = indi_list
 
 individuals.add_rows(
     final_indi
 )
+
 
 print(individuals)
 
@@ -335,7 +336,8 @@ for i in range(len(modified_file)):
 clusters_list.append(cluster)
 
 siblings = {}
-
+# created a family list to easily access information about each family with out having to go through cluster_list
+familyList = []
 for i in range(len(clusters_list)):
     if (clusters_list[i][0][1] == "FAM"):
         children = set()
@@ -369,7 +371,9 @@ for i in range(len(clusters_list)):
                 if (modified_file[i+1][1] == "NAME"):
                     wife_name = modified_file[i+1][2]
         families.add_row([id, married, divorced, husband_id, husband_name, wife_id, wife_name, children])
+        familyList.append([id, married, divorced, husband_id, husband_name, wife_id, wife_name, children])
         siblings[id] = children
+
 
 print(families)  
 
@@ -628,6 +632,67 @@ def childDuringMarriage(famID):
                         return 'Error US08: Birthday = N/A for '+final_indi[k][0]+' '+final_indi[k][1]
 
 '''
+US11 - Sprint 2
+Story Name: No bigamy
+Description: Marriage should not occur during marriage to another spouse
+'''
+def noBigamy(indID):
+    count = 0
+    dates = []
+    for i in range(len(familyList)):
+        if(indID in familyList[i]):
+            count=count+1
+            # need to figure out how to deal with widows
+            deathDateH=0
+            deathDateW=0
+            endDate = familyList[i][2]
+            for j in range(len(final_indi)):
+                #checking husband death date
+                if (final_indi[j][0]==familyList[i][3] and final_indi[j][5]==False):
+                    deathDateH = final_indi[j][6]
+                    if (familyList[i][2] == 'N/A'):
+                        endDate= deathDateH
+                #checking wife death date
+                if(final_indi[j][0]==familyList[i][5] and final_indi[j][5]==False):
+                    deathDateW = final_indi[j][6]
+                    if (familyList[i][2] == 'N/A' or (endDate==deathDateH and endDate!=0 and deathDateW<endDate)):
+                        endDate= deathDateW
+            dates.append([familyList[i][1],endDate])
+    if (count>1):
+        for i in range(len(dates)-1):
+            if(dates[i][1]=='N/A' or dates[i][1]>dates[i+1][0]):
+                return 'Error US11: Individual '+ str(indID) + ' has participated in bigamy'
+    return str(indID) + " has not participated in bigamy"
+
+
+'''
+US12 - Sprint 2
+Story Name: Parents not too old
+Description: Mother should be less than 60 years older than her children and father should be less 
+than 80 years older than his children
+'''
+def parentsNotTooOld(famID):
+    for i in range(len(familyList)):
+        if (familyList[i][0] == famID):
+            motherAge = 0
+            fatherAge = 0
+            for j in range(len(final_indi)):
+                #getting mothers age
+                if (final_indi[j][0]==familyList[i][5]):
+                    motherAge = final_indi[j][4]
+                #getting fathers age
+                if (final_indi[j][0]==familyList[i][3]):
+                    fatherAge = final_indi[j][4]
+            #getting kids ages
+            for j in range(len(final_indi)):
+                if (final_indi[j][0] in familyList[i][7]):
+                    if((final_indi[j][4] != "N/A") and (motherAge-final_indi[j][4]>60 or fatherAge-final_indi[j][4]>80)):
+                        return ('Error US12: Family '+ str(famID) + ' has a parent too old.')
+    return (str(famID) + ' does not have a parent too old.')
+                    
+
+
+'''
 US13 - Sprint 2
 Story Name: Siblings spacing
 Description: Birth dates of siblings should be more than 8 months apart or less than 2 days apart 
@@ -690,7 +755,8 @@ if __name__ == '__main__':
 
     fam_ids = ["F03", "F08", "F05", "F06"]
     indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08", "bi00"]
-
+    
+    print(parentsNotTooOld('F05'))
     # print(datesBeforeCurrent("I01"))
 
     for i in range(len(fam_ids)):
@@ -700,7 +766,7 @@ if __name__ == '__main__':
     #     marrigeBeforeDivorce(fam_ids[i])
         print(siblingSpacing(fam_ids[i]))
         print(multipleBirths(fam_ids[i]))
-
+        
     # for i in range(len(indi_ids)):
     #     deathLessThan150(indi_ids[i])
     #     birthBeforeDeath(indi_ids[i])

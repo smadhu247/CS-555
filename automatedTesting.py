@@ -61,7 +61,15 @@ class Test(unittest.TestCase):
     #US10
 
     #US11
+    def test_noBigamy1(self):
+        self.assertEqual(noBigamy('I04'),'Error US11: Individual I04 has participated in bigamy')
+    def test_noBigamy2(self):
+        self.assertEqual(noBigamy('I01'),'I01 has not participated in bigamy')
     #US12
+    def test_parentsNotTooOld1(self):
+        self.assertEqual(parentsNotTooOld('F08'), 'Error US12: Family F08 has a parent too old.')
+    def test_parentsNotTooOld2(self):
+        self.assertEqual(parentsNotTooOld('F05'), 'F05 does not have a parent too old.')
 
     #US13
     #US14
