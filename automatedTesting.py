@@ -81,8 +81,17 @@ class Test(unittest.TestCase):
             self.assertEqual(multipleBirths('F08'), 'US14: Family F08 does not contain a family with siblings.')
     def test_multipleBirthsTwp(self):
             self.assertEqual(multipleBirths('F05'), 'US14: Family F05 does not contain a family with siblings.')
+    
     #US15
+    def test_fewer15Sibs(self):
+        self.assertEqual(fewer15Sibs('F05'), 'No Errors in US15')
     #US16
+    def test_matchingMaleLastNames(self):
+        fam_ids = ["F03", "F08", "F05", "F06","F09", "F111","F41","F42","F25","F02"]
+        indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08","I101","I102","I103","I104","I105", "bi00", "I82", "I81", "I83","I84", "I85","I25","I26","I201","I202","I203","I29","I6","I28"]
+        self.assertEqual(matchingMaleLastNames(indi_ids,fam_ids), ['US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name'])
+
+
 
 
 
