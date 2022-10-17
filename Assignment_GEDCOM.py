@@ -477,8 +477,7 @@ def birthBeforeDeath(INDI_ID):
             if (final_indi[i][4] != "N/A"):
                 if (final_indi[i][4] < 0):
                     return "Error USO3: Birth data of " + final_indi[i][1]+ "(" + final_indi[i][0] +")" " occurs after his death date."
-                else:
-                    return "No errors in US03 for INDI "+INDI_ID+ "."
+    return "No errors in US03 for INDI "+INDI_ID+ "."
 
 '''
 US04 - Sprint 1
@@ -538,8 +537,7 @@ def checkBeforeDeath(FAM_ID, user_story_num, action, indicator):
                     return "Error " + user_story_num + ": In family " + id + " Husband death occurs before " + action + "."
                 if (wife_date != "N/A" and date != 0 and wife_date < date):
                     return "Error " + user_story_num + ": In family " + id + " Wife death occurs before " + action + "."
-                else:
-                    return "No errors in " + user_story_num + " for family " + id
+    return "No errors in " + user_story_num + " for family " + FAM_ID
 
 '''
 US05 - Sprint 1
@@ -601,7 +599,6 @@ def childDuringMarriage(famID):
                     marrDate = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
                     parAndKids[count-1].append(marrDate)
                 if (clusters_list[i][j][1] == "DIV"):
-                    # print(id)
                     divDate = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
                     parAndKids[count-1].insert(2,("DIV"))
                     parAndKids[count-1].insert(3,(divDate))
@@ -631,6 +628,7 @@ def childDuringMarriage(famID):
                             return("Error US08: Child born out of side of parents marriage Timeline for "+ str(final_indi[k][0])+", "+ str(final_indi[k][1]))
                     else:
                         return 'Error US08: Birthday = N/A for '+final_indi[k][0]+' '+final_indi[k][1]
+    return "No errors in US08"
 
 '''
 US09 - Sprint 2
@@ -683,13 +681,10 @@ def birthBeforeParentsDeath(indID):
                 fathersDeathDate = ''
     
     if (fathersDeathDate != '' and mothersDeathDate != ''):
-        print("--------", type(child_birthday))
-        print("--------", type(mothersDeathDate))
         if ((child_birthday > mothersDeathDate) and (child_birthday < nineMonthsAfterDadDeath)):
             return 'Error US09: Child ' + indID + ' was born after death of mother and after 9 months after death of father'
 
-    else:
-        return 'No Errors'
+    return 'No errors in US09'
     
 '''
 US10 - Sprint 2
@@ -894,21 +889,16 @@ if __name__ == '__main__':
     # for i in listErrors:
     #     print(i)
 
-    # print(marriageAfter14('I59'))
-    # print (birthBeforeParentsDeath('I60'))
-
-    # print(datesBeforeCurrent("I01"))
-
-    # for i in range(len(fam_ids)):
-    #     print(childDuringMarriage(fam_ids[i]))
-    #     print(divorceBeforeDeath(fam_ids[i]))
-    #     print(marrigeBeforeDivorce(fam_ids[i]))
-    #     print(siblingSpacing(fam_ids[i]))
-    #     print(multipleBirths(fam_ids[i]))
+    for i in range(len(fam_ids)):
+        print(childDuringMarriage(fam_ids[i]))
+        print(divorceBeforeDeath(fam_ids[i]))
+        print(marrigeBeforeDivorce(fam_ids[i]))
+        print(siblingSpacing(fam_ids[i]))
+        print(multipleBirths(fam_ids[i]))
         
-    # for i in range(len(indi_ids)):
-    #     print(deathLessThan150(indi_ids[i]))
-    #     print(birthBeforeDeath(indi_ids[i]))
-    #     print(birthBeforeMarr(indi_ids[i]))
-    #     print(marriageAfter14(indi_ids[i]))
-    #     print(birthBeforeParentsDeath(indi_ids[i]))
+    for i in range(len(indi_ids)):
+        print(deathLessThan150(indi_ids[i]))
+        print(birthBeforeDeath(indi_ids[i]))
+        print(birthBeforeMarr(indi_ids[i]))
+        print(marriageAfter14(indi_ids[i]))
+        print(birthBeforeParentsDeath(indi_ids[i]))
