@@ -896,6 +896,7 @@ if __name__ == '__main__':
 
     print(marriageAfter14('I59'))
     print (birthBeforeParentsDeath('I60'))
+
     print(datesBeforeCurrent("I01"))
 
     for i in range(len(fam_ids)):
