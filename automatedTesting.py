@@ -45,6 +45,8 @@ class Test(unittest.TestCase):
     def testmarrigeBeforeDeathFive(self): 
         self.assertNotEqual(marrigeBeforeDeath("F08"), 'No errors in US05')
     # US06
+    def testdivorceeforeDeathOne(self): 
+        self.assertEqual(divorceBeforeDeath("F03"),'No errors in US06 for family F03') 
     # US07
     def test_deathLessThan150_1(self): 
         self.assertEqual(deathLessThan150("I01"),'Error US07: With Individual:  I01, Nancy /Below/, Individual is listed as over 150 years old & Death must be within 150 years of birth')
@@ -91,7 +93,6 @@ class Test(unittest.TestCase):
             self.assertEqual(multipleBirths('F08'), 'US14: Family F08 does not contain a family with siblings.')
     def test_multipleBirthsTwp(self):
             self.assertEqual(multipleBirths('F05'), 'US14: Family F05 does not contain a family with siblings.')
-    
     #US15
     def test_fewer15Sibs(self):
         self.assertEqual(fewer15Sibs('F05'), 'No Errors in US15')
