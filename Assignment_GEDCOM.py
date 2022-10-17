@@ -237,6 +237,7 @@ months_short = [' ','jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep
 months_long = [' ','january', 'february', 'march', 'april', 'may', 'jun', 'july', 'august', 'september', 'october', 'november', 'december']
 
 for i in range(len(modified_file)):
+    birthday = date.today()
     if (modified_file[i][3] == True):
         if (modified_file[i][1] == 'INDI'):
             indi = ['N/A', 'N/A', 'N/A', 'N/A', 'N/A', True, 'N/A', 'N/A', 'N/A']
@@ -539,8 +540,6 @@ def checkBeforeDeath(FAM_ID, user_story_num, action, indicator):
                 else:
                     return "No errors in " + user_story_num + " for family " + id
 
-
-
 '''
 US05 - Sprint 1
 Story Name: Marriage before death
@@ -640,7 +639,13 @@ Description: Child should be born before death of mother and before 9 months aft
 def birthBeforeParentsDeath(indID):
     fatherdead = 'false'
     motherdead = 'false'
-
+    mothersDeathDate = ""
+    fathersDeathDate = ""
+    child_birthday = ""
+    wifeID = ""
+    husbID = ""
+    nineMonthsAfterDadDeath = ""
+    
     for i in range(len(final_indi)):
         if (final_indi[i][0] == indID):
             if (final_indi[i][7] != 'N/A'):
@@ -838,28 +843,70 @@ def multipleBirths(famID):
             return "US14: There are the correct number of siblings in Family " + famID + "."       
     else:
         return "US14: Family " + famID + " does not contain a family with siblings."   
+'''
+US15 - Sprint 2
+Story Name: Fewer than 15 siblings
+Description: There should be fewer than 15 siblings in a family
+'''
+def fewer15Sibs(famID):
+    for key, value in siblings.items():
+        if (key == famID and len(value) > 1):
+            children = list(value)
+            if len(children)>=15:
+                return("US15: Error, this family has too many sibblings. This family has "+str(len(children))+" sibblings and the max is 15")
+'''
+US16 - Sprint 2
+Story Name: Male last names
+Description: All male members of a family should have the same last name
+'''
+
+def matchingMaleLastNames(indi_id,fam_id):
+    # Check each individual, Append their last name (if its not already there) to the list of families with their family ID in it 
+    listOfFamilies=[]
+    listOfErrors=[]
+    for y in fam_id:
+        listOfFamilies.append([y])
+
+    for i in range(len(final_indi)):
+        # if(indi_id == final_indi[i][0]):
+        if(final_indi[i][2]=='M'):
+                temp = final_indi[i][1]
+                temp = temp.split("/")
+                lastName = temp[1]
+                for j in range(len( listOfFamilies)):
+                    if (listOfFamilies[j][0] == final_indi[i][7][0]) : 
+                        listOfFamilies[j].append(lastName)
+    for x in range(len(listOfFamilies)):
+        if len(listOfFamilies[x])>2:
+            for y in range(1,len(listOfFamilies[x])):
+                if listOfFamilies[x][y]!= listOfFamilies[x][y-1]: 
+                    listOfErrors.append ("US16: Error, All of the men in this family "+str(listOfFamilies[x][0])+" do not have the same last name")
+    return listOfErrors
+
 
 if __name__ == '__main__':
 
-    fam_ids = ["F03", "F08", "F05", "F06"]
-    indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08", "bi00"]
+    fam_ids = ["F03", "F08", "F05", "F06","F09", "F111","F41","F42","F25","F02"]
+    indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08","I101","I102","I103","I104","I105", "bi00", "I82", "I81", "I83","I84", "I85","I25","I26","I201","I202","I203","I29","I6","I28"]
     
-    #print(parentsNotTooOld('F05'))
+    print(parentsNotTooOld('F05'))
+    listErrors=(matchingMaleLastNames(indi_ids,fam_ids))
+    for i in listErrors:
+        print(i)
 
-    #print(marriageAfter14('I59'))
+    print(marriageAfter14('I59'))
     print (birthBeforeParentsDeath('I60'))
+    print(datesBeforeCurrent("I01"))
 
-    # print(datesBeforeCurrent("I01"))
-
-    #for i in range(len(fam_ids)):
-    #     print(childDuringMarriage(fam_ids[i]))
-    #     print(divorceBeforeDeath(fam_ids[i]))
-    #     print(marrigeBeforeDeath(fam_ids[i]))
-    #     marrigeBeforeDivorce(fam_ids[i])
-    #    print(siblingSpacing(fam_ids[i]))
-    #    print(multipleBirths(fam_ids[i]))
+    for i in range(len(fam_ids)):
+        print(childDuringMarriage(fam_ids[i]))
+        print(divorceBeforeDeath(fam_ids[i]))
+        print(marrigeBeforeDeath(fam_ids[i]))
+        print(marrigeBeforeDivorce(fam_ids[i]))
+        print(siblingSpacing(fam_ids[i]))
+        print(multipleBirths(fam_ids[i]))
         
-    # for i in range(len(indi_ids)):
-    #     deathLessThan150(indi_ids[i])
-    #     birthBeforeDeath(indi_ids[i])
-    #     birthBeforeMarr(indi_ids[i])
+    for i in range(len(indi_ids)):
+        print(deathLessThan150(indi_ids[i]))
+        print(birthBeforeDeath(indi_ids[i]))
+        print(birthBeforeMarr(indi_ids[i]))
