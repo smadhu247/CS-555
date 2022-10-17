@@ -2,17 +2,17 @@ import unittest
 from Assignment_GEDCOM import *
 
 class Test(unittest.TestCase):
-    # Sprint 1
+    # Sprint 1:
     # US01
-    def testOne(self): 
+    def testdatesBeforeCurrentOne(self): 
         self.assertEqual(datesBeforeCurrent("I01"), "Error USO1: Death date of Nancy /Below/ (15 NOV 2185) occurs after the current date.")
-    def testTwo(self): 
+    def testdatesBeforeCurrentTwo(self): 
         self.assertEqual(datesBeforeCurrent("I201"), 'Error USO1: Birth date of John /Below/ (30 DEC 2023) occurs after the current date.')
-    def testThree(self): 
+    def testdatesBeforeCurrentThree(self): 
         self.assertEqual(datesBeforeCurrent("F41"), "Error USO1: Marriage date of F41 (31 JAN 2028) occurs after the current date.")
-    def testFour(self): 
+    def testdatesBeforeCurrentFour(self): 
         self.assertEqual(datesBeforeCurrent("F42"), 'Error USO1: Divorce date of F42 (11 JAN 2089) occurs after the current date.')
-    def testFive(self):
+    def testdatesBeforeCurrentFive(self):
         self.assertEqual(datesBeforeCurrent("I202"), "Error USO1: Birth date of Jane /Below/ (11 DEC 2098) occurs after the current date.")
     # US02
     # US03
@@ -34,15 +34,15 @@ class Test(unittest.TestCase):
     def testMarrigeBeforeDivorceThree(self):
         self.assertEqual(marrigeBeforeDivorce("F06"),'No errors in US04 for FAM F06.')
     # US05
-    def testOne(self): 
+    def testmarrigeBeforeDeathOne(self): 
         self.assertEqual(marrigeBeforeDeath("F03"),'No errors in US05 for family F03')
-    def testTwo(self): 
+    def testmarrigeBeforeDeathTwo(self): 
         self.assertEqual(marrigeBeforeDeath("F08"),'No errors in US05 for family F08')
-    def testThree(self): 
+    def testmarrigeBeforeDeathThree(self): 
         self.assertEqual(marrigeBeforeDeath("F05"), 'Error US05: In family F05 Wife death occurs before marriage.')
-    def testFour(self): 
+    def testmarrigeBeforeDeathFour(self): 
         self.assertEqual(marrigeBeforeDeath("F06"), 'Error US05: In family F06 Wife death occurs before marriage.')
-    def testFive(self): 
+    def testmarrigeBeforeDeathFive(self): 
         self.assertNotEqual(marrigeBeforeDeath("F08"), 'No errors in US05')
     # US06
     # US07
@@ -50,6 +50,8 @@ class Test(unittest.TestCase):
         self.assertEqual(deathLessThan150("I01"),'Error US07: With Individual:  I01, Nancy /Below/, Individual is listed as over 150 years old & Death must be within 150 years of birth')
     def test_deathLessThan150_2(self): 
         self.assertEqual(deathLessThan150("I03"),'No Errors with US07')
+    
+    # Sprint 2:
     # US08
     def test_childDuringMarriage_1(self): 
         self.assertEqual(childDuringMarriage("F03"),'Error US08: Child born out of side of parents marriage Timeline for I03, David /Dauphinais/')
@@ -59,7 +61,6 @@ class Test(unittest.TestCase):
         self.assertEqual(childDuringMarriage('F06'),'Error US08: Child born out of side of parents marriage Timeline for I08, Danielle /Dauphinais/')
     #US09
     #US10
-
     #US11
     def test_noBigamy1(self):
         self.assertEqual(noBigamy('I04'),'Error US11: Individual I04 has participated in bigamy')
@@ -70,10 +71,8 @@ class Test(unittest.TestCase):
         self.assertEqual(parentsNotTooOld('F08'), 'Error US12: Family F08 has a parent too old.')
     def test_parentsNotTooOld2(self):
         self.assertEqual(parentsNotTooOld('F05'), 'F05 does not have a parent too old.')
-
     #US13
     #US14
-    
     #US15
     #US16
 
