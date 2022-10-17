@@ -854,6 +854,7 @@ def fewer15Sibs(famID):
             children = list(value)
             if len(children)>=15:
                 return("US15: Error, this family has too many sibblings. This family has "+str(len(children))+" sibblings and the max is 15")
+    return('No Errors in US15')
 '''
 US16 - Sprint 2
 Story Name: Male last names
@@ -911,6 +912,3 @@ if __name__ == '__main__':
     #     print(birthBeforeMarr(indi_ids[i]))
     #     print(marriageAfter14(indi_ids[i]))
     #     print(birthBeforeParentsDeath(indi_ids[i]))
-
-    print(multipleBirths("F08"))
-    print(multipleBirths("F05"))
