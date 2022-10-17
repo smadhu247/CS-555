@@ -1,7 +1,7 @@
 from typing import final
 from unittest.result import failfast
 from prettytable import PrettyTable
-from datetime import datetime, date
+from datetime import *
 from dateutil.relativedelta import *
 
 file = open('test.ged', 'r')
@@ -464,6 +464,7 @@ def birthBeforeMarr(INDI_ID):
                                      marriage = datetime.strptime(clusters_list[k][l+1][2], '%d %b %Y').date()
                                      if (birthday > marriage):
                                         return "Error USO2: Marriage date of " + id + " (" + clusters_list[k][l+1][2] +") occurs before the birth date of " + marriedPeople[i][1] + " (" + marriedPeople[i][2] + ")."
+    return "No errors in US02"
                                       
 '''
 US03 - Sprint 1
@@ -489,8 +490,8 @@ def marrigeBeforeDivorce(FAM_ID):
         if (clusters_list[i][0][1] == "FAM"):
             id = clusters_list[i][0][2]
             if(FAM_ID == id):
-                MARR = 0
-                DIV = 0
+                MARR = ""
+                DIV = ""
                 for j in range(len(clusters_list[i])):
                     if (clusters_list[i][j][1] == "MARR"):
                         MARR = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
@@ -642,7 +643,7 @@ def birthBeforeParentsDeath(indID):
     mothersDeathDate = ""
     fathersDeathDate = ""
     child_birthday = ""
-    wifeID = ""
+    wifeID = ""  
     husbID = ""
     nineMonthsAfterDadDeath = ""
     
@@ -682,14 +683,13 @@ def birthBeforeParentsDeath(indID):
                 fathersDeathDate = ''
     
     if (fathersDeathDate != '' and mothersDeathDate != ''):
+        print("--------", type(child_birthday))
+        print("--------", type(mothersDeathDate))
         if ((child_birthday > mothersDeathDate) and (child_birthday < nineMonthsAfterDadDeath)):
             return 'Error US09: Child ' + indID + ' was born after death of mother and after 9 months after death of father'
 
     else:
         return 'No Errors'
-
-
-
     
 '''
 US10 - Sprint 2
@@ -697,6 +697,7 @@ Story Name: Marriage After 14
 Description: Marriage should be at least 14 years after birth of both spouses (parents must be at least 14 years old)
 '''
 def marriageAfter14(indID):
+    spouseID = ""
     for i in range(len(final_indi)):
         if (final_indi[i][0] == indID):
             if (final_indi[i][8] != 'N/A'):
@@ -811,7 +812,6 @@ def siblingSpacing(famID):
                 if (abs((birthdays[i].year - birthdays[j].year) * 12 + birthdays[i].month - birthdays[j].month) < 8 and birthdays[i].day - birthdays[j].day < 2 and birthdays[i] != birthdays[j]):
                     issues.append([birthdays[i], birthdays[j]])
         if len(issues) > 0:
-            print(issues)
             return "Error US13: Siblings are not properly spaced."
         else:
             return "US13: Siblings in Family " + famID + " are properly spaced."
@@ -889,19 +889,15 @@ if __name__ == '__main__':
     fam_ids = ["F03", "F08", "F05", "F06","F09", "F111","F41","F42","F25","F02"]
     indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08","I101","I102","I103","I104","I105", "bi00", "I82", "I81", "I83","I84", "I85","I25","I26","I201","I202","I203","I29","I6","I28"]
     
-    print(parentsNotTooOld('F05'))
-    listErrors=(matchingMaleLastNames(indi_ids,fam_ids))
-    for i in listErrors:
-        print(i)
+    # listErrors=(matchingMaleLastNames(indi_ids,fam_ids))
+    # for i in listErrors:
+    #     print(i)
 
-    print(marriageAfter14('I59'))
-    print (birthBeforeParentsDeath('I60'))
     print(datesBeforeCurrent("I01"))
 
     for i in range(len(fam_ids)):
         print(childDuringMarriage(fam_ids[i]))
         print(divorceBeforeDeath(fam_ids[i]))
-        print(marrigeBeforeDeath(fam_ids[i]))
         print(marrigeBeforeDivorce(fam_ids[i]))
         print(siblingSpacing(fam_ids[i]))
         print(multipleBirths(fam_ids[i]))
@@ -910,3 +906,5 @@ if __name__ == '__main__':
         print(deathLessThan150(indi_ids[i]))
         print(birthBeforeDeath(indi_ids[i]))
         print(birthBeforeMarr(indi_ids[i]))
+        print(marriageAfter14(indi_ids[i]))
+        print(birthBeforeParentsDeath(indi_ids[i]))
