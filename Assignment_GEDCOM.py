@@ -892,6 +892,7 @@ if __name__ == '__main__':
     # for i in listErrors:
     #     print(i)
 
+    '''
     for i in range(len(fam_ids)):
         print(childDuringMarriage(fam_ids[i]))
         print(divorceBeforeDeath(fam_ids[i]))
@@ -905,3 +906,4 @@ if __name__ == '__main__':
         print(birthBeforeMarr(indi_ids[i]))
         print(marriageAfter14(indi_ids[i]))
         print(birthBeforeParentsDeath(indi_ids[i]))
+        '''
