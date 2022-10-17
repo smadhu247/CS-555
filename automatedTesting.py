@@ -17,13 +17,13 @@ class Test(unittest.TestCase):
     # US02
     # US03
     def testBirthBeforeDeathOne(self): 
-        self.assertEqual(birthBeforeDeath("I81"),'No errors in US03 for INDI I81.')
+        self.assertEqual(birthBeforeDeath("I81"),'Error USO3: Birth data of Kennith /Joy/(I81) occurs after his death date.')
     def testBirthBeforeDeathTwo(self): 
         self.assertEqual(birthBeforeDeath("I82"),'Error USO3: Birth data of Alan /Turning/(I82) occurs after his death date.')
     def testBirthBeforeDeathThree(self):
-        self.assertEqual(birthBeforeDeath("I83"),'No errors in US03 for INDI I83.')
+        self.assertEqual(birthBeforeDeath("I83"),'Error USO3: Birth data of Alex /Wazi/(I83) occurs after his death date.')
     def testBirthBeforeDeathFour(self):
-        self.assertEqual(birthBeforeDeath("I84"),'No errors in US03 for INDI I84.')
+        self.assertEqual(birthBeforeDeath("I84"),'Error USO3: Birth data of Harry /Dauphinais/(I84) occurs after his death date.')
     def testBirthBeforeDeathFive(self):
         self.assertEqual(birthBeforeDeath("I85"),'Error USO3: Birth data of Jerry /Stin/(I85) occurs after his death date.')
     # US04
@@ -72,9 +72,26 @@ class Test(unittest.TestCase):
     def test_parentsNotTooOld2(self):
         self.assertEqual(parentsNotTooOld('F05'), 'F05 does not have a parent too old.')
     #US13
+    def test_siblingSpacingOne(self):
+        self.assertEqual(siblingSpacing('F08'), 'US13: Family F08 does not contain a family with siblings.')
+    def test_siblingSpacingTwo(self):
+        self.assertEqual(siblingSpacing('F05'), 'US13: Family F05 does not contain a family with siblings.')
     #US14
+    def test_multipleBirthsOne(self):
+            self.assertEqual(multipleBirths('F08'), 'US14: Family F08 does not contain a family with siblings.')
+    def test_multipleBirthsTwp(self):
+            self.assertEqual(multipleBirths('F05'), 'US14: Family F05 does not contain a family with siblings.')
+    
     #US15
+    def test_fewer15Sibs(self):
+        self.assertEqual(fewer15Sibs('F05'), 'No Errors in US15')
     #US16
+    def test_matchingMaleLastNames(self):
+        fam_ids = ["F03", "F08", "F05", "F06","F09", "F111","F41","F42","F25","F02"]
+        indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08","I101","I102","I103","I104","I105", "bi00", "I82", "I81", "I83","I84", "I85","I25","I26","I201","I202","I203","I29","I6","I28"]
+        self.assertEqual(matchingMaleLastNames(indi_ids,fam_ids), ['US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name'])
+
+
 
 
 

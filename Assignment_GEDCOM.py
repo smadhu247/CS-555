@@ -490,14 +490,14 @@ def marrigeBeforeDivorce(FAM_ID):
         if (clusters_list[i][0][1] == "FAM"):
             id = clusters_list[i][0][2]
             if(FAM_ID == id):
-                MARR = ""
-                DIV = ""
+                MARR = date.today()
+                DIV = date.today()
                 for j in range(len(clusters_list[i])):
                     if (clusters_list[i][j][1] == "MARR"):
                         MARR = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
                     if (clusters_list[i][j][1] == "DIV"):
                         DIV = datetime.strptime(clusters_list[i][j+1][2], '%d %b %Y').date()
-                    if (DIV != 'N/A' and DIV != 0):
+                    if (DIV != 'N/A' and DIV != date.today()):
                         if (DIV < MARR):
                             return "Error US04: In family " + id + " Divorce occurs before marrage."
                         else:
@@ -856,6 +856,7 @@ def fewer15Sibs(famID):
             children = list(value)
             if len(children)>=15:
                 return("US15: Error, this family has too many sibblings. This family has "+str(len(children))+" sibblings and the max is 15")
+    return('No Errors in US15')
 '''
 US16 - Sprint 2
 Story Name: Male last names
@@ -895,23 +896,21 @@ if __name__ == '__main__':
     # for i in listErrors:
     #     print(i)
 
-    '''
-    print(marriageAfter14('I59'))
-    print (birthBeforeParentsDeath('I60'))
+    # print(marriageAfter14('I59'))
+    # print (birthBeforeParentsDeath('I60'))
 
-    print(datesBeforeCurrent("I01"))
+    # print(datesBeforeCurrent("I01"))
 
-    for i in range(len(fam_ids)):
-        print(childDuringMarriage(fam_ids[i]))
-        print(divorceBeforeDeath(fam_ids[i]))
-        print(marrigeBeforeDivorce(fam_ids[i]))
-        print(siblingSpacing(fam_ids[i]))
-        print(multipleBirths(fam_ids[i]))
-    '''
-
-    for i in range(len(indi_ids)):
-        print(birthBeforeParentsDeath(indi_ids[i]))
-        #print(deathLessThan150(indi_ids[i]))
-        #print(birthBeforeDeath(indi_ids[i]))
-        #print(birthBeforeMarr(indi_ids[i]))
-        #print(marriageAfter14(indi_ids[i]))
+    # for i in range(len(fam_ids)):
+    #     print(childDuringMarriage(fam_ids[i]))
+    #     print(divorceBeforeDeath(fam_ids[i]))
+    #     print(marrigeBeforeDivorce(fam_ids[i]))
+    #     print(siblingSpacing(fam_ids[i]))
+    #     print(multipleBirths(fam_ids[i]))
+        
+    # for i in range(len(indi_ids)):
+    #     print(deathLessThan150(indi_ids[i]))
+    #     print(birthBeforeDeath(indi_ids[i]))
+    #     print(birthBeforeMarr(indi_ids[i]))
+    #     print(marriageAfter14(indi_ids[i]))
+    #     print(birthBeforeParentsDeath(indi_ids[i]))
