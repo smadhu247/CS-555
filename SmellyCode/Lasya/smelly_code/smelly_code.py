@@ -1,9 +1,9 @@
 from typing import final
 from unittest.result import failfast
 from prettytable import PrettyTable
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
-file = open('test.ged', 'r')
+file = open('SmellyCode/Lasya/smelly_code/smelly_test.ged', 'r')
 individuals = PrettyTable()
 individuals.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
 
@@ -375,7 +375,6 @@ for i in range(len(clusters_list)):
         siblings[id] = children
 
 
-print(familyList)
 print(families)  
 
 
@@ -633,45 +632,6 @@ def childDuringMarriage(famID):
                         return 'Error US08: Birthday = N/A for '+final_indi[k][0]+' '+final_indi[k][1]
 
 '''
-US09 - Sprint 2
-Story Name: Birth before death of parents
-Description:
-'''
-
-'''
-US10 - Sprint 2
-Story Name: Marriage After 14
-Description: Marriage should be at least 14 years after birth of both spouses (parents must be at least 14 years old)
-'''
-def marriageAfter14(indID):
-    for i in range(len(final_indi)):
-        if (final_indi[i][0] == indID):
-            if (final_indi[i][8] != 'N/A'):
-                if (final_indi[i][4] < 14):
-                    return 'Error US10: Individual ' + indID + ' is younger than 14 years old and married.'
-                else:
-                    spouses = final_indi[i][8]
-
-                    for i in range(len(spouses)):
-                        spouse_fam = spouses[i]
-
-                        for i in range(len(familyList)):
-                            if (familyList[i][0] == spouse_fam):
-                                if (familyList[i][3] == indID):
-                                    spouseID = familyList[i][5]
-                                else:
-                                    spouseID = familyList[i][3]
-                        
-                        for i in range(len(final_indi)):
-                            if (final_indi[i][0] == spouseID):
-                                if (final_indi[i][4] < 14):
-                                    return 'Error US10: Spouse of individual ' + indID + ', with ID ' + spouseID + ' is younger than 14 years old and married.'
-    return 'Individual ' + indID + ' and all of his/her spouses were at least 14 years old when married'
-
-                        
-
-
-'''
 US11 - Sprint 2
 Story Name: No bigamy
 Description: Marriage should not occur during marriage to another spouse
@@ -789,7 +749,50 @@ def multipleBirths(famID):
         else:
             return "US14: There are the correct number of siblings in Family " + famID + "."       
     else:
-        return "US14: Family " + famID + " does not contain a family with siblings."   
+        return "US14: Family " + famID + " does not contain a family with siblings."  
+
+def last30(date):
+    last30 = []
+
+    today = datetime.strptime(date, '%d %b %Y').date()
+    start = datetime(today.year, today.month, today.day)                                                                                                                                                                    
+    for day in range(1, 31): 
+        last30.append(start-timedelta(days=day))
+    
+    return last30
+
+
+def recentBirths(date_str):
+    days = last30(date_str)
+    births = []
+        
+    for i in range(len(final_indi)):
+        if (final_indi[i][3]!='N/A'):
+            birthday = datetime.strptime(final_indi[i][3], '%d %b %Y').date()
+            birthday2 = datetime(birthday.year, birthday.month, birthday.day)
+            if (birthday2 in days):
+                births.append(final_indi[i][0])
+            
+    if (len(births) > 0):
+        return "US15: Recent Births from " + date_str + " include " + str(births) + "."
+    else: 
+        return "No recent births."
+
+def recentDeaths(date_str):
+    days = last30(date_str)
+    deaths = []
+
+    for i in range(len(final_indi)):
+        if (final_indi[i][6]!='N/A'):
+            death = datetime.strptime(final_indi[i][6], '%d %b %Y').date()
+            death2 = datetime(death.year, death.month, death.day)
+            if (death2 in days):
+                deaths.append(final_indi[i][0])
+            
+    if (len(deaths) > 0):
+        return "US15: Recent Deaths from " + date_str + " include " + str(deaths) + "."
+    else: 
+        return "No recent deaths." 
 
 if __name__ == '__main__':
 
@@ -797,10 +800,20 @@ if __name__ == '__main__':
     indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08", "bi00"]
     
     #print(parentsNotTooOld('F05'))
-
-    print(marriageAfter14('I59'))
-
     # print(datesBeforeCurrent("I01"))
+    #print(recentBirths("17 OCT 2022"))
+    #print(recentDeaths("17 OCT 2022"))
+    
+    print(recentBirths("17 OCT 2022"))
+    print(recentBirths("1 NOV 2002"))
+    print(recentBirths("24 FEB 1935"))
+    print(recentBirths("10 JAN 2022"))
+
+    print(recentDeaths("17 OCT 2022"))
+    print(recentDeaths("26 JAN 1935"))
+    print(recentDeaths("12 OCT 2002"))
+    print(recentDeaths("1 JAN 2010"))
+
 
     #for i in range(len(fam_ids)):
     #     print(childDuringMarriage(fam_ids[i]))
@@ -814,3 +827,4 @@ if __name__ == '__main__':
     #     deathLessThan150(indi_ids[i])
     #     birthBeforeDeath(indi_ids[i])
     #     birthBeforeMarr(indi_ids[i])
+
