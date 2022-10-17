@@ -2,6 +2,7 @@ from typing import final
 from unittest.result import failfast
 from prettytable import PrettyTable
 from datetime import datetime, date
+from dateutil.relativedelta import *
 
 file = open('test.ged', 'r')
 individuals = PrettyTable()
@@ -375,7 +376,6 @@ for i in range(len(clusters_list)):
         siblings[id] = children
 
 
-print(familyList)
 print(families)  
 
 
@@ -635,9 +635,57 @@ def childDuringMarriage(famID):
 '''
 US09 - Sprint 2
 Story Name: Birth before death of parents
-Description:
+Description: Child should be born before death of mother and before 9 months after death of father
 '''
+def birthBeforeParentsDeath(indID):
+    fatherdead = 'false'
+    motherdead = 'false'
 
+    for i in range(len(final_indi)):
+        if (final_indi[i][0] == indID):
+            if (final_indi[i][7] != 'N/A'):
+                child_birthday_str = final_indi[i][3]
+                child_birthday = datetime.strptime(child_birthday_str, '%d %b %Y').date()
+                
+                family = final_indi[i][7]
+                
+                for j in range(len(family)):
+                    child_fam = family[j]
+
+                    for k in range(len(familyList)):
+                        if (familyList[k][0] == child_fam):
+                            wifeID = familyList[k][5]
+                            husbID = familyList[k][3]
+            else:
+                return 'Error US09: No information about the family ' + indID + ' belongs to.'
+    
+    for wife in range(len(final_indi)):
+        if (final_indi[wife][0] == wifeID):
+            if (final_indi[wife][5] == False):
+                mothersDeathDate_str = final_indi[wife][6]
+                mothersDeathDate = datetime.strptime(mothersDeathDate_str, '%d %b %Y').date()
+            else:
+                mothersDeathDate = ''
+    
+    for husb in range(len(final_indi)):
+        if (final_indi[husb][0] == husbID):
+            if (final_indi[husb][5] == False):
+                fathersDeathDate_str = final_indi[husb][6]
+                fathersDeathDate = datetime.strptime(fathersDeathDate_str, '%d %b %Y').date()
+                nineMonthsAfterDadDeath = fathersDeathDate + relativedelta(months=+9)
+            else:
+                fathersDeathDate = ''
+    
+    if (fathersDeathDate != '' and mothersDeathDate != ''):
+        if ((child_birthday > mothersDeathDate) and (child_birthday < nineMonthsAfterDadDeath)):
+            return 'Error US09: Child ' + indID + ' was born after death of mother and after 9 months after death of father'
+
+    else:
+        return 'No Errors'
+
+
+
+    
 '''
 US10 - Sprint 2
 Story Name: Marriage After 14
@@ -652,19 +700,19 @@ def marriageAfter14(indID):
                 else:
                     spouses = final_indi[i][8]
 
-                    for i in range(len(spouses)):
-                        spouse_fam = spouses[i]
+                    for l in range(len(spouses)):
+                        spouse_fam = spouses[l]
 
-                        for i in range(len(familyList)):
-                            if (familyList[i][0] == spouse_fam):
-                                if (familyList[i][3] == indID):
-                                    spouseID = familyList[i][5]
+                        for j in range(len(familyList)):
+                            if (familyList[j][0] == spouse_fam):
+                                if (familyList[j][3] == indID):
+                                    spouseID = familyList[j][5]
                                 else:
-                                    spouseID = familyList[i][3]
+                                    spouseID = familyList[j][3]
                         
-                        for i in range(len(final_indi)):
-                            if (final_indi[i][0] == spouseID):
-                                if (final_indi[i][4] < 14):
+                        for k in range(len(final_indi)):
+                            if (final_indi[k][0] == spouseID):
+                                if (final_indi[k][4] < 14):
                                     return 'Error US10: Spouse of individual ' + indID + ', with ID ' + spouseID + ' is younger than 14 years old and married.'
     return 'Individual ' + indID + ' and all of his/her spouses were at least 14 years old when married'
 
@@ -798,7 +846,8 @@ if __name__ == '__main__':
     
     #print(parentsNotTooOld('F05'))
 
-    print(marriageAfter14('I59'))
+    #print(marriageAfter14('I59'))
+    print (birthBeforeParentsDeath('I60'))
 
     # print(datesBeforeCurrent("I01"))
 
