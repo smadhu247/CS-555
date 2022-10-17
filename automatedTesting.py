@@ -17,13 +17,13 @@ class Test(unittest.TestCase):
     # US02
     # US03
     def testBirthBeforeDeathOne(self): 
-        self.assertEqual(birthBeforeDeath("I81"),'No errors in US03 for INDI I81.')
+        self.assertEqual(birthBeforeDeath("I81"),'Error USO3: Birth data of Kennith /Joy/(I81) occurs after his death date.')
     def testBirthBeforeDeathTwo(self): 
         self.assertEqual(birthBeforeDeath("I82"),'Error USO3: Birth data of Alan /Turning/(I82) occurs after his death date.')
     def testBirthBeforeDeathThree(self):
-        self.assertEqual(birthBeforeDeath("I83"),'No errors in US03 for INDI I83.')
+        self.assertEqual(birthBeforeDeath("I83"),'Error USO3: Birth data of Alex /Wazi/(I83) occurs after his death date.')
     def testBirthBeforeDeathFour(self):
-        self.assertEqual(birthBeforeDeath("I84"),'No errors in US03 for INDI I84.')
+        self.assertEqual(birthBeforeDeath("I84"),'Error USO3: Birth data of Harry /Dauphinais/(I84) occurs after his death date.')
     def testBirthBeforeDeathFive(self):
         self.assertEqual(birthBeforeDeath("I85"),'Error USO3: Birth data of Jerry /Stin/(I85) occurs after his death date.')
     # US04
@@ -72,7 +72,15 @@ class Test(unittest.TestCase):
     def test_parentsNotTooOld2(self):
         self.assertEqual(parentsNotTooOld('F05'), 'F05 does not have a parent too old.')
     #US13
+    def test_siblingSpacingOne(self):
+        self.assertEqual(siblingSpacing('F08'), 'US13: Family F08 does not contain a family with siblings.')
+    def test_siblingSpacingTwo(self):
+        self.assertEqual(siblingSpacing('F05'), 'US13: Family F05 does not contain a family with siblings.')
     #US14
+    def test_multipleBirthsOne(self):
+            self.assertEqual(multipleBirths('F08'), 'US14: Family F08 does not contain a family with siblings.')
+    def test_multipleBirthsTwp(self):
+            self.assertEqual(multipleBirths('F05'), 'US14: Family F05 does not contain a family with siblings.')
     #US15
     #US16
 
