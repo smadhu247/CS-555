@@ -638,8 +638,6 @@ Story Name: Birth before death of parents
 Description: Child should be born before death of mother and before 9 months after death of father
 '''
 def birthBeforeParentsDeath(indID):
-    fatherdead = 'false'
-    motherdead = 'false'
     mothersDeathDate = ""
     fathersDeathDate = ""
     child_birthday = ""
@@ -647,21 +645,26 @@ def birthBeforeParentsDeath(indID):
     husbID = ""
     nineMonthsAfterDadDeath = ""
     
+    print(indID)
+
     for i in range(len(final_indi)):
         if (final_indi[i][0] == indID):
             if (final_indi[i][7] != 'N/A'):
                 child_birthday_str = final_indi[i][3]
-                child_birthday = datetime.strptime(child_birthday_str, '%d %b %Y').date()
-                
-                family = final_indi[i][7]
-                
-                for j in range(len(family)):
-                    child_fam = family[j]
+                if (child_birthday_str != 'N/A'):
+                    child_birthday = datetime.strptime(child_birthday_str, '%d %b %Y').date()
+                    
+                    family = final_indi[i][7]
+                    
+                    for j in range(len(family)):
+                        child_fam = family[j]
 
-                    for k in range(len(familyList)):
-                        if (familyList[k][0] == child_fam):
-                            wifeID = familyList[k][5]
-                            husbID = familyList[k][3]
+                        for k in range(len(familyList)):
+                            if (familyList[k][0] == child_fam):
+                                wifeID = familyList[k][5]
+                                husbID = familyList[k][3]
+                else:
+                    return 'Error US09: No birthday recorded for ' + indID
             else:
                 return 'Error US09: No information about the family ' + indID + ' belongs to.'
     
@@ -681,10 +684,9 @@ def birthBeforeParentsDeath(indID):
                 nineMonthsAfterDadDeath = fathersDeathDate + relativedelta(months=+9)
             else:
                 fathersDeathDate = ''
+        
     
     if (fathersDeathDate != '' and mothersDeathDate != ''):
-        print("--------", type(child_birthday))
-        print("--------", type(mothersDeathDate))
         if ((child_birthday > mothersDeathDate) and (child_birthday < nineMonthsAfterDadDeath)):
             return 'Error US09: Child ' + indID + ' was born after death of mother and after 9 months after death of father'
 
@@ -893,6 +895,7 @@ if __name__ == '__main__':
     # for i in listErrors:
     #     print(i)
 
+    '''
     print(marriageAfter14('I59'))
     print (birthBeforeParentsDeath('I60'))
 
@@ -904,10 +907,11 @@ if __name__ == '__main__':
         print(marrigeBeforeDivorce(fam_ids[i]))
         print(siblingSpacing(fam_ids[i]))
         print(multipleBirths(fam_ids[i]))
-        
+    '''
+
     for i in range(len(indi_ids)):
-        print(deathLessThan150(indi_ids[i]))
-        print(birthBeforeDeath(indi_ids[i]))
-        print(birthBeforeMarr(indi_ids[i]))
-        print(marriageAfter14(indi_ids[i]))
         print(birthBeforeParentsDeath(indi_ids[i]))
+        #print(deathLessThan150(indi_ids[i]))
+        #print(birthBeforeDeath(indi_ids[i]))
+        #print(birthBeforeMarr(indi_ids[i]))
+        #print(marriageAfter14(indi_ids[i]))
