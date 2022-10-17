@@ -893,6 +893,9 @@ if __name__ == '__main__':
     # for i in listErrors:
     #     print(i)
 
+    print(marriageAfter14('I59'))
+    print (birthBeforeParentsDeath('I60'))
+
     print(datesBeforeCurrent("I01"))
 
     for i in range(len(fam_ids)):
