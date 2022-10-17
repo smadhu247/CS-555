@@ -645,8 +645,6 @@ def birthBeforeParentsDeath(indID):
     husbID = ""
     nineMonthsAfterDadDeath = ""
     
-    print(indID)
-
     for i in range(len(final_indi)):
         if (final_indi[i][0] == indID):
             if (final_indi[i][7] != 'N/A'):
@@ -703,25 +701,26 @@ def marriageAfter14(indID):
     for i in range(len(final_indi)):
         if (final_indi[i][0] == indID):
             if (final_indi[i][8] != 'N/A'):
-                if (final_indi[i][4] < 14):
-                    return 'Error US10: Individual ' + indID + ' is younger than 14 years old and married.'
-                else:
-                    spouses = final_indi[i][8]
+                if (final_indi[i][4] != 'N/A'):
+                    if (final_indi[i][4] < 14):
+                        return 'Error US10: Individual ' + indID + ' is younger than 14 years old and married.'
+                    else:
+                        spouses = final_indi[i][8]
 
-                    for l in range(len(spouses)):
-                        spouse_fam = spouses[l]
+                        for l in range(len(spouses)):
+                            spouse_fam = spouses[l]
 
-                        for j in range(len(familyList)):
-                            if (familyList[j][0] == spouse_fam):
-                                if (familyList[j][3] == indID):
-                                    spouseID = familyList[j][5]
-                                else:
-                                    spouseID = familyList[j][3]
-                        
-                        for k in range(len(final_indi)):
-                            if (final_indi[k][0] == spouseID):
-                                if (final_indi[k][4] < 14):
-                                    return 'Error US10: Spouse of individual ' + indID + ', with ID ' + spouseID + ' is younger than 14 years old and married.'
+                            for j in range(len(familyList)):
+                                if (familyList[j][0] == spouse_fam):
+                                    if (familyList[j][3] == indID):
+                                        spouseID = familyList[j][5]
+                                    else:
+                                        spouseID = familyList[j][3]
+                            
+                            for k in range(len(final_indi)):
+                                if (final_indi[k][0] == spouseID):
+                                    if (final_indi[k][4] < 14):
+                                        return 'Error US10: Spouse of individual ' + indID + ', with ID ' + spouseID + ' is younger than 14 years old and married.'
     return 'Individual ' + indID + ' and all of his/her spouses were at least 14 years old when married'
 
                         
@@ -908,9 +907,9 @@ if __name__ == '__main__':
     #     print(siblingSpacing(fam_ids[i]))
     #     print(multipleBirths(fam_ids[i]))
         
-    # for i in range(len(indi_ids)):
+    for i in range(len(indi_ids)):
     #     print(deathLessThan150(indi_ids[i]))
     #     print(birthBeforeDeath(indi_ids[i]))
     #     print(birthBeforeMarr(indi_ids[i]))
-    #     print(marriageAfter14(indi_ids[i]))
+        print(marriageAfter14(indi_ids[i]))
     #     print(birthBeforeParentsDeath(indi_ids[i]))

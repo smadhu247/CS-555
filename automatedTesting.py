@@ -60,7 +60,19 @@ class Test(unittest.TestCase):
     def test_childDuringMarriage_3(self): 
         self.assertEqual(childDuringMarriage('F06'),'Error US08: Child born out of side of parents marriage Timeline for I08, Danielle /Dauphinais/')
     #US09
+    def test_birthBeforeParentsDeath1(self):
+        self.assertEqual(birthBeforeParentsDeath('bi00'), 'Error US09: No information about the family bi00 belongs to.')
+    def test_birthBeforeParentsDeath2(self):
+        self.assertEqual(birthBeforeParentsDeath('I06'), 'Error US09: No birthday recorded for I06')
+    def test_birthBeforeParentsDeath3(self):
+        self.assertEqual(birthBeforeParentsDeath('I101'), 'No Errors')
     #US10
+    def test_marriageAfter141(self):
+        self.assertEqual(marriageAfter14('I05'), 'Error US10: Spouse of individual I05, with ID I04 is younger than 14 years old and married.')
+    def test_marriageAfter142(self):
+        self.assertEqual(marriageAfter14('I02'), 'Error US10: Individual I02 is younger than 14 years old and married.')
+    def test_marriageAfter143(self):
+        self.assertEqual(marriageAfter14('I203'), 'Individual I203 and all of his/her spouses were at least 14 years old when married')
     #US11
     def test_noBigamy1(self):
         self.assertEqual(noBigamy('I04'),'Error US11: Individual I04 has participated in bigamy')
