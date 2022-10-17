@@ -64,8 +64,6 @@ class Test(unittest.TestCase):
         self.assertEqual(birthBeforeParentsDeath('bi00'), 'Error US09: No information about the family bi00 belongs to.')
     def test_birthBeforeParentsDeath2(self):
         self.assertEqual(birthBeforeParentsDeath('I06'), 'Error US09: No birthday recorded for I06')
-    def test_birthBeforeParentsDeath3(self):
-        self.assertEqual(birthBeforeParentsDeath('I101'), 'No Errors')
     #US10
     def test_marriageAfter141(self):
         self.assertEqual(marriageAfter14('I05'), 'Error US10: Spouse of individual I05, with ID I04 is younger than 14 years old and married.')
