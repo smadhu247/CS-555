@@ -605,14 +605,13 @@ def childDuringMarriage(famID):
                     parAndKids[count-1].insert(3,(divDate))
                 if (clusters_list[i][j][1] == "CHIL"):
                     parAndKids[count-1].append(clusters_list[i][j][2])
-     
     for k in range(len(final_indi)):
         for l in range(len(parAndKids)):
             divDate=0
             marrDate=0
             flag=False 
             for m in range (len(parAndKids[l])):
-            
+        
                 marrDate=parAndKids[l][1]
 
                 if "DIV" in parAndKids[l]:
@@ -854,6 +853,7 @@ def fewer15Sibs(famID):
             if len(children)>=15:
                 return("US15: Error, this family has too many sibblings. This family has "+str(len(children))+" sibblings and the max is 15")
     return('No Errors in US15')
+
 '''
 US16 - Sprint 2
 Story Name: Male last names
@@ -884,6 +884,69 @@ def matchingMaleLastNames(indi_id,fam_id):
     return listOfErrors
 
 
+'''
+US21 - Sprint 3
+Story Name: Correct gender for role
+Description: Husband in family should be male and wife in family should be female
+'''
+
+def correctGenderRole(FAM_ID):
+    husb_id = ""
+    wife_id = ""
+    for i in range(len(familyList)):
+        if (FAM_ID == familyList[i][0]):
+            husb_id = familyList[i][3]
+            wife_id = familyList[i][5]
+    for i in range(len(indi_list)):
+        if (husb_id != "" and husb_id != "N/A" and indi_list[i][0] == husb_id):
+            if (indi_list[i][2] == "N/A"):
+                return "US21: Sex for husband " + husb_id + " in family " + FAM_ID + " is unknown."
+            if (indi_list[i][2] != "M"):
+                return "Error US21: Husband " + husb_id + " in family " + FAM_ID + " is not male."
+        if (husb_id != "" and husb_id != "N/A" and indi_list[i][0] == wife_id):
+            if (indi_list[i][2] == "N/A"):
+                return "US21: Sex for wife " + wife_id + " in family " + FAM_ID + " is unknown."
+            if (indi_list[i][2] != "F"):
+                return "Error US21: Wife " + wife_id + " in family " + FAM_ID + " is not female."
+    return "US21: Husband and wife for family " + FAM_ID + " have correct gender roles."
+
+'''
+US22 - Sprint 3
+Story Name: Unique IDs
+Description: All individual IDs should be unique and all family IDs should be unique
+'''
+
+def uniqueIDsFams(FAM_ID):
+    family_ids = {}
+    for i in range(len(familyList)):
+        if familyList[i][0] in family_ids:
+            family_ids[familyList[i][0]] = family_ids[familyList[i][0]] + 1
+        else:
+            family_ids[familyList[i][0]] = 1
+    if (FAM_ID in family_ids):
+        if (family_ids[FAM_ID] == 1):
+            return "US22: Family ID " + FAM_ID + " is unqiue."
+        elif (family_ids[FAM_ID] > 1):
+            return "Error US22: Family ID " + FAM_ID + " is not unqiue."
+    else:
+        return "US22: Family ID " + FAM_ID + " does not exist."
+
+def uniqueIDsIndis(INDI_ID):
+    indi_ids = {}
+    for i in range(len(indi_list)):
+        if indi_list[i][0] in indi_ids:
+            indi_ids[indi_list[i][0]] = indi_ids[indi_list[i][0]] + 1
+        else:
+            indi_ids[indi_list[i][0]] = 1
+    if (indi_ids[INDI_ID]):
+        if (indi_ids[INDI_ID] == 1):
+            return "US22: Individual ID " + INDI_ID + " is unqiue."
+        elif (indi_ids[INDI_ID] > 1):
+            return "Error US22: Individual ID " + INDI_ID + " is not unqiue."
+    else:
+        return "US22: Individual ID " + INDI_ID + " does not exist."
+        
+
 if __name__ == '__main__':
 
     fam_ids = ["F03", "F08", "F05", "F06","F09", "F111","F41","F42","F25","F02"]
@@ -893,18 +956,24 @@ if __name__ == '__main__':
     for i in listErrors:
         print(i)
 
-
     for i in range(len(fam_ids)):
         print(childDuringMarriage(fam_ids[i]))
         print(divorceBeforeDeath(fam_ids[i]))
         print(marrigeBeforeDivorce(fam_ids[i]))
         print(siblingSpacing(fam_ids[i]))
         print(multipleBirths(fam_ids[i]))
-        
+        print(uniqueIDsFams(fam_ids[i]))
+        print(correctGenderRole(fam_ids[i]))
+
     for i in range(len(indi_ids)):
         print(deathLessThan150(indi_ids[i]))
         print(birthBeforeDeath(indi_ids[i]))
         print(birthBeforeMarr(indi_ids[i]))
         print(marriageAfter14(indi_ids[i]))
         print(birthBeforeParentsDeath(indi_ids[i]))
+        print(uniqueIDsIndis(indi_ids[i]))
+
+
+
+
         

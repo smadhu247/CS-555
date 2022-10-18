@@ -101,8 +101,22 @@ class Test(unittest.TestCase):
         fam_ids = ["F03", "F08", "F05", "F06","F09", "F111","F41","F42","F25","F02"]
         indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08","I101","I102","I103","I104","I105", "bi00", "I82", "I81", "I83","I84", "I85","I25","I26","I201","I202","I203","I29","I6","I28"]
         self.assertEqual(matchingMaleLastNames(indi_ids,fam_ids), ['US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name', 'US16: Error, All of the men in this family F02 do not have the same last name'])
-
-
+    
+    # Sprint 3:
+    #US17
+    #US18
+    #US19
+    #US20
+    #US21
+    def testcorrectGenderRole(self):
+        self.assertEqual(correctGenderRole('F51'), 'Error US21: Husband I59 in family F51 is not male.')
+    #US22
+    def testuniqueIDsFams(self):
+        self.assertEqual(uniqueIDsFams('F25'), 'Error US22: Family ID F25 is not unqiue.')
+    def testuniqueIDsIndis(self):
+        self.assertEqual(uniqueIDsIndis('I28'), 'Error US22: Individual ID I28 is not unqiue.')
+    #US23
+    #US24
 
 
 
