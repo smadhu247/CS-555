@@ -949,8 +949,17 @@ def uniqueIDsIndis(INDI_ID):
 
 if __name__ == '__main__':
 
-    fam_ids = ["F03", "F08", "F05", "F06","F09", "F111","F41","F42","F25","F02"]
-    indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08","I101","I102","I103","I104","I105", "bi00", "I82", "I81", "I83","I84", "I85","I25","I26","I201","I202","I203","I29","I6","I28"]
+        # Pulling in all of the family and individual ID's 
+        for i in range(len(final_indi)):
+        # Bad Smell Solving & pulling in all unique indiviudal IDS from the GEDCOM file 
+        if final_indi[i][0] not in indi_ids :
+            indi_ids.append(final_indi[i][0])
+
+        #Bad Smell Solving & pulling in all unique Family IDS from the GEDCOM file     
+        if final_indi[i][7][0] not in fam_ids and final_indi[i][7] != 'N/A':
+            fam_ids.append(final_indi[i][7][0]) 
+        if final_indi[i][8][0] not in fam_ids and final_indi[i][8] != 'N/A':
+            fam_ids.append(final_indi[i][8][0])  
     
     listErrors=(matchingMaleLastNames(indi_ids,fam_ids))
     for i in listErrors:
