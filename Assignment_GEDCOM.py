@@ -1,3 +1,4 @@
+from mailbox import ExternalClashError
 from typing import final
 from unittest.result import failfast
 from prettytable import PrettyTable
@@ -885,6 +886,89 @@ def matchingMaleLastNames(indi_id,fam_id):
 
 
 '''
+US19 - Sprint 3
+Story Name: First cousins should not marry
+Description: First cousins should not marry one another
+'''
+# this function will help with US19 and US20
+def getCloseFamily(indv_id):
+    birthFam = ''
+    # finding the birth family id
+    for i in range(len(final_indi)):
+        if (indv_id  == final_indi[i][0]):
+            print("indv is in the final_indv")
+            birthFam = final_indi[i][7]     #this has the value of the family now need to get siblings kids
+            print("birthfam is "+str(birthFam))
+            if(birthFam == "N/A"):
+                return "NO BIRTH FAM"
+    # finding the siblings of the individual provied 
+    listSiblings = []
+    for i in range(len(familyList)):
+        if (len(birthFam)>0 and birthFam[0]  == familyList[i][0]):
+            listSiblings = familyList[i][7]
+    listSiblings = list(listSiblings)
+    print("list of siblings is "+str(listSiblings))
+    # for each sibling in the list that is not the inital indv_id add childern to the list of close family 
+    closeFamily = []
+    for i in range(len(final_indi)):
+        if ((final_indi[i][0] in listSiblings) and (final_indi[i][0]!=indv_id )):
+            for j in range(len(familyList)):
+                if ((familyList[j][3] == final_indi[i][0]) or (familyList[j][5] == final_indi[i][0])):
+                    for k in range(len(familyList[j][7])):
+                        closeFamily.append((list(familyList[j][7]))[k])
+    return closeFamily
+
+def FirstCousinsChouldNotMarry(indv_id):
+    mother_id = ''
+    father_id = ''
+    birthFamId = ''
+    marriedFamId = ''
+    spouseId= ''
+    for i in range(len(final_indi)):
+        if (indv_id  == final_indi[i][0]):
+            birthFamId = final_indi[i][7]
+            marriedFamId = final_indi[i][8]
+    for i in range(len(familyList)):
+        if (len(birthFamId)>0 and birthFamId[0]  == familyList[i][0]):
+            father_id = familyList[i][3]
+            mother_id = familyList[i][5]
+        elif (len(marriedFamId)>0 and marriedFamId[0]  == familyList[i][0]):
+            if(familyList[i][3]!=indv_id):
+                spouseId = familyList[i][3]
+            else:
+                spouseId = familyList[i][5]
+    momSide = getCloseFamily(mother_id)
+    dadSide = getCloseFamily(father_id)
+    if (marriedFamId == [] or (momSide == "NO BIRTH FAM" and dadSide== "NO BIRTH FAM") or (momSide == [] and dadSide== [])):
+        return (str(indv_id) + " is not married to a cousin.")
+    elif((spouseId in momSide) or (spouseId in dadSide)):
+        return ("Error US19: individual " + str(indv_id) + " is married to a cousin.")
+    else:
+        return (str(indv_id) + " is not married to a cousin.")
+    
+'''
+US20 - Sprint 3
+Story Name: Aunts and uncles
+Description: Aunts and uncles should not marry their nieces or nephews
+'''
+def AuntsAndUncles(indv_id):
+    niecesAndNephews = getCloseFamily(indv_id)
+    marriedFamId = ''
+    spouseId = ''
+    for i in range(len(final_indi)):
+        if (indv_id  == final_indi[i][0]):
+            marriedFamId = final_indi[i][8]
+    for i in range(len(familyList)):
+        if (marriedFamId[0]  == familyList[i][0]):
+            if(familyList[i][3]!=indv_id):
+                spouseId = familyList[i][3]
+            else:
+                spouseId = familyList[i][5]
+    if (niecesAndNephews == "NO BIRTH FAM" or niecesAndNephews==[] or spouseId == ''):
+        return (str(indv_id) + " is not married to a niece or nephew.")
+    elif (spouseId in niecesAndNephews):
+        return ("Error US20: individual " + str(indv_id) + " is married to a niece or nephew.")
+'''
 US21 - Sprint 3
 Story Name: Correct gender for role
 Description: Husband in family should be male and wife in family should be female
@@ -948,31 +1032,27 @@ def uniqueIDsIndis(INDI_ID):
         
 
 if __name__ == '__main__':
-
-    fam_ids = ["F03", "F08", "F05", "F06","F09", "F111","F41","F42","F25","F02"]
-    indi_ids = ["I01", "I02", "I03", "I04", "I05", "I06", "I07", "I08","I101","I102","I103","I104","I105", "bi00", "I82", "I81", "I83","I84", "I85","I25","I26","I201","I202","I203","I29","I6","I28"]
     
-    listErrors=(matchingMaleLastNames(indi_ids,fam_ids))
-    for i in listErrors:
-        print(i)
+    for i in range(len(familyList)):
+        print(childDuringMarriage(familyList[i][0]))
+        print(divorceBeforeDeath(familyList[i][0]))
+        print(marrigeBeforeDivorce(familyList[i][0]))
+        print(siblingSpacing(familyList[i][0]))
+        print(multipleBirths(familyList[i][0]))
+        print(uniqueIDsFams(familyList[i][0]))
+        print(correctGenderRole(familyList[i][0]))
 
-    for i in range(len(fam_ids)):
-        print(childDuringMarriage(fam_ids[i]))
-        print(divorceBeforeDeath(fam_ids[i]))
-        print(marrigeBeforeDivorce(fam_ids[i]))
-        print(siblingSpacing(fam_ids[i]))
-        print(multipleBirths(fam_ids[i]))
-        print(uniqueIDsFams(fam_ids[i]))
-        print(correctGenderRole(fam_ids[i]))
+    for i in range(len(final_indi)):
+        print(deathLessThan150(final_indi[i][0]))
+        print(birthBeforeDeath(final_indi[i][0]))
+        print(birthBeforeMarr(final_indi[i][0]))
+        print(marriageAfter14(final_indi[i][0]))
+        print(birthBeforeParentsDeath(final_indi[i][0]))
+        print(uniqueIDsIndis(final_indi[i][0]))
+        print(FirstCousinsChouldNotMarry(final_indi[i][0]))
+        print(AuntsAndUncles(final_indi[i][0]))
 
-    for i in range(len(indi_ids)):
-        print(deathLessThan150(indi_ids[i]))
-        print(birthBeforeDeath(indi_ids[i]))
-        print(birthBeforeMarr(indi_ids[i]))
-        print(marriageAfter14(indi_ids[i]))
-        print(birthBeforeParentsDeath(indi_ids[i]))
-        print(uniqueIDsIndis(indi_ids[i]))
-
+    
 
 
 

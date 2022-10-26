@@ -106,7 +106,15 @@ class Test(unittest.TestCase):
     #US17
     #US18
     #US19
+    def test_1FirstCousinsChouldNotMarry(self):
+        self.assertEqual(FirstCousinsChouldNotMarry('I0010'), 'Error US19: individual I0010 is married to a cousin.')
+    def test_2FirstCousinsChouldNotMarry(self):
+        self.assertEqual(FirstCousinsChouldNotMarry('I08'), 'I08 is not married to a cousin.')
     #US20
+    def test_1AuntsAndUncles(self):
+        self.assertEqual(AuntsAndUncles('I005'), 'Error US20: individual I005 is married to a niece or nephew.')
+    def test_2AuntsAndUncles(self):
+        self.assertEqual(AuntsAndUncles('I08'), 'I08 is not married to a niece or nephew.')
     #US21
     def testcorrectGenderRole(self):
         self.assertEqual(correctGenderRole('F51'), 'Error US21: Husband I59 in family F51 is not male.')
