@@ -104,7 +104,19 @@ class Test(unittest.TestCase):
     
     # Sprint 3:
     #US17
+    def test_noMarriageDescendants1(self):
+        self.assertEqual(noMarriageDescendant('I58'), 'Error US17: Individual I58s spouse is also their descendent')
+    def test_noMarriageDescendants2(self):
+        self.assertEqual(noMarriageDescendant('I204'), 'US17: Individual I204 has no descendants. No errors in US17.')
+    def test_noMarriageDescendants3(self):
+        self.assertEqual(noMarriageDescendant('I003'), 'No errors in US17')
     #US18
+    def test_siblingsNotMarried1(self):
+        self.assertEqual(siblingsNotMarried('I301'), 'Error US18: Individual I301 and spouse I302 are siblings.')
+    def test_siblingsNotMarried2(self):
+        self.assertEqual(siblingsNotMarried('I58'), 'No information given about I58s siblings.')
+    def test_siblingsNotMarried3(self):
+        self.assertEqual(siblingsNotMarried('I10'), 'No errors in US18')
     #US19
     def test_1FirstCousinsChouldNotMarry(self):
         self.assertEqual(FirstCousinsChouldNotMarry('I0010'), 'Error US19: individual I0010 is married to a cousin.')

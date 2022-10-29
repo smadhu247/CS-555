@@ -884,6 +884,64 @@ def matchingMaleLastNames(indi_id,fam_id):
                     listOfErrors.append ("US16: Error, All of the men in this family "+str(listOfFamilies[x][0])+" do not have the same last name")
     return listOfErrors
 
+'''
+US17 - Sprint 3
+Story Name: No marriages to descendants
+Description: Parents should not marry any of their descendants
+'''
+def noMarriageDescendant(indID):
+    tempSpouse = ''
+    children = {}
+    for i in range(len(final_indi)):
+        if (final_indi[i][0] == indID):
+            spouses = final_indi[i][8]
+            if (spouses != 'N/A'):
+                for j in range(len(spouses)):
+                    for k in range(len(familyList)):
+                        if (familyList[k][0] == spouses[j]):
+                            if (indID == familyList[k][3]):
+                                tempSpouse = familyList[k][5]
+                            if (indID == familyList[k][5]):
+                                tempSpouse = familyList[k][3]
+                            if (len(familyList[k][7]) == 0):
+                                return 'US17: Individual ' + indID + ' has no descendants. No errors in US17.'
+                            else:
+                                children = familyList[k][7]
+                    if (tempSpouse in children):
+                        return ('Error US17: Individual ' + indID + 's spouse is also their descendent')
+    return 'No errors in US17'
+
+'''
+US18 - Sprint 3
+Story Name: Siblings should not marry
+Description: Siblings should not marry one another
+'''
+def siblingsNotMarried(indID):
+    children = {}
+    tempSpouse = ''
+    for i in range(len(final_indi)):
+        if (final_indi[i][0] == indID):
+            spouses = final_indi[i][8]
+            if (final_indi[i][7] == 'N/A'):
+                return 'No information given about ' + indID + 's siblings.'
+            else:
+                child_fam = final_indi[i][7][0]
+            if (spouses != 'N/A'):
+                for j in range(len(spouses)):
+                    for k in range(len(familyList)):
+                        if (familyList[k][0] == spouses[j]):
+                            if (indID == familyList[k][3]):
+                                tempSpouse = familyList[k][5]
+                            if (indID == familyList[k][5]):
+                                tempSpouse = familyList[k][3]
+                        if (familyList[k][0] == child_fam):
+                            if (len(familyList[k][7]) == 1):
+                                return 'US17: Individual ' + indID + ' has no siblings. No errors in US18.'
+                            else:
+                                children = familyList[k][7]
+                        if (indID in children and tempSpouse in children):
+                            return ('Error US18: Individual ' + indID + ' and spouse ' + tempSpouse + ' are siblings.')
+    return 'No errors in US18'
 
 '''
 US19 - Sprint 3
@@ -1032,7 +1090,10 @@ def uniqueIDsIndis(INDI_ID):
         
 
 if __name__ == '__main__':
-    
+
+    print(noMarriageDescendant('I204'))
+
+    '''
     for i in range(len(familyList)):
         print(childDuringMarriage(familyList[i][0]))
         print(divorceBeforeDeath(familyList[i][0]))
@@ -1051,6 +1112,8 @@ if __name__ == '__main__':
         print(uniqueIDsIndis(final_indi[i][0]))
         print(FirstCousinsChouldNotMarry(final_indi[i][0]))
         print(AuntsAndUncles(final_indi[i][0]))
+        print(noMarriageDescendant(final_indi[i][0]))
+    '''
 
     
 
