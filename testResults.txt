@@ -1,50 +1,90 @@
-+------+-----------------------+--------+-------------+-----+-------+-------------+---------+----------+
-|  ID  |          Name         | Gender |   Birthday  | Age | Alive |    Death    |  Child  |  Spouse  |
-+------+-----------------------+--------+-------------+-----+-------+-------------+---------+----------+
-| I01  |     Nancy /Below/     |   F    | 30 NOV 1943 | 163 | False | 15 NOV 2185 | ['F01'] | ['F08']  |
-| I02  |  Lucien /Dauphinais/  |   M    | 25 DEC 1935 | -38 | False | 10 APR 1985 | ['F02'] | ['F03']  |
-| I09  |   Phil /Dauphinais/   |   M    | 20 DEC 1937 |  84 |  True |     N/A     | ['F02'] | ['F08']  |
-| I03  |   David /Dauphinais/  |   M    | 10 AUG 1962 |  60 |  True |     N/A     | ['F03'] | ['F06']  |
-| I04  |  Mary /Schliessmann/  |   F    | 23 APR 1963 | -35 | False | 19 JAN 1988 | ['F04'] | ['F06']  |
-| I05  |      Don /Smith/      |   M    | 18 DEC 1960 |  61 |  True |     N/A     | ['F09'] | ['F05']  |
-| I06  |     Peter /Smith/     |   M    |     N/A     | N/A |  True |     N/A     | ['F05'] |   N/A    |
-| I07  |  Jessica /Dauphinais/ |   F    |  8 APR 2000 |  22 |  True |     N/A     | ['F06'] |   N/A    |
-| I08  | Danielle /Dauphinais/ |   F    |  4 JUN 2002 |  20 |  True |     N/A     | ['F06'] |   N/A    |
-| I101 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06'] |   N/A    |
-| I102 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06'] |   N/A    |
-| I103 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06'] |   N/A    |
-| I104 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06'] |   N/A    |
-| I105 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06'] |   N/A    |
-| bi00 |    Jimmy /Conners/    |  N/A   |     N/A     | N/A |  True |     N/A     |   N/A   |   N/A    |
-| I81  |     Kennith /Joy/     |   M    | 25 DEC 1935 | -38 | False | 10 APR 1985 | ['F02'] | ['F03']  |
-| I82  |     Alan /Turning/    |   M    | 25 DEC 1985 | -98 | False | 10 APR 1925 | ['F02'] | ['F03']  |
-| I83  |      Alex /Wazi/      |   M    | 25 DEC 1935 | -87 | False | 25 DEC 1935 | ['F02'] | ['F03']  |
-| I84  |   Harry /Dauphinais/  |   M    | 25 JAN 1935 | -88 | False | 28 FEB 1935 | ['F02'] | ['F03']  |
-| I85  |      Jerry /Stin/     |   M    | 20 FEB 1935 | -88 | False | 25 JAN 1935 | ['F02'] | ['F03']  |
-| I25  |      Evan /Cars/      |   M    | 20 DEC 1937 |  84 |  True |     N/A     | ['F02'] | ['F111'] |
-| I26  |     Carla /Racin/     |   F    | 30 NOV 1943 |  78 |  True |     N/A     | ['F09'] | ['F111'] |
-| I201 |      John /Below/     |  N/A   | 30 DEC 2023 |  -2 |  True |     N/A     |   N/A   | ['F41']  |
-| I202 |      Jane /Below/     |  N/A   | 11 DEC 2098 | -77 |  True |     N/A     |   N/A   | ['F41']  |
-| I203 |      Sam /Below/      |  N/A   |     N/A     | N/A |  True |     N/A     |   N/A   | ['F42']  |
-| I204 |      Sara /Below/     |  N/A   |     N/A     | N/A |  True |     N/A     |   N/A   | ['F42']  |
-| I29  |    Bob /Dauphinais/   |   M    | 20 DEC 1937 |  84 |  True |     N/A     | ['F00'] | ['F25']  |
-|  I6  |      Ann /Below/      |   F    | 30 NOV 1943 |  78 |  True |     N/A     | ['F09'] | ['F25']  |
-| I28  |   Char /Dauphinais/   |   M    | 20 DEC 2020 |  1  |  True |     N/A     | ['F08'] |   N/A    |
-| I58  |   Strawberry /Smith/  |   F    | 21 JAN 2016 |  -5 | False | 30 JUN 2018 |   N/A   | ['F51']  |
-| I59  |    Bluberry /Smith/   |   M    | 30 MAY 1998 |  -3 | False | 30 JUN 2020 |   N/A   | ['F51']  |
-| I60  |     Banana /Smith/    |   M    | 21 JAN 2021 |  1  |  True |     N/A     | ['F51'] |   N/A    |
-+------+-----------------------+--------+-------------+-----+-------+-------------+---------+----------+
++-------+-----------------------+--------+-------------+-----+-------+-------------+----------+----------+
+|   ID  |          Name         | Gender |   Birthday  | Age | Alive |    Death    |  Child   |  Spouse  |
++-------+-----------------------+--------+-------------+-----+-------+-------------+----------+----------+
+|  I01  |     Nancy /Below/     |   F    | 30 NOV 1943 | 163 | False | 15 NOV 2185 | ['F01']  | ['F08']  |
+|  I02  |  Lucien /Dauphinais/  |   M    | 25 DEC 1935 | -38 | False | 10 APR 1985 | ['F02']  | ['F03']  |
+|  I09  |   Phil /Dauphinais/   |   M    | 20 DEC 1937 |  84 |  True |     N/A     | ['F02']  | ['F08']  |
+|  I03  |   David /Dauphinais/  |   M    | 10 AUG 1962 |  60 |  True |     N/A     | ['F03']  | ['F06']  |
+|  I04  |  Mary /Schliessmann/  |   F    | 23 APR 1963 | -35 | False | 19 JAN 1988 | ['F04']  | ['F06']  |
+|  I05  |      Don /Smith/      |   M    | 18 DEC 1960 |  61 |  True |     N/A     | ['F09']  | ['F05']  |
+|  I06  |     Peter /Smith/     |   M    |     N/A     | N/A |  True |     N/A     | ['F05']  |   N/A    |
+|  I07  |  Jessica /Dauphinais/ |   F    |  8 APR 2000 |  22 |  True |     N/A     | ['F06']  |   N/A    |
+|  I08  | Danielle /Dauphinais/ |   F    |  4 JUN 2002 |  20 |  True |     N/A     | ['F06']  |   N/A    |
+|  I101 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06']  |   N/A    |
+|  I102 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06']  |   N/A    |
+|  I103 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06']  |   N/A    |
+|  I104 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06']  |   N/A    |
+|  I105 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06']  |   N/A    |
+|  bi00 |    Jimmy /Conners/    |  N/A   |     N/A     | N/A |  True |     N/A     |   N/A    |   N/A    |
+|  I81  |     Kennith /Joy/     |   M    | 25 DEC 1935 | -38 | False | 10 APR 1985 | ['F02']  | ['F03']  |
+|  I82  |     Alan /Turning/    |   M    | 25 DEC 1985 | -98 | False | 10 APR 1925 | ['F02']  | ['F03']  |
+|  I83  |      Alex /Wazi/      |   M    | 25 DEC 1935 | -87 | False | 25 DEC 1935 | ['F02']  | ['F03']  |
+|  I84  |   Harry /Dauphinais/  |   M    | 25 JAN 1935 | -88 | False | 28 FEB 1935 | ['F02']  | ['F03']  |
+|  I85  |      Jerry /Stin/     |   M    | 20 FEB 1935 | -88 | False | 25 JAN 1935 | ['F02']  | ['F03']  |
+|  I25  |      Evan /Cars/      |   M    | 20 DEC 1937 |  84 |  True |     N/A     | ['F02']  | ['F111'] |
+|  I26  |     Carla /Racin/     |   F    | 30 NOV 1943 |  78 |  True |     N/A     | ['F09']  | ['F111'] |
+|  I201 |      John /Below/     |  N/A   | 30 DEC 2023 |  -2 |  True |     N/A     |   N/A    | ['F41']  |
+|  I202 |      Jane /Below/     |  N/A   | 11 DEC 2098 | -77 |  True |     N/A     |   N/A    | ['F41']  |
+|  I203 |      Sam /Below/      |  N/A   |     N/A     | N/A |  True |     N/A     |   N/A    | ['F42']  |
+|  I204 |      Sara /Below/     |  N/A   |     N/A     | N/A |  True |     N/A     |   N/A    | ['F42']  |
+|  I29  |    Bob /Dauphinais/   |   M    | 20 DEC 1937 |  84 |  True |     N/A     | ['F00']  | ['F25']  |
+|   I6  |      Ann /Below/      |   F    | 30 NOV 1943 |  78 |  True |     N/A     | ['F09']  | ['F25']  |
+|  I28  |   Char /Dauphinais/   |   M    | 20 DEC 2020 |  1  |  True |     N/A     | ['F08']  |   N/A    |
+|  I58  |   Strawberry /Smith/  |   F    | 21 JAN 2016 |  -5 | False | 30 JUN 2018 |   N/A    | ['F51']  |
+|  I59  |    Bluberry /Smith/   |   F    | 30 MAY 1998 |  -3 | False | 30 JUN 2020 | ['F51']  | ['F51']  |
+|  I60  |     Banana /Smith/    |   M    | 21 JAN 2021 |  1  |  True |     N/A     | ['F51']  |   N/A    |
+|  I28  |       Sara /Doe/      |   F    |  1 JUN 2001 |  21 |  True |     N/A     |   N/A    | ['F25']  |
+|  I400 |       John /Doe/      |   M    |  1 JUN 2001 |  21 |  True |     N/A     | ['F25']  |   N/A    |
+|  I001 |       Ann /Jean/      |   F    | 30 NOV 1970 |  51 |  True |     N/A     | ['F03']  | ['F30']  |
+|  I002 |       Jon /Jean/      |   M    | 30 NOV 1965 |  56 |  True |     N/A     | ['F01']  | ['F30']  |
+|  I003 |      Adam /Jean/      |   M    | 19 NOV 1999 |  22 |  True |     N/A     | ['F30']  | ['F31']  |
+|  I004 |      Liam /Jean/      |   M    | 19 NOV 2000 |  21 |  True |     N/A     | ['F30']  | ['F32']  |
+|  I005 |      Matt /Jean/      |   M    | 19 NOV 2002 |  19 |  True |     N/A     | ['F30']  | ['F33']  |
+|  I006 |      Kerry /Jean/     |   F    | 10 NOV 2002 |  19 |  True |     N/A     | ['F111'] | ['F31']  |
+|  I007 |       Jon /Jean/      |   M    | 19 NOV 2005 |  16 |  True |     N/A     | ['F31']  | ['F34']  |
+|  I008 |       Sam /Jean/      |   F    | 19 NOV 2005 |  16 |  True |     N/A     | ['F31']  |   N/A    |
+|  I009 |      Sarah /Jean/     |   F    | 10 NOV 2002 |  19 |  True |     N/A     | ['F12']  | ['F32']  |
+| I0010 |      Lily /Jean/      |   F    | 19 NOV 2005 |  16 |  True |     N/A     | ['F32']  | ['F34']  |
+| I0011 |      Tina /Jean/      |   F    | 19 NOV 2005 |  16 |  True |     N/A     | ['F32']  | ['F33']  |
+|  I301 |    Michael /Scott/    |   M    |     N/A     | N/A |  True |     N/A     | ['F41']  | ['F91']  |
+|  I302 |      Jan /Scott/      |   F    |     N/A     | N/A |  True |     N/A     | ['F41']  | ['F91']  |
++-------+-----------------------+--------+-------------+-----+-------+-------------+----------+----------+
 +------+-------------+-------------+------------+---------------------+---------+---------------------+--------------------------------------------------------+
 |  ID  |   Married   |   Divorced  | Husband ID |     Husband Name    | Wife ID |      Wife Name      |                        Children                        |
 +------+-------------+-------------+------------+---------------------+---------+---------------------+--------------------------------------------------------+
 | F03  | 15 JUN 1963 |     N/A     |    I02     | Lucien /Dauphinais/ |   I01   |    Nancy /Below/    |                        {'I03'}                         |
 | F08  | 21 APR 2000 |     N/A     |    I09     |  Phil /Dauphinais/  |   I01   |    Nancy /Below/    |                        {'I28'}                         |
 | F05  | 12 JAN 1989 | 19 FEB 1988 |    I05     |     Don /Smith/     |   I04   | Mary /Schliessmann/ |                        {'I06'}                         |
-| F06  | 10 JUN 1991 | 19 FEB 2001 |    I03     |  David /Dauphinais/ |   I04   | Mary /Schliessmann/ | {'I104', 'I101', 'I105', 'I07', 'I103', 'I08', 'I102'} |
+| F06  | 10 JUN 1991 | 19 FEB 2001 |    I03     |  David /Dauphinais/ |   I04   | Mary /Schliessmann/ | {'I102', 'I105', 'I07', 'I101', 'I104', 'I08', 'I103'} |
 | F111 | 15 JUN 1990 | 19 FEB 1988 |    I25     |     Evan /Cars/     |   I26   |    Carla /Racin/    |                        {'I10'}                         |
-| F41  | 31 JAN 2028 |     N/A     |    I201    |     John /Below/    |   I202  |     Jane /Below/    |                           {}                           |
+| F41  | 31 JAN 2028 |     N/A     |    I201    |     John /Below/    |   I202  |     Jane /Below/    |                    {'I301', 'I302'}                    |
 | F42  | 12 SEP 1988 | 11 JAN 2089 |    I203    |     Sam /Below/     |   I204  |     Sara /Below/    |                           {}                           |
 | F25  |     N/A     | 19 FEB 1988 |    I29     |   Bob /Dauphinais/  |    I6   |     Ann /Below/     |                        {'I11'}                         |
 | F45  | 12 JAN 1990 | 19 FEB 1980 |    I203    |     Sam /Below/     |   I04   | Mary /Schliessmann/ |                           {}                           |
-| F51  | 24 AUG 2019 |     N/A     |    I59     |   Bluberry /Smith/  |   I58   |  Strawberry /Smith/ |                        {'I60'}                         |
+| F51  | 24 AUG 2019 |     N/A     |    I59     |   Bluberry /Smith/  |   I58   |  Strawberry /Smith/ |                     {'I60', 'I59'}                     |
+| F25  | 15 JUN 2020 |     N/A     |    I400    |      John /Doe/     |   I28   |      Sara /Doe/     |                           {}                           |
+| F30  | 10 JUN 1991 |     N/A     |    I002    |      Jon /Jean/     |   I001  |      Ann /Jean/     |                {'I003', 'I005', 'I004'}                |
+| F31  | 10 JUN 2004 |     N/A     |    I003    |     Adam /Jean/     |   I006  |     Kerry /Jean/    |                    {'I007', 'I008'}                    |
+| F32  | 10 JUN 2004 |     N/A     |    I004    |     Liam /Jean/     |   I009  |     Sarah /Jean/    |                   {'I0010', 'I0011'}                   |
+| F33  | 10 JUN 2021 |     N/A     |    I005    |     Matt /Jean/     |  I0011  |     Tina /Jean/     |                           {}                           |
+| F34  | 10 JUN 2021 |     N/A     |    I007    |      Jon /Jean/     |  I0010  |     Lily /Jean/     |                           {}                           |
+| F91  |  9 NOV 2021 |     N/A     |    I301    |   Michael /Scott/   |   I302  |     Jan /Scott/     |                           {}                           |
 +------+-------------+-------------+------------+---------------------+---------+---------------------+--------------------------------------------------------+
+indv is in the final_indv
+birthfam is ['F30']
+list of siblings is ['I005', 'I004', 'I003']
+indv is in the final_indv
+birthfam is ['F12']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F30']
+list of siblings is ['I005', 'I004', 'I003']
+indv is in the final_indv
+birthfam is ['F06']
+list of siblings is ['I102', 'I07', 'I105', 'I101', 'I104', 'I08', 'I103']
+indv is in the final_indv
+birthfam is ['F04']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']

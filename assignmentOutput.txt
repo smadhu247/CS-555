@@ -1,242 +1,932 @@
-+------+-----------------------+--------+-------------+-----+-------+-------------+---------+----------+
-|  ID  |          Name         | Gender |   Birthday  | Age | Alive |    Death    |  Child  |  Spouse  |
-+------+-----------------------+--------+-------------+-----+-------+-------------+---------+----------+
-| I01  |     Nancy /Below/     |   F    | 30 NOV 1943 | 163 | False | 15 NOV 2185 | ['F01'] | ['F08']  |
-| I02  |  Lucien /Dauphinais/  |   M    | 25 DEC 1935 | -38 | False | 10 APR 1985 | ['F02'] | ['F03']  |
-| I09  |   Phil /Dauphinais/   |   M    | 20 DEC 1937 |  84 |  True |     N/A     | ['F02'] | ['F08']  |
-| I03  |   David /Dauphinais/  |   M    | 10 AUG 1962 |  60 |  True |     N/A     | ['F03'] | ['F06']  |
-| I04  |  Mary /Schliessmann/  |   F    | 23 APR 1963 | -35 | False | 19 JAN 1988 | ['F04'] | ['F06']  |
-| I05  |      Don /Smith/      |   M    | 18 DEC 1960 |  61 |  True |     N/A     | ['F09'] | ['F05']  |
-| I06  |     Peter /Smith/     |   M    |     N/A     | N/A |  True |     N/A     | ['F05'] |   N/A    |
-| I07  |  Jessica /Dauphinais/ |   F    |  8 APR 2000 |  22 |  True |     N/A     | ['F06'] |   N/A    |
-| I08  | Danielle /Dauphinais/ |   F    |  4 JUN 2002 |  20 |  True |     N/A     | ['F06'] |   N/A    |
-| I101 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06'] |   N/A    |
-| I102 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06'] |   N/A    |
-| I103 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06'] |   N/A    |
-| I104 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06'] |   N/A    |
-| I105 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06'] |   N/A    |
-| bi00 |    Jimmy /Conners/    |  N/A   |     N/A     | N/A |  True |     N/A     |   N/A   |   N/A    |
-| I81  |     Kennith /Joy/     |   M    | 25 DEC 1935 | -38 | False | 10 APR 1985 | ['F02'] | ['F03']  |
-| I82  |     Alan /Turning/    |   M    | 25 DEC 1985 | -98 | False | 10 APR 1925 | ['F02'] | ['F03']  |
-| I83  |      Alex /Wazi/      |   M    | 25 DEC 1935 | -87 | False | 25 DEC 1935 | ['F02'] | ['F03']  |
-| I84  |   Harry /Dauphinais/  |   M    | 25 JAN 1935 | -88 | False | 28 FEB 1935 | ['F02'] | ['F03']  |
-| I85  |      Jerry /Stin/     |   M    | 20 FEB 1935 | -88 | False | 25 JAN 1935 | ['F02'] | ['F03']  |
-| I25  |      Evan /Cars/      |   M    | 20 DEC 1937 |  84 |  True |     N/A     | ['F02'] | ['F111'] |
-| I26  |     Carla /Racin/     |   F    | 30 NOV 1943 |  78 |  True |     N/A     | ['F09'] | ['F111'] |
-| I201 |      John /Below/     |  N/A   | 30 DEC 2023 |  -2 |  True |     N/A     |   N/A   | ['F41']  |
-| I202 |      Jane /Below/     |  N/A   | 11 DEC 2098 | -77 |  True |     N/A     |   N/A   | ['F41']  |
-| I203 |      Sam /Below/      |  N/A   |     N/A     | N/A |  True |     N/A     |   N/A   | ['F42']  |
-| I204 |      Sara /Below/     |  N/A   |     N/A     | N/A |  True |     N/A     |   N/A   | ['F42']  |
-| I29  |    Bob /Dauphinais/   |   M    | 20 DEC 1937 |  84 |  True |     N/A     | ['F00'] | ['F25']  |
-|  I6  |      Ann /Below/      |   F    | 30 NOV 1943 |  78 |  True |     N/A     | ['F09'] | ['F25']  |
-| I28  |   Char /Dauphinais/   |   M    | 20 DEC 2020 |  1  |  True |     N/A     | ['F08'] |   N/A    |
-| I58  |   Strawberry /Smith/  |   F    | 21 JAN 2016 |  -5 | False | 30 JUN 2018 |   N/A   | ['F51']  |
-| I59  |    Bluberry /Smith/   |   M    | 30 MAY 1998 |  -3 | False | 30 JUN 2020 |   N/A   | ['F51']  |
-| I60  |     Banana /Smith/    |   M    | 21 JAN 2021 |  1  |  True |     N/A     | ['F51'] |   N/A    |
-+------+-----------------------+--------+-------------+-----+-------+-------------+---------+----------+
++-------+-----------------------+--------+-------------+-----+-------+-------------+----------+----------+
+|   ID  |          Name         | Gender |   Birthday  | Age | Alive |    Death    |  Child   |  Spouse  |
++-------+-----------------------+--------+-------------+-----+-------+-------------+----------+----------+
+|  I01  |     Nancy /Below/     |   F    | 30 NOV 1943 | 163 | False | 15 NOV 2185 | ['F01']  | ['F08']  |
+|  I02  |  Lucien /Dauphinais/  |   M    | 25 DEC 1935 | -38 | False | 10 APR 1985 | ['F02']  | ['F03']  |
+|  I09  |   Phil /Dauphinais/   |   M    | 20 DEC 1937 |  84 |  True |     N/A     | ['F02']  | ['F08']  |
+|  I03  |   David /Dauphinais/  |   M    | 10 AUG 1962 |  60 |  True |     N/A     | ['F03']  | ['F06']  |
+|  I04  |  Mary /Schliessmann/  |   F    | 23 APR 1963 | -35 | False | 19 JAN 1988 | ['F04']  | ['F06']  |
+|  I05  |      Don /Smith/      |   M    | 18 DEC 1960 |  61 |  True |     N/A     | ['F09']  | ['F05']  |
+|  I06  |     Peter /Smith/     |   M    |     N/A     | N/A |  True |     N/A     | ['F05']  |   N/A    |
+|  I07  |  Jessica /Dauphinais/ |   F    |  8 APR 2000 |  22 |  True |     N/A     | ['F06']  |   N/A    |
+|  I08  | Danielle /Dauphinais/ |   F    |  4 JUN 2002 |  20 |  True |     N/A     | ['F06']  |   N/A    |
+|  I101 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06']  |   N/A    |
+|  I102 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06']  |   N/A    |
+|  I103 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06']  |   N/A    |
+|  I104 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06']  |   N/A    |
+|  I105 |  Jessica /Dauphinais/ |   F    | 10 APR 2003 |  19 |  True |     N/A     | ['F06']  |   N/A    |
+|  bi00 |    Jimmy /Conners/    |  N/A   |     N/A     | N/A |  True |     N/A     |   N/A    |   N/A    |
+|  I81  |     Kennith /Joy/     |   M    | 25 DEC 1935 | -38 | False | 10 APR 1985 | ['F02']  | ['F03']  |
+|  I82  |     Alan /Turning/    |   M    | 25 DEC 1985 | -98 | False | 10 APR 1925 | ['F02']  | ['F03']  |
+|  I83  |      Alex /Wazi/      |   M    | 25 DEC 1935 | -87 | False | 25 DEC 1935 | ['F02']  | ['F03']  |
+|  I84  |   Harry /Dauphinais/  |   M    | 25 JAN 1935 | -88 | False | 28 FEB 1935 | ['F02']  | ['F03']  |
+|  I85  |      Jerry /Stin/     |   M    | 20 FEB 1935 | -88 | False | 25 JAN 1935 | ['F02']  | ['F03']  |
+|  I25  |      Evan /Cars/      |   M    | 20 DEC 1937 |  84 |  True |     N/A     | ['F02']  | ['F111'] |
+|  I26  |     Carla /Racin/     |   F    | 30 NOV 1943 |  78 |  True |     N/A     | ['F09']  | ['F111'] |
+|  I201 |      John /Below/     |  N/A   | 30 DEC 2023 |  -2 |  True |     N/A     |   N/A    | ['F41']  |
+|  I202 |      Jane /Below/     |  N/A   | 11 DEC 2098 | -77 |  True |     N/A     |   N/A    | ['F41']  |
+|  I203 |      Sam /Below/      |  N/A   |     N/A     | N/A |  True |     N/A     |   N/A    | ['F42']  |
+|  I204 |      Sara /Below/     |  N/A   |     N/A     | N/A |  True |     N/A     |   N/A    | ['F42']  |
+|  I29  |    Bob /Dauphinais/   |   M    | 20 DEC 1937 |  84 |  True |     N/A     | ['F00']  | ['F25']  |
+|   I6  |      Ann /Below/      |   F    | 30 NOV 1943 |  78 |  True |     N/A     | ['F09']  | ['F25']  |
+|  I28  |   Char /Dauphinais/   |   M    | 20 DEC 2020 |  1  |  True |     N/A     | ['F08']  |   N/A    |
+|  I58  |   Strawberry /Smith/  |   F    | 21 JAN 2016 |  -5 | False | 30 JUN 2018 |   N/A    | ['F51']  |
+|  I59  |    Bluberry /Smith/   |   F    | 30 MAY 1998 |  -3 | False | 30 JUN 2020 | ['F51']  | ['F51']  |
+|  I60  |     Banana /Smith/    |   M    | 21 JAN 2021 |  1  |  True |     N/A     | ['F51']  |   N/A    |
+|  I28  |       Sara /Doe/      |   F    |  1 JUN 2001 |  21 |  True |     N/A     |   N/A    | ['F25']  |
+|  I400 |       John /Doe/      |   M    |  1 JUN 2001 |  21 |  True |     N/A     | ['F25']  |   N/A    |
+|  I001 |       Ann /Jean/      |   F    | 30 NOV 1970 |  51 |  True |     N/A     | ['F03']  | ['F30']  |
+|  I002 |       Jon /Jean/      |   M    | 30 NOV 1965 |  56 |  True |     N/A     | ['F01']  | ['F30']  |
+|  I003 |      Adam /Jean/      |   M    | 19 NOV 1999 |  22 |  True |     N/A     | ['F30']  | ['F31']  |
+|  I004 |      Liam /Jean/      |   M    | 19 NOV 2000 |  21 |  True |     N/A     | ['F30']  | ['F32']  |
+|  I005 |      Matt /Jean/      |   M    | 19 NOV 2002 |  19 |  True |     N/A     | ['F30']  | ['F33']  |
+|  I006 |      Kerry /Jean/     |   F    | 10 NOV 2002 |  19 |  True |     N/A     | ['F111'] | ['F31']  |
+|  I007 |       Jon /Jean/      |   M    | 19 NOV 2005 |  16 |  True |     N/A     | ['F31']  | ['F34']  |
+|  I008 |       Sam /Jean/      |   F    | 19 NOV 2005 |  16 |  True |     N/A     | ['F31']  |   N/A    |
+|  I009 |      Sarah /Jean/     |   F    | 10 NOV 2002 |  19 |  True |     N/A     | ['F12']  | ['F32']  |
+| I0010 |      Lily /Jean/      |   F    | 19 NOV 2005 |  16 |  True |     N/A     | ['F32']  | ['F34']  |
+| I0011 |      Tina /Jean/      |   F    | 19 NOV 2005 |  16 |  True |     N/A     | ['F32']  | ['F33']  |
+|  I301 |    Michael /Scott/    |   M    |     N/A     | N/A |  True |     N/A     | ['F41']  | ['F91']  |
+|  I302 |      Jan /Scott/      |   F    |     N/A     | N/A |  True |     N/A     | ['F41']  | ['F91']  |
++-------+-----------------------+--------+-------------+-----+-------+-------------+----------+----------+
 +------+-------------+-------------+------------+---------------------+---------+---------------------+--------------------------------------------------------+
 |  ID  |   Married   |   Divorced  | Husband ID |     Husband Name    | Wife ID |      Wife Name      |                        Children                        |
 +------+-------------+-------------+------------+---------------------+---------+---------------------+--------------------------------------------------------+
 | F03  | 15 JUN 1963 |     N/A     |    I02     | Lucien /Dauphinais/ |   I01   |    Nancy /Below/    |                        {'I03'}                         |
 | F08  | 21 APR 2000 |     N/A     |    I09     |  Phil /Dauphinais/  |   I01   |    Nancy /Below/    |                        {'I28'}                         |
 | F05  | 12 JAN 1989 | 19 FEB 1988 |    I05     |     Don /Smith/     |   I04   | Mary /Schliessmann/ |                        {'I06'}                         |
-| F06  | 10 JUN 1991 | 19 FEB 2001 |    I03     |  David /Dauphinais/ |   I04   | Mary /Schliessmann/ | {'I101', 'I102', 'I105', 'I07', 'I103', 'I104', 'I08'} |
+| F06  | 10 JUN 1991 | 19 FEB 2001 |    I03     |  David /Dauphinais/ |   I04   | Mary /Schliessmann/ | {'I104', 'I08', 'I102', 'I103', 'I105', 'I07', 'I101'} |
 | F111 | 15 JUN 1990 | 19 FEB 1988 |    I25     |     Evan /Cars/     |   I26   |    Carla /Racin/    |                        {'I10'}                         |
-| F41  | 31 JAN 2028 |     N/A     |    I201    |     John /Below/    |   I202  |     Jane /Below/    |                           {}                           |
+| F41  | 31 JAN 2028 |     N/A     |    I201    |     John /Below/    |   I202  |     Jane /Below/    |                    {'I302', 'I301'}                    |
 | F42  | 12 SEP 1988 | 11 JAN 2089 |    I203    |     Sam /Below/     |   I204  |     Sara /Below/    |                           {}                           |
 | F25  |     N/A     | 19 FEB 1988 |    I29     |   Bob /Dauphinais/  |    I6   |     Ann /Below/     |                        {'I11'}                         |
 | F45  | 12 JAN 1990 | 19 FEB 1980 |    I203    |     Sam /Below/     |   I04   | Mary /Schliessmann/ |                           {}                           |
-| F51  | 24 AUG 2019 |     N/A     |    I59     |   Bluberry /Smith/  |   I58   |  Strawberry /Smith/ |                        {'I60'}                         |
+| F51  | 24 AUG 2019 |     N/A     |    I59     |   Bluberry /Smith/  |   I58   |  Strawberry /Smith/ |                     {'I59', 'I60'}                     |
+| F25  | 15 JUN 2020 |     N/A     |    I400    |      John /Doe/     |   I28   |      Sara /Doe/     |                           {}                           |
+| F30  | 10 JUN 1991 |     N/A     |    I002    |      Jon /Jean/     |   I001  |      Ann /Jean/     |                {'I003', 'I004', 'I005'}                |
+| F31  | 10 JUN 2004 |     N/A     |    I003    |     Adam /Jean/     |   I006  |     Kerry /Jean/    |                    {'I008', 'I007'}                    |
+| F32  | 10 JUN 2004 |     N/A     |    I004    |     Liam /Jean/     |   I009  |     Sarah /Jean/    |                   {'I0010', 'I0011'}                   |
+| F33  | 10 JUN 2021 |     N/A     |    I005    |     Matt /Jean/     |  I0011  |     Tina /Jean/     |                           {}                           |
+| F34  | 10 JUN 2021 |     N/A     |    I007    |      Jon /Jean/     |  I0010  |     Lily /Jean/     |                           {}                           |
+| F91  |  9 NOV 2021 |     N/A     |    I301    |   Michael /Scott/   |   I302  |     Jan /Scott/     |                           {}                           |
 +------+-------------+-------------+------------+---------------------+---------+---------------------+--------------------------------------------------------+
-US16: Error, All of the men in this family F02 do not have the same last name
-US16: Error, All of the men in this family F02 do not have the same last name
-US16: Error, All of the men in this family F02 do not have the same last name
-US16: Error, All of the men in this family F02 do not have the same last name
-US16: Error, All of the men in this family F02 do not have the same last name
-US16: Error, All of the men in this family F02 do not have the same last name
-US16: Error, All of the men in this family F02 do not have the same last name
 Error US08: Child born out of side of parents marriage Timeline for I03, David /Dauphinais/
 No errors in US06 for family F03
 No errors in US04 for FAM F03.
 US13: Family F03 does not contain a family with siblings.
 US14: Family F03 does not contain a family with siblings.
+US22: Family ID F03 is unqiue.
+US21: Husband and wife for family F03 have correct gender roles.
 No errors in US08
 No errors in US06 for family F08
 No errors in US04 for FAM F08.
 US13: Family F08 does not contain a family with siblings.
 US14: Family F08 does not contain a family with siblings.
+US22: Family ID F08 is unqiue.
+US21: Husband and wife for family F08 have correct gender roles.
 Error US08: Birthday = N/A for I06 Peter /Smith/
 Error US06: In family F05 Wife death occurs before divorce.
 Error US04: In family F05 Divorce occurs before marrage.
 US13: Family F05 does not contain a family with siblings.
 US14: Family F05 does not contain a family with siblings.
+US22: Family ID F05 is unqiue.
+US21: Husband and wife for family F05 have correct gender roles.
 Error US08: Child born out of side of parents marriage Timeline for I08, Danielle /Dauphinais/
 Error US06: In family F06 Wife death occurs before divorce.
 No errors in US04 for FAM F06.
 US13: Siblings in Family F06 are properly spaced.
 Error US14: Family F06 has five siblings born at the same time.
-No errors in US08
-No errors in US06 for family F09
-F09 is not found
-US13: Family F09 does not contain a family with siblings.
-US14: Family F09 does not contain a family with siblings.
+US22: Family ID F06 is unqiue.
+US21: Husband and wife for family F06 have correct gender roles.
 No errors in US08
 No errors in US06 for family F111
 Error US04: In family F111 Divorce occurs before marrage.
 US13: Family F111 does not contain a family with siblings.
 US14: Family F111 does not contain a family with siblings.
-No errors in US08
+US22: Family ID F111 is unqiue.
+US21: Husband and wife for family F111 have correct gender roles.
+Error US08: Birthday = N/A for I301 Michael /Scott/
 No errors in US06 for family F41
 No errors in US04 for FAM F41.
 US13: Family F41 does not contain a family with siblings.
 US14: Family F41 does not contain a family with siblings.
+US22: Family ID F41 is unqiue.
+US21: Sex for husband I201 in family F41 is unknown.
 No errors in US08
 No errors in US06 for family F42
 No errors in US04 for FAM F42.
 US13: Family F42 does not contain a family with siblings.
 US14: Family F42 does not contain a family with siblings.
+US22: Family ID F42 is unqiue.
+US21: Sex for husband I203 in family F42 is unknown.
 No errors in US08
 No errors in US06 for family F25
 Error US04: In family F25 Divorce occurs before marrage.
 US13: Family F25 does not contain a family with siblings.
 US14: Family F25 does not contain a family with siblings.
+Error US22: Family ID F25 is not unqiue.
+Error US21: Wife I28 in family F25 is not female.
 No errors in US08
-No errors in US06 for family F02
-F02 is not found
-US13: Family F02 does not contain a family with siblings.
-US14: Family F02 does not contain a family with siblings.
+No errors in US06 for family F45
+Error US04: In family F45 Divorce occurs before marrage.
+US13: Family F45 does not contain a family with siblings.
+US14: Family F45 does not contain a family with siblings.
+US22: Family ID F45 is unqiue.
+US21: Sex for husband I203 in family F45 is unknown.
+Error US08: Child born out of side of parents marriage Timeline for I59, Bluberry /Smith/
+No errors in US06 for family F51
+No errors in US04 for FAM F51.
+US13: Siblings in Family F51 are properly spaced.
+US14: There are the correct number of siblings in Family F51.
+US22: Family ID F51 is unqiue.
+Error US21: Husband I59 in family F51 is not male.
+No errors in US08
+No errors in US06 for family F25
+Error US04: In family F25 Divorce occurs before marrage.
+US13: Family F25 does not contain a family with siblings.
+US14: Family F25 does not contain a family with siblings.
+Error US22: Family ID F25 is not unqiue.
+Error US21: Wife I28 in family F25 is not female.
+No errors in US08
+No errors in US06 for family F30
+No errors in US04 for FAM F30.
+US13: Siblings in Family F30 are properly spaced.
+US14: There are the correct number of siblings in Family F30.
+US22: Family ID F30 is unqiue.
+US21: Husband and wife for family F30 have correct gender roles.
+No errors in US08
+No errors in US06 for family F31
+No errors in US04 for FAM F31.
+US13: Siblings in Family F31 are properly spaced.
+US14: There are the correct number of siblings in Family F31.
+US22: Family ID F31 is unqiue.
+US21: Husband and wife for family F31 have correct gender roles.
+No errors in US08
+No errors in US06 for family F32
+No errors in US04 for FAM F32.
+US13: Siblings in Family F32 are properly spaced.
+US14: There are the correct number of siblings in Family F32.
+US22: Family ID F32 is unqiue.
+US21: Husband and wife for family F32 have correct gender roles.
+No errors in US08
+No errors in US06 for family F33
+No errors in US04 for FAM F33.
+US13: Family F33 does not contain a family with siblings.
+US14: Family F33 does not contain a family with siblings.
+US22: Family ID F33 is unqiue.
+US21: Husband and wife for family F33 have correct gender roles.
+No errors in US08
+No errors in US06 for family F34
+No errors in US04 for FAM F34.
+US13: Family F34 does not contain a family with siblings.
+US14: Family F34 does not contain a family with siblings.
+US22: Family ID F34 is unqiue.
+US21: Husband and wife for family F34 have correct gender roles.
+No errors in US08
+No errors in US06 for family F91
+No errors in US04 for FAM F91.
+US13: Family F91 does not contain a family with siblings.
+US14: Family F91 does not contain a family with siblings.
+US22: Family ID F91 is unqiue.
+US21: Husband and wife for family F91 have correct gender roles.
 Error US07: With Individual:  I01, Nancy /Below/, Individual is listed as over 150 years old & Death must be within 150 years of birth
 No errors in US03 for INDI I01.
 No errors in US02
 Individual I01 and all of his/her spouses were at least 14 years old when married
 No errors in US09
+US22: Individual ID I01 is unqiue.
+list of siblings is []
+list of siblings is []
+I01 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F01']
+list of siblings is []
+I01 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 Error USO3: Birth data of Lucien /Dauphinais/(I02) occurs after his death date.
 No errors in US02
 Error US10: Individual I02 is younger than 14 years old and married.
 No errors in US09
+US22: Individual ID I02 is unqiue.
+list of siblings is []
+list of siblings is []
+I02 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F02']
+list of siblings is []
+I02 is not married to a niece or nephew.
+No errors in US17
+No Errors with US07
+No errors in US03 for INDI I09.
+No errors in US02
+Individual I09 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I09 is unqiue.
+list of siblings is []
+list of siblings is []
+I09 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F02']
+list of siblings is []
+I09 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 No errors in US03 for INDI I03.
 No errors in US02
 Error US10: Spouse of individual I03, with ID I04 is younger than 14 years old and married.
 No errors in US09
+US22: Individual ID I03 is unqiue.
+indv is in the final_indv
+birthfam is ['F01']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F02']
+list of siblings is []
+I03 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']
+I03 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 Error USO3: Birth data of Mary /Schliessmann/(I04) occurs after his death date.
 No errors in US02
 Error US10: Individual I04 is younger than 14 years old and married.
 No errors in US09
+US22: Individual ID I04 is unqiue.
+list of siblings is []
+list of siblings is []
+I04 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F04']
+list of siblings is []
+I04 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 No errors in US03 for INDI I05.
 No errors in US02
 Error US10: Spouse of individual I05, with ID I04 is younger than 14 years old and married.
 No errors in US09
+US22: Individual ID I05 is unqiue.
+list of siblings is []
+list of siblings is []
+I05 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F09']
+list of siblings is []
+I05 is not married to a niece or nephew.
+No errors in US17
 ID Never Found 
 No errors in US03 for INDI I06.
 No errors in US02
 Individual I06 and all of his/her spouses were at least 14 years old when married
 Error US09: No birthday recorded for I06
+US22: Individual ID I06 is unqiue.
+indv is in the final_indv
+birthfam is ['F04']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F09']
+list of siblings is []
+I06 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F05']
+list of siblings is ['I06']
+I06 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 No errors in US03 for INDI I07.
 No errors in US02
 Individual I07 and all of his/her spouses were at least 14 years old when married
 No errors in US09
+US22: Individual ID I07 is unqiue.
+indv is in the final_indv
+birthfam is ['F04']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']
+I07 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F06']
+list of siblings is ['I104', 'I102', 'I08', 'I103', 'I105', 'I07', 'I101']
+I07 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 No errors in US03 for INDI I08.
 No errors in US02
 Individual I08 and all of his/her spouses were at least 14 years old when married
 No errors in US09
+US22: Individual ID I08 is unqiue.
+indv is in the final_indv
+birthfam is ['F04']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']
+I08 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F06']
+list of siblings is ['I104', 'I102', 'I08', 'I103', 'I105', 'I07', 'I101']
+I08 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 No errors in US03 for INDI I101.
 No errors in US02
 Individual I101 and all of his/her spouses were at least 14 years old when married
 No errors in US09
+US22: Individual ID I101 is unqiue.
+indv is in the final_indv
+birthfam is ['F04']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']
+I101 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F06']
+list of siblings is ['I104', 'I102', 'I08', 'I103', 'I105', 'I07', 'I101']
+I101 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 No errors in US03 for INDI I102.
 No errors in US02
 Individual I102 and all of his/her spouses were at least 14 years old when married
 No errors in US09
+US22: Individual ID I102 is unqiue.
+indv is in the final_indv
+birthfam is ['F04']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']
+I102 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F06']
+list of siblings is ['I104', 'I102', 'I08', 'I103', 'I105', 'I07', 'I101']
+I102 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 No errors in US03 for INDI I103.
 No errors in US02
 Individual I103 and all of his/her spouses were at least 14 years old when married
 No errors in US09
+US22: Individual ID I103 is unqiue.
+indv is in the final_indv
+birthfam is ['F04']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']
+I103 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F06']
+list of siblings is ['I104', 'I102', 'I08', 'I103', 'I105', 'I07', 'I101']
+I103 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 No errors in US03 for INDI I104.
 No errors in US02
 Individual I104 and all of his/her spouses were at least 14 years old when married
 No errors in US09
+US22: Individual ID I104 is unqiue.
+indv is in the final_indv
+birthfam is ['F04']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']
+I104 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F06']
+list of siblings is ['I104', 'I102', 'I08', 'I103', 'I105', 'I07', 'I101']
+I104 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 No errors in US03 for INDI I105.
 No errors in US02
 Individual I105 and all of his/her spouses were at least 14 years old when married
 No errors in US09
+US22: Individual ID I105 is unqiue.
+indv is in the final_indv
+birthfam is ['F04']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']
+I105 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F06']
+list of siblings is ['I104', 'I102', 'I08', 'I103', 'I105', 'I07', 'I101']
+I105 is not married to a niece or nephew.
+No errors in US17
 ID Never Found 
 No errors in US03 for INDI bi00.
 No errors in US02
 Individual bi00 and all of his/her spouses were at least 14 years old when married
 Error US09: No information about the family bi00 belongs to.
-No Errors with US07
-Error USO3: Birth data of Alan /Turning/(I82) occurs after his death date.
-Error USO2: Marriage date of F03 (15 JUN 1963) occurs before the birth date of Alan /Turning/ (25 DEC 1985).
-Error US10: Individual I82 is younger than 14 years old and married.
-No errors in US09
+US22: Individual ID bi00 is unqiue.
+list of siblings is []
+list of siblings is []
+bi00 is not married to a cousin.
+indv is in the final_indv
+birthfam is N/A
+bi00 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 Error USO3: Birth data of Kennith /Joy/(I81) occurs after his death date.
 No errors in US02
 Error US10: Individual I81 is younger than 14 years old and married.
 No errors in US09
+US22: Individual ID I81 is unqiue.
+list of siblings is []
+list of siblings is []
+I81 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F02']
+list of siblings is []
+I81 is not married to a niece or nephew.
+No errors in US17
+No Errors with US07
+Error USO3: Birth data of Alan /Turning/(I82) occurs after his death date.
+Error USO2: Marriage date of F03 (15 JUN 1963) occurs before the birth date of Alan /Turning/ (25 DEC 1985).
+Error US10: Individual I82 is younger than 14 years old and married.
+No errors in US09
+US22: Individual ID I82 is unqiue.
+list of siblings is []
+list of siblings is []
+I82 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F02']
+list of siblings is []
+I82 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 Error USO3: Birth data of Alex /Wazi/(I83) occurs after his death date.
 No errors in US02
 Error US10: Individual I83 is younger than 14 years old and married.
 No errors in US09
+US22: Individual ID I83 is unqiue.
+list of siblings is []
+list of siblings is []
+I83 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F02']
+list of siblings is []
+I83 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 Error USO3: Birth data of Harry /Dauphinais/(I84) occurs after his death date.
 No errors in US02
 Error US10: Individual I84 is younger than 14 years old and married.
 No errors in US09
+US22: Individual ID I84 is unqiue.
+list of siblings is []
+list of siblings is []
+I84 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F02']
+list of siblings is []
+I84 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 Error USO3: Birth data of Jerry /Stin/(I85) occurs after his death date.
 No errors in US02
 Error US10: Individual I85 is younger than 14 years old and married.
 No errors in US09
+US22: Individual ID I85 is unqiue.
+list of siblings is []
+list of siblings is []
+I85 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F02']
+list of siblings is []
+I85 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 No errors in US03 for INDI I25.
 No errors in US02
 Individual I25 and all of his/her spouses were at least 14 years old when married
 No errors in US09
+US22: Individual ID I25 is unqiue.
+list of siblings is []
+list of siblings is []
+I25 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F02']
+list of siblings is []
+I25 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 No errors in US03 for INDI I26.
 No errors in US02
 Individual I26 and all of his/her spouses were at least 14 years old when married
 No errors in US09
+US22: Individual ID I26 is unqiue.
+list of siblings is []
+list of siblings is []
+I26 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F09']
+list of siblings is []
+I26 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 Error USO3: Birth data of John /Below/(I201) occurs after his death date.
 No errors in US02
 Error US10: Individual I201 is younger than 14 years old and married.
 Error US09: No information about the family I201 belongs to.
+US22: Individual ID I201 is unqiue.
+list of siblings is []
+list of siblings is []
+I201 is not married to a cousin.
+indv is in the final_indv
+birthfam is N/A
+I201 is not married to a niece or nephew.
+No errors in US17
 No Errors with US07
 Error USO3: Birth data of Jane /Below/(I202) occurs after his death date.
 Error USO2: Marriage date of F41 (31 JAN 2028) occurs before the birth date of Jane /Below/ (11 DEC 2098).
 Error US10: Individual I202 is younger than 14 years old and married.
 Error US09: No information about the family I202 belongs to.
+US22: Individual ID I202 is unqiue.
+list of siblings is []
+list of siblings is []
+I202 is not married to a cousin.
+indv is in the final_indv
+birthfam is N/A
+I202 is not married to a niece or nephew.
+No errors in US17
 ID Never Found 
 No errors in US03 for INDI I203.
 No errors in US02
 Individual I203 and all of his/her spouses were at least 14 years old when married
 Error US09: No information about the family I203 belongs to.
+US22: Individual ID I203 is unqiue.
+list of siblings is []
+list of siblings is []
+I203 is not married to a cousin.
+indv is in the final_indv
+birthfam is N/A
+I203 is not married to a niece or nephew.
+US17: Individual I203 has no descendants. No errors in US17.
+ID Never Found 
+No errors in US03 for INDI I204.
+No errors in US02
+Individual I204 and all of his/her spouses were at least 14 years old when married
+Error US09: No information about the family I204 belongs to.
+US22: Individual ID I204 is unqiue.
+list of siblings is []
+list of siblings is []
+I204 is not married to a cousin.
+indv is in the final_indv
+birthfam is N/A
+I204 is not married to a niece or nephew.
+US17: Individual I204 has no descendants. No errors in US17.
 No Errors with US07
 No errors in US03 for INDI I29.
 No errors in US02
 Individual I29 and all of his/her spouses were at least 14 years old when married
 No errors in US09
+US22: Individual ID I29 is unqiue.
+list of siblings is []
+list of siblings is []
+I29 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F00']
+list of siblings is []
+I29 is not married to a niece or nephew.
+US17: Individual I29 has no descendants. No errors in US17.
 No Errors with US07
 No errors in US03 for INDI I6.
 No errors in US02
 Individual I6 and all of his/her spouses were at least 14 years old when married
 No errors in US09
+US22: Individual ID I6 is unqiue.
+list of siblings is []
+list of siblings is []
+I6 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F09']
+list of siblings is []
+I6 is not married to a niece or nephew.
+US17: Individual I6 has no descendants. No errors in US17.
 No Errors with US07
 No errors in US03 for INDI I28.
 No errors in US02
 Individual I28 and all of his/her spouses were at least 14 years old when married
+Error US09: No information about the family I28 belongs to.
+Error US22: Individual ID I28 is not unqiue.
+list of siblings is []
+list of siblings is []
+I28 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F08']
+indv is in the final_indv
+birthfam is N/A
+I28 is not married to a niece or nephew.
+US17: Individual I28 has no descendants. No errors in US17.
+No Errors with US07
+Error USO3: Birth data of Strawberry /Smith/(I58) occurs after his death date.
+No errors in US02
+Error US10: Individual I58 is younger than 14 years old and married.
+Error US09: No information about the family I58 belongs to.
+US22: Individual ID I58 is unqiue.
+list of siblings is []
+list of siblings is []
+I58 is not married to a cousin.
+indv is in the final_indv
+birthfam is N/A
+I58 is not married to a niece or nephew.
+Error US17: Individual I58s spouse is also their descendent
+No Errors with US07
+Error USO3: Birth data of Bluberry /Smith/(I59) occurs after his death date.
+No errors in US02
+Error US10: Individual I59 is younger than 14 years old and married.
 No errors in US09
+US22: Individual ID I59 is unqiue.
+indv is in the final_indv
+birthfam is N/A
+indv is in the final_indv
+birthfam is ['F51']
+list of siblings is ['I59', 'I60']
+Error US19: individual I59 is married to a cousin.
+indv is in the final_indv
+birthfam is ['F51']
+list of siblings is ['I59', 'I60']
+I59 is not married to a niece or nephew.
+No errors in US17
+No Errors with US07
+No errors in US03 for INDI I60.
+No errors in US02
+Individual I60 and all of his/her spouses were at least 14 years old when married
+Error US09: Child I60 was born after death of mother and after 9 months after death of father
+US22: Individual ID I60 is unqiue.
+indv is in the final_indv
+birthfam is N/A
+indv is in the final_indv
+birthfam is ['F51']
+list of siblings is ['I59', 'I60']
+Error US19: individual I60 is married to a cousin.
+indv is in the final_indv
+birthfam is ['F51']
+list of siblings is ['I59', 'I60']
+I60 is not married to a niece or nephew.
+No errors in US17
+No Errors with US07
+No errors in US03 for INDI I28.
+No errors in US02
+Individual I28 and all of his/her spouses were at least 14 years old when married
+Error US09: No information about the family I28 belongs to.
+Error US22: Individual ID I28 is not unqiue.
+list of siblings is []
+list of siblings is []
+I28 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F08']
+indv is in the final_indv
+birthfam is N/A
+I28 is not married to a niece or nephew.
+US17: Individual I28 has no descendants. No errors in US17.
+No Errors with US07
+No errors in US03 for INDI I400.
+No errors in US02
+Individual I400 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I400 is unqiue.
+indv is in the final_indv
+birthfam is ['F08']
+indv is in the final_indv
+birthfam is N/A
+indv is in the final_indv
+birthfam is ['F25']
+list of siblings is []
+Error US19: individual I400 is married to a cousin.
+indv is in the final_indv
+birthfam is ['F25']
+list of siblings is []
+I400 is not married to a niece or nephew.
+No errors in US17
+No Errors with US07
+No errors in US03 for INDI I001.
+No errors in US02
+Individual I001 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I001 is unqiue.
+indv is in the final_indv
+birthfam is ['F01']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F02']
+list of siblings is []
+I001 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']
+None
+No errors in US17
+No Errors with US07
+No errors in US03 for INDI I002.
+No errors in US02
+Individual I002 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I002 is unqiue.
+list of siblings is []
+list of siblings is []
+I002 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F01']
+list of siblings is []
+I002 is not married to a niece or nephew.
+No errors in US17
+No Errors with US07
+No errors in US03 for INDI I003.
+No errors in US02
+Individual I003 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I003 is unqiue.
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']
+indv is in the final_indv
+birthfam is ['F01']
+list of siblings is []
+I003 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F30']
+list of siblings is ['I003', 'I004', 'I005']
+None
+No errors in US17
+No Errors with US07
+No errors in US03 for INDI I004.
+No errors in US02
+Individual I004 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I004 is unqiue.
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']
+indv is in the final_indv
+birthfam is ['F01']
+list of siblings is []
+I004 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F30']
+list of siblings is ['I003', 'I004', 'I005']
+None
+No errors in US17
+No Errors with US07
+No errors in US03 for INDI I005.
+No errors in US02
+Individual I005 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I005 is unqiue.
+indv is in the final_indv
+birthfam is ['F03']
+list of siblings is ['I03']
+indv is in the final_indv
+birthfam is ['F01']
+list of siblings is []
+I005 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F30']
+list of siblings is ['I003', 'I004', 'I005']
+Error US20: individual I005 is married to a niece or nephew.
+US17: Individual I005 has no descendants. No errors in US17.
+No Errors with US07
+No errors in US03 for INDI I006.
+No errors in US02
+Individual I006 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I006 is unqiue.
+indv is in the final_indv
+birthfam is ['F09']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F02']
+list of siblings is []
+I006 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F111']
+list of siblings is ['I10']
+I006 is not married to a niece or nephew.
+No errors in US17
+No Errors with US07
+No errors in US03 for INDI I007.
+No errors in US02
+Individual I007 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I007 is unqiue.
+indv is in the final_indv
+birthfam is ['F111']
+list of siblings is ['I10']
+indv is in the final_indv
+birthfam is ['F30']
+list of siblings is ['I003', 'I004', 'I005']
+Error US19: individual I007 is married to a cousin.
+indv is in the final_indv
+birthfam is ['F31']
+list of siblings is ['I008', 'I007']
+I007 is not married to a niece or nephew.
+US17: Individual I007 has no descendants. No errors in US17.
+No Errors with US07
+No errors in US03 for INDI I008.
+No errors in US02
+Individual I008 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I008 is unqiue.
+indv is in the final_indv
+birthfam is ['F111']
+list of siblings is ['I10']
+indv is in the final_indv
+birthfam is ['F30']
+list of siblings is ['I003', 'I004', 'I005']
+I008 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F31']
+list of siblings is ['I008', 'I007']
+I008 is not married to a niece or nephew.
+No errors in US17
+No Errors with US07
+No errors in US03 for INDI I009.
+No errors in US02
+Individual I009 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I009 is unqiue.
+list of siblings is []
+list of siblings is []
+I009 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F12']
+list of siblings is []
+I009 is not married to a niece or nephew.
+No errors in US17
+No Errors with US07
+No errors in US03 for INDI I0010.
+No errors in US02
+Individual I0010 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I0010 is unqiue.
+indv is in the final_indv
+birthfam is ['F12']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F30']
+list of siblings is ['I003', 'I004', 'I005']
+Error US19: individual I0010 is married to a cousin.
+indv is in the final_indv
+birthfam is ['F32']
+list of siblings is ['I0010', 'I0011']
+I0010 is not married to a niece or nephew.
+US17: Individual I0010 has no descendants. No errors in US17.
+No Errors with US07
+No errors in US03 for INDI I0011.
+No errors in US02
+Individual I0011 and all of his/her spouses were at least 14 years old when married
+No errors in US09
+US22: Individual ID I0011 is unqiue.
+indv is in the final_indv
+birthfam is ['F12']
+list of siblings is []
+indv is in the final_indv
+birthfam is ['F30']
+list of siblings is ['I003', 'I004', 'I005']
+I0011 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F32']
+list of siblings is ['I0010', 'I0011']
+I0011 is not married to a niece or nephew.
+US17: Individual I0011 has no descendants. No errors in US17.
+ID Never Found 
+No errors in US03 for INDI I301.
+No errors in US02
+Individual I301 and all of his/her spouses were at least 14 years old when married
+Error US09: No birthday recorded for I301
+US22: Individual ID I301 is unqiue.
+indv is in the final_indv
+birthfam is N/A
+indv is in the final_indv
+birthfam is N/A
+I301 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F41']
+list of siblings is ['I302', 'I301']
+I301 is not married to a niece or nephew.
+US17: Individual I301 has no descendants. No errors in US17.
+ID Never Found 
+No errors in US03 for INDI I302.
+No errors in US02
+Individual I302 and all of his/her spouses were at least 14 years old when married
+Error US09: No birthday recorded for I302
+US22: Individual ID I302 is unqiue.
+indv is in the final_indv
+birthfam is N/A
+indv is in the final_indv
+birthfam is N/A
+I302 is not married to a cousin.
+indv is in the final_indv
+birthfam is ['F41']
+list of siblings is ['I302', 'I301']
+I302 is not married to a niece or nephew.
+US17: Individual I302 has no descendants. No errors in US17.

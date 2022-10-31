@@ -1091,9 +1091,7 @@ def uniqueIDsIndis(INDI_ID):
 
 if __name__ == '__main__':
 
-    print(noMarriageDescendant('I204'))
 
-    '''
     for i in range(len(familyList)):
         print(childDuringMarriage(familyList[i][0]))
         print(divorceBeforeDeath(familyList[i][0]))
@@ -1113,7 +1111,6 @@ if __name__ == '__main__':
         print(FirstCousinsChouldNotMarry(final_indi[i][0]))
         print(AuntsAndUncles(final_indi[i][0]))
         print(noMarriageDescendant(final_indi[i][0]))
-    '''
 
     
 
