@@ -136,8 +136,16 @@ class Test(unittest.TestCase):
     def testuniqueIDsIndis(self):
         self.assertEqual(uniqueIDsIndis('I28'), 'Error US22: Individual ID I28 is not unqiue.')
     #US23
+    def testUniqueIndiv(self):
+        self.assertEqual(uniqueIndiv('I101'), 'ERROR US23: Individual:  Jessica /Dauphinais/ exists multiple times within the file .')
+    def testUniqueIndiv2(self):
+        self.assertEqual(uniqueIndiv('I08'), 'US23: no error found')
     #US24
-
+    def testUniqueFamily(self):
+        self.assertEqual(uniqueFamily('I08'), 'Error US24 Fam ID not in file')
+    def testUniqueFamily1(self):
+        self.assertEqual(uniqueFamily('F08'), 'US24: no error found')
+  
 
 
 if __name__ == '__main__':
