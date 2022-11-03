@@ -1087,12 +1087,57 @@ def uniqueIDsIndis(INDI_ID):
             return "Error US22: Individual ID " + INDI_ID + " is not unqiue."
     else:
         return "US22: Individual ID " + INDI_ID + " does not exist."
-        
+'''
+US23 - Sprint 3
+Story Name: Unique name and birth date
+Description: No more than one individual with the same name and birth date should appear in a GEDCOM file
+'''
+
+#name and birthday can't be the same for more than one person 
+def uniqueIndiv(INDI_ID):
+    for i in range(len(indi_list)):
+        if indi_list[i][0] == INDI_ID:
+            currInd = []
+            currInd.append(indi_list[i][1])
+            currInd.append(indi_list[i][3])
+    for i in range(len(indi_list)):
+        tempInd = []
+        tempInd.append(indi_list[i][1])
+        tempInd.append(indi_list[i][3])
+        if currInd == tempInd and INDI_ID != indi_list[i][0]:
+            return "ERROR US23: Individual:  " + str(currInd[0]) + " exists multiple times within the file ."
+    return "US23: no error found"    
+
+'''
+US24 - Sprint 3
+Story Name: Unique families by spouses
+Description: No more than one family with the same spouses by name and the same marriage date should appear in a GEDCOM file
+'''
+def uniqueFamily(FAM_ID):
+    currFam =[]
+    for i in range(len(familyList)):
+        if familyList[i][0] == FAM_ID:
+            currFam = []
+            currFam.append(familyList[i][1])
+            currFam.append(familyList[i][4])
+            currFam.append(familyList[i][6])
+    if currFam == []:
+        return "Error US24 Fam ID not in file"    
+            
+    for i in range(len(familyList)):
+        tempFam = []
+        tempFam.append(familyList[i][1])
+        tempFam.append(familyList[i][4])
+        tempFam.append(familyList[i][6])
+        if currFam == tempFam and FAM_ID != familyList[i][0]:
+            return "ERROR US24: Family:  " + str(FAM_ID) + " exists as more than one family with the same spouses by name and the same marriage date."
+    return "US24: no error found"  
 
 if __name__ == '__main__':
 
 
     for i in range(len(familyList)):
+        print(uniqueFamily(familyList[i][0]))
         print(childDuringMarriage(familyList[i][0]))
         print(divorceBeforeDeath(familyList[i][0]))
         print(marrigeBeforeDivorce(familyList[i][0]))
@@ -1102,6 +1147,7 @@ if __name__ == '__main__':
         print(correctGenderRole(familyList[i][0]))
 
     for i in range(len(final_indi)):
+        print(uniqueIndiv(final_indi[i][0]))
         print(deathLessThan150(final_indi[i][0]))
         print(birthBeforeDeath(final_indi[i][0]))
         print(birthBeforeMarr(final_indi[i][0]))
@@ -1113,7 +1159,3 @@ if __name__ == '__main__':
         print(noMarriageDescendant(final_indi[i][0]))
 
     
-
-
-
-        
