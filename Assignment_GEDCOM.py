@@ -1133,9 +1133,57 @@ def uniqueFamily(FAM_ID):
             return "ERROR US24: Family:  " + str(FAM_ID) + " exists as more than one family with the same spouses by name and the same marriage date."
     return "US24: no error found"  
 
+'''
+US27 - Sprint 4
+Story Name: Include individual ages
+Description: Include person's current age when listing individuals
+'''
+def individualAges(Indv_ID):
+    for i in range(len(final_indi)):
+        if final_indi[i][0] == Indv_ID:
+            return "US27: Individul " + str(final_indi[i][1]) + " ("+str(final_indi[i][0])+ ") has the age of "+ str(final_indi[i][4])+"."
+    return "US27: "+str(Indv_ID)+" not found."
+
+'''
+US28 - Sprint 4
+Story Name: Order siblings by age
+Description: List siblings in families by decreasing age, i.e. oldest siblings first
+'''
+def orderSiblingsByAge(Fam_ID):
+    siblings = True
+    for i in range(len(familyList)):
+        if familyList[i][0] == Fam_ID:
+            siblings=familyList[i][7]
+    if siblings==True:
+        return "US28: Family "+str(Fam_ID)+ " not found."
+    if siblings == {}:
+        return "US28: Family "+str(Fam_ID)+ " has not children."
+    Age = []
+    for i in range(len(final_indi)):
+        if final_indi[i][0] in siblings:
+            if final_indi[i][3] == 'N/A':
+                return "US28: Family "+str(Fam_ID)+ " missing children birthdays."
+            else:
+                Age.append((final_indi[i][0],final_indi[i][3]))
+    # Sorting the array
+    n = len(Age)
+    # For loop to traverse through all
+    # element in an array
+    for i in range(n):
+        for j in range(0, n - i - 1):
+             
+            # Range of the array is from 0 to n-i-1
+            # Swap the elements if the element found
+            #is greater than the adjacent element
+            if Age[j][1] > Age[j + 1][1]:
+                Age[j], Age[j + 1] = Age[j + 1], Age[j]
+    Age.reverse()
+    result = [tup[0] for tup in Age]
+    return "US28: Family "+str(Fam_ID)+ " has children " + str(result) +" listed oldest to youngest."
+
+
+
 if __name__ == '__main__':
-
-
     for i in range(len(familyList)):
         print(uniqueFamily(familyList[i][0]))
         print(childDuringMarriage(familyList[i][0]))
@@ -1145,6 +1193,7 @@ if __name__ == '__main__':
         print(multipleBirths(familyList[i][0]))
         print(uniqueIDsFams(familyList[i][0]))
         print(correctGenderRole(familyList[i][0]))
+        print(orderSiblingsByAge(familyList[i][0]))
 
     for i in range(len(final_indi)):
         print(uniqueIndiv(final_indi[i][0]))
@@ -1157,5 +1206,6 @@ if __name__ == '__main__':
         print(FirstCousinsChouldNotMarry(final_indi[i][0]))
         print(AuntsAndUncles(final_indi[i][0]))
         print(noMarriageDescendant(final_indi[i][0]))
+        print(individualAges(final_indi[i][0]))
 
     

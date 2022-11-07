@@ -145,6 +145,28 @@ class Test(unittest.TestCase):
         self.assertEqual(uniqueFamily('I08'), 'Error US24 Fam ID not in file')
     def testUniqueFamily1(self):
         self.assertEqual(uniqueFamily('F08'), 'US24: no error found')
+    
+    # Sprint 4
+    #US25
+    #US26
+
+    #US27
+    def test1_individualAges(self):
+        self.assertEqual(individualAges('I03'),'US27: Individul David /Dauphinais/ (I03) has the age of 60.')
+    def test2_individualAges(self):
+        self.assertEqual(individualAges('I0109'), "US27: I0109 not found.")
+    #US28
+    def test1_orderSiblingsByAge(self):
+        self.assertEqual(orderSiblingsByAge('F42'), "US28: Family F42 has not children.")
+    def test2_orderSiblingsByAge(self):
+        self.assertEqual(orderSiblingsByAge('F11'), "US28: Family F11 not found.")
+    def test3_orderSiblingsByAge(self):
+        self.assertEqual(orderSiblingsByAge('F06'), "US28: Family F06 has children ['I07', 'I08', 'I105', 'I104', 'I103', 'I102', 'I101'] listed oldest to youngest.")
+    #US29
+    #US30
+
+    #US31
+    #US32
   
 
 
