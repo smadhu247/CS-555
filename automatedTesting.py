@@ -163,8 +163,11 @@ class Test(unittest.TestCase):
     def test3_orderSiblingsByAge(self):
         self.assertEqual(orderSiblingsByAge('F06'), "US28: Family F06 has children ['I07', 'I08', 'I105', 'I104', 'I103', 'I102', 'I101'] listed oldest to youngest.")
     #US29
+    def testlistDeceased(self):
+        self.assertEqual(listDeceased(), "US29: List of deceased members: I02, I04, I81, I82, I83, I84, I85, I58, I59")
     #US30
-
+    def testlistLivingMarried(self):
+        self.assertEqual(listLivingMarried(), "US30: List of living married: I01")
     #US31
     #US32
   

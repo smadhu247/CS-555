@@ -1134,6 +1134,18 @@ def uniqueFamily(FAM_ID):
     return "US24: no error found"  
 
 '''
+US25 - Sprint 4
+Story Name: 
+Description: 
+'''
+
+'''
+US26 - Sprint 4
+Story Name: 
+Description: 
+'''
+
+'''
 US27 - Sprint 4
 Story Name: Include individual ages
 Description: Include person's current age when listing individuals
@@ -1181,7 +1193,69 @@ def orderSiblingsByAge(Fam_ID):
     result = [tup[0] for tup in Age]
     return "US28: Family "+str(Fam_ID)+ " has children " + str(result) +" listed oldest to youngest."
 
+'''
+US29 - Sprint 4
+Story Name: List deceased
+Description: List all deceased individuals in a GEDCOM file
+'''
+def listDeceased():
+    deceased_list = []
+    today = date.today()
+    death_date = date.today()
+    for i in range(len(final_indi)):
+        if final_indi[i][6] != "N/A":
+            death_date = datetime.strptime(final_indi[i][6], '%d %b %Y').date()
+            if (death_date < today):
+                deceased_list.append(final_indi[i][0])
+    if (len(deceased_list) > 0):
+        string_list = ""
+        for i in range(len(deceased_list)):
+            if (i == len(deceased_list) - 1):
+                string_list = string_list + deceased_list[i]
+            else:
+                string_list = string_list + deceased_list[i] + ", "
+        return "US29: List of deceased members: " + string_list
 
+'''
+US30 - Sprint 4
+Story Name: List living married
+Description: List living married
+'''
+def listLivingMarried():
+    living_married_list = []
+    today = date.today()
+    death_date = date.today()
+    dead = False
+    married = False
+    for i in range(len(final_indi)):
+        if final_indi[i][6] != "N/A":
+            death_date = datetime.strptime(final_indi[i][6], '%d %b %Y').date()
+            if (death_date < today):
+                dead = True
+            if final_indi[i][3] != "N/A":
+                married = True
+            if (dead == False and married == True):
+                living_married_list.append(final_indi[i][0])
+    if (len(living_married_list) > 0):
+        string_list = ""
+        for i in range(len(living_married_list)):
+            if (i == len(living_married_list) - 1):
+                string_list = string_list + living_married_list[i]
+            else:
+                string_list = string_list + living_married_list[i] + ", "
+        return "US30: List of living married: " + string_list
+
+'''
+US31 - Sprint 4
+Story Name: 
+Description: 
+'''
+
+'''
+US32 - Sprint 4
+Story Name: 
+Description: 
+'''
 
 if __name__ == '__main__':
     for i in range(len(familyList)):
@@ -1207,5 +1281,9 @@ if __name__ == '__main__':
         print(AuntsAndUncles(final_indi[i][0]))
         print(noMarriageDescendant(final_indi[i][0]))
         print(individualAges(final_indi[i][0]))
+        print(listLivingMarried(final_indi[i][0]))
+      
+    print(listDeceased())
+    print(listLivingMarried())
 
     
