@@ -1135,15 +1135,75 @@ def uniqueFamily(FAM_ID):
 
 '''
 US25 - Sprint 4
-Story Name: 
-Description: 
+Story Name: Unique first names in families
+Description: No more than one child with the same name and birth date should appear in a family
 '''
+def uniqueNames(famID):
+    child = 0
+    for fam in familyList:
+        if (fam[0] == famID):
+            if (fam[7] == {}):
+                return 'US25: Family ' + str(fam[0]) + ' has no children.'
+            else:
+                children = list(fam[7])
+                for i in range(len(children)):
+                    for j in range(len(final_indi)):
+                        if final_indi[j][0] == children[i]:
+                            currInd = []
+                            currInd.append(final_indi[j][1])
+                            currInd.append(final_indi[j][3])
+                            child = i
 
+                    for m in range(len(children)):
+                        if m == child:
+                                continue
+                        for k in range(len(final_indi)):
+                            if final_indi[k][0] == children[m]:
+                                tempInd = []
+                                tempInd.append(final_indi[k][1])
+                                tempInd.append(final_indi[k][3])
+                            
+                                if currInd == tempInd:
+                                    return 'Error US25: There is more than one child in the family ' + famID +' with the name ' + currInd[0] + ' and the birthday ' + currInd[1] + "."
+    return 'There is no family with ID ' + famID + '.'
 '''
-US26 - Sprint 4
-Story Name: 
-Description: 
+US33 - Sprint 4
+Story Name: List orphans
+Description: List all orphaned children (both parents dead and child < 18 years old) in a GEDCOM file
 '''
+def listOrphans():
+    mom = ''
+    dad = ''
+    momDeath = False
+    dadDeath = False
+    orphans = []
+    for i in range(len(final_indi)):
+        if final_indi[i][4] != 'N/A':
+            if int(final_indi[i][4]) < 18 and int(final_indi[i][4]) > 0:
+                fam = final_indi[i][7]
+                if fam != 'N/A':
+                    for family in familyList:
+                        if family[0] == fam[0]:
+                            mom = family[5]
+                            dad = family[3]
+
+                    for j in range(len(final_indi)):
+                        if final_indi[j][0] == mom:
+                            if final_indi[j][5] == False:
+                                momDeath = True
+                    for k in range(len(final_indi)):
+                        if final_indi[k][0] == dad:
+                            if final_indi[k][5] == False:
+                                dadDeath = True               
+                    if momDeath == True and dadDeath == True:
+                        orphans.append(final_indi[i][0])
+                        momDeath = False
+                        dadDeath = False
+                    
+    if orphans != []:
+        return 'US33: List of orphans ' + str(orphans) + "."
+    else:
+        return 'US33: There are no orphans in this GEDCOM file.'
 
 '''
 US27 - Sprint 4
@@ -1258,6 +1318,8 @@ Description:
 '''
 
 if __name__ == '__main__':
+    
+    '''
     for i in range(len(familyList)):
         print(uniqueFamily(familyList[i][0]))
         print(childDuringMarriage(familyList[i][0]))
@@ -1268,6 +1330,7 @@ if __name__ == '__main__':
         print(uniqueIDsFams(familyList[i][0]))
         print(correctGenderRole(familyList[i][0]))
         print(orderSiblingsByAge(familyList[i][0]))
+        print(uniqueNames(familyList[i][0]))
 
     for i in range(len(final_indi)):
         print(uniqueIndiv(final_indi[i][0]))
@@ -1281,9 +1344,10 @@ if __name__ == '__main__':
         print(AuntsAndUncles(final_indi[i][0]))
         print(noMarriageDescendant(final_indi[i][0]))
         print(individualAges(final_indi[i][0]))
-        print(listLivingMarried(final_indi[i][0]))
+        #print(listLivingMarried(final_indi[i][0]))
       
     print(listDeceased())
     print(listLivingMarried())
-
+    print(listOrphans())
+    '''
     

@@ -148,8 +148,13 @@ class Test(unittest.TestCase):
     
     # Sprint 4
     #US25
-    #US26
-
+    def test1_uniqueNames(self):
+        self.assertEqual(uniqueNames('F06'),'Error US25: There is more than one child in the family F06 with the name Jessica /Dauphinais/ and the birthday 10 APR 2003.')
+    def test2_uniqueNames(self):
+        self.assertEqual(uniqueNames('F101'), 'There is no family with ID F101.')
+    #US33
+    def testListOrphans(self):
+        self.assertEqual(listOrphans(), "US33: List of orphans ['I60'].")
     #US27
     def test1_individualAges(self):
         self.assertEqual(individualAges('I03'),'US27: Individul David /Dauphinais/ (I03) has the age of 60.')
