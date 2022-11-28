@@ -174,7 +174,11 @@ class Test(unittest.TestCase):
     def testlistLivingMarried(self):
         self.assertEqual(listLivingMarried(), "US30: List of living married: I01")
     #US31
+    def testLivingSingle(self):
+        self.assertEqual(listLivingSingle(),['Jim /Halpert/'])
     #US32
+    def testListMulBirth(self):
+        self.assertEqual(listMulBirth(modified_file),['Pam /Halpert/'])
   
 
 
