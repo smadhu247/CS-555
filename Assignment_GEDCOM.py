@@ -236,7 +236,7 @@ fams = 0
 
 months_short = [' ','jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
 months_long = [' ','january', 'february', 'march', 'april', 'may', 'jun', 'july', 'august', 'september', 'october', 'november', 'december']
-
+mulBirth =[]
 for i in range(len(modified_file)):
     birthday = date.today()
     if (modified_file[i][3] == True):
@@ -255,6 +255,8 @@ for i in range(len(modified_file)):
 
         if (modified_file[i][1] == 'BIRT'):
             if (modified_file[i+1][1] == 'DATE'):
+                if indi[3]!= "N/A":
+                    mulBirth.append(indi[1])
                 indi[3] = modified_file[i+1][2]
                 today = date.today()
                 birthday = datetime.strptime(modified_file[i+1][2], '%d %b %Y').date()
@@ -1305,17 +1307,53 @@ def listLivingMarried():
                 string_list = string_list + living_married_list[i] + ", "
         return "US30: List of living married: " + string_list
 
-'''
+''' 
+US32		
 US31 - Sprint 4
-Story Name: 
-Description: 
+Story Name: List living single	
+Description: List all living people over 30 who have never been married in a GEDCOM file
 '''
-
+def listLivingSingle():
+    listOfSingle30=[]
+    for i in range(len(final_indi)):
+        spouse = False
+        inAgeRange = False
+        isAlive=False
+        birthDate =""
+        deathDate =""
+        #Finding Age 
+        birthDate = final_indi[i][3]
+        if(birthDate != "N/A"):
+            age = birthDate[-4:]
+            age = 2022- (int)(age)
+            if (age >0 and age >=30): 
+                inAgeRange = True
+            else:
+                inAgeRange=False
+        #Spouse Logic
+        spouse = final_indi[i][8]
+        if (spouse == "N/A"): 
+            spouse = False
+        else: 
+            spouse = True 
+        #Is person Alive Logic 
+        deathDate=final_indi[i][6]
+        if(deathDate != "N/A"):
+           isAlive= False
+        else:
+            isAlive=True
+        if (isAlive and inAgeRange and (not spouse)): 
+            listOfSingle30.append(final_indi[i][1])
+    return listOfSingle30
 '''
 US32 - Sprint 4
-Story Name: 
-Description: 
+Story Name: List multiple births
+Description: List all multiple births in a GEDCOM file
 '''
+def listMulBirth(modified_file):
+    #Logic for this is where the file reads in each line and assings it to an individual 
+    #Around line 260 
+    return(mulBirth)
 
 if __name__ == '__main__':
     
@@ -1349,5 +1387,9 @@ if __name__ == '__main__':
     print(listDeceased())
     print(listLivingMarried())
     print(listOrphans())
+    print(listLivingSingle())
+    print(listMulBirth(modified_file))
     '''
+    
+    
     
